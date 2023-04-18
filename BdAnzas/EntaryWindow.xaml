@@ -35,7 +35,8 @@
                      Content="Запустить"
                      Width="250"
                      Height="50"
-                     Style="{StaticResource StyleButton}" />
+                     Style="{StaticResource StyleButton}"
+                     Click="Button_Click" />
         </StackPanel>
 
 

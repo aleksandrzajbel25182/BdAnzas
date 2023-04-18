@@ -66,11 +66,8 @@
         <Setter Property="FontWeight"
                 Value="Regular" />
         <Setter Property="Background"
-                Value="#166051" />
-        <Setter Property="Width"
-                Value="150" />
-        <Setter Property="Height"
-                Value="150" />
+                Value="#21B4F7" />
+
         <Setter Property="Foreground"
                 Value="White" />
         <Setter Property="Template">
@@ -99,7 +96,7 @@
                         <Trigger Property="IsMouseOver"
                                  Value="True">
                             <Setter Property="Background"
-                                    Value="#1D7361" />
+                                    Value="#E9404A" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -123,26 +120,25 @@
         <Setter Property="VerticalContentAlignment"
                 Value="Center" />
         <Setter Property="FontSize"
-                Value="22" />
+                Value="15" />
         <Setter Property="FontFamily"
                 Value="Arvo" />
         <Setter Property="FontWeight"
                 Value="Regular" />
         <Setter Property="Background"
-                Value="#209F85" />
+                Value="#FFFF" />
         <Setter Property="Width"
-                Value="200" />
+                Value="160" />
         <Setter Property="Height"
-                Value="200" />
+                Value="40" />
         <Setter Property="Foreground"
-                Value="White" />
+                Value="Black" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Grid x:Name="grid"
                           RenderTransformOrigin="0.5, 0.5">
                         <Border x:Name="border"
-                                CornerRadius="20"
                                 Background="{TemplateBinding Background}">
                             <TextBlock Text="{TemplateBinding Content}"
                                        Padding="{TemplateBinding Padding}"
@@ -166,7 +162,7 @@
                         <Trigger Property="IsMouseOver"
                                  Value="True">
                             <Setter Property="Background"
-                                    Value="#1D7361" />
+                                    Value="#21B4F7" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -190,13 +186,14 @@
         <Setter Property="Height"
                 Value="35" />
         <Setter Property="Background"
-                Value="#209F85" />
+                Value="Transparent" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border x:Name="border"
-                            CornerRadius="20"
-                            BorderBrush="#209F85"
+                            CornerRadius="5"
+                            BorderBrush="White"
+                            BorderThickness="1"
                             Background="{TemplateBinding Background}">
                         <ContentPresenter x:Name="ButtonContentPresenter"
                                           VerticalAlignment="Center"
@@ -216,7 +213,7 @@
                         <Trigger Property="IsMouseOver"
                                  Value="True">
                             <Setter Property="Background"
-                                    Value="#1D7361" />
+                                    Value="#E9404A" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -370,6 +367,7 @@
     <Style x:Key="StyleOutlinedTextBox"
            TargetType="TextBox"
            BasedOn="{StaticResource MaterialDesignOutlinedTextBox}">
+
         <Setter Property="materialDesign:TextFieldAssist.HasOutlinedTextField"
                 Value="True" />
         <Setter Property="materialDesign:TextFieldAssist.UnderlineBrush"
@@ -379,6 +377,7 @@
         <Setter Property="materialDesign:HintAssist.Foreground"
                 Value="Black" />
     </Style>
+
     <Style x:Key="StyleOutlinedComboBox"
            TargetType="ComboBox"
            BasedOn="{StaticResource MaterialDesignOutlinedComboBox}">
