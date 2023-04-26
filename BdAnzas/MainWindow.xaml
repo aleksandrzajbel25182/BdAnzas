@@ -20,10 +20,12 @@
             <StackPanel>
                 <Button Style="{StaticResource StyleMenuButton}"
                         Margin="0,70,0,0"
-                        Content="Информация по скважинам" />
+                        Content="Информация по скважинам"
+                        Command="{Binding GoInfo_DrilCommand}"/>
                 <Button Style="{StaticResource StyleMenuButton}"
                         Margin="0,1,0,0"
-                        Content="Информация по канавам" />
+                        Content="Информация по канавам"
+                        Command="{Binding GoInfoTrenchCommand}"/>
                 <Button Style="{StaticResource StyleMenuButton}"
                         Margin="0,1,0,0"
                         Content="Информация по маршрутам" />
@@ -38,7 +40,11 @@
 
         </Grid>
         <Grid Grid.Column="1">
-            <Grid.RowDefinitions>
+            <ContentControl Content="{Binding ContentControl}"
+                            Name="Cont"
+                            MaxHeight="1400" />
+
+            <!--<Grid.RowDefinitions>
                 <RowDefinition Height="55*" />
                 <RowDefinition Height="200*" />
                 <RowDefinition Height="675*" />
@@ -144,7 +150,7 @@
                     
                 </DataGrid>
 
-            </Grid>
+            </Grid>-->
 
         </Grid>
 

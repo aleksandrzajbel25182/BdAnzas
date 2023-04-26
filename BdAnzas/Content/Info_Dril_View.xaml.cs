@@ -13,25 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BdAnzas
+namespace BdAnzas.Content
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Логика взаимодействия для Info_Dril_View.xaml
     /// </summary>
-    public partial class EntaryWindow : Window
+    public partial class Info_Dril_View : UserControl
     {
-        public EntaryWindow()
+        public Info_Dril_View()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow mainWindow = new MainWindow();
-           
-            mainWindow.Show();
-          
-
         }
     }
 }
