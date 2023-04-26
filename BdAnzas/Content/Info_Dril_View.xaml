@@ -28,26 +28,25 @@
                                 Margin="20,10,0,0" />
 
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal"
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Top"
                                 Height="90">
 
                         <TextBox Margin="20,10,0,0"
                                  Width="240"
-                                 Foreground="Black"
-                                 Background="White"
+                               BorderBrush="White"
                                  HorizontalAlignment="Left"
                                  VerticalAlignment="Top"
                                  Style="{StaticResource StyleOutlinedTextBox}"
                                  materialDesign:HintAssist.Hint="Что ищем? "
                                  materialDesign:HintAssist.FloatingScale="1"
-                                 Text="Ghbdt" />
+                                  />
                         <ComboBox Style="{StaticResource StyleOutlinedComboBox}"
                                   materialDesign:HintAssist.Hint="Фильтр поиска"
                                   materialDesign:HintAssist.FloatingScale="1"
                                   VerticalAlignment="Top"
                                   Width="180"
-                                  Margin="20,10,0,15"
-                                  />
+                                 
+                                  Margin="20,10,0,15" />
                         <Button Style="{StaticResource StyleButton}"
                                 VerticalAlignment="Top"
                                 Margin="20,10,0,15"
@@ -71,31 +70,32 @@
                                 Margin="20,10,0,0" />
 
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal"
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Top"
                                 Height="90">
 
-                        <ComboBox materialDesign:HintAssist.Hint="Отображение столбцов   "
+                        <ComboBox Style="{StaticResource StyleOutlinedComboBox}"
+                                  materialDesign:HintAssist.Hint="Отображение столбцов   "
                                   materialDesign:HintAssist.FloatingScale="1"
-                                  VerticalAlignment="Center"
-                                  Width="180"
-                                  Margin="20"
+                                  VerticalAlignment="Top"
+                                  Width="200"
+                                  Margin="20,20,0,0"
                                   Foreground="White" />
 
                         <Button Style="{StaticResource StyleCircleButton}"
-                                VerticalAlignment="Center"
-                                Margin="20,0,15,0">
+                                VerticalAlignment="Top"
+                                Margin="20,20,15,0">
                             <Image Source="/Resources/Icons/edit.png"
                                    Height="20" />
                         </Button>
                         <Button Style="{StaticResource StyleCircleButton}"
-                                Margin="0,0,15,0"
-                                VerticalAlignment="Center">
+                                Margin="0,20,15,0"
+                                VerticalAlignment="Top">
                             <Image Source="/Resources/Icons/add.png"
                                    Height="20" />
                         </Button>
                         <Button Style="{StaticResource StyleCircleButton}"
-                                Margin="0,0,0,0"
-                                VerticalAlignment="Center">
+                                Margin="0,20,0,0"
+                                VerticalAlignment="Top">
                             <Image Source="/Resources/Icons/delete.png"
                                    Height="20" />
                         </Button>

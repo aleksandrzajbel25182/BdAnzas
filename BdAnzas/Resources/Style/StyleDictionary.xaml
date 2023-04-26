@@ -367,11 +367,17 @@
     <Style x:Key="StyleOutlinedTextBox"
            TargetType="TextBox"
            BasedOn="{StaticResource MaterialDesignOutlinedTextBox}">
+        <Setter Property="Background"
+                Value="Transparent" />
+        <Setter  Property="Foreground" Value="White"/>
+
+        <Setter Property="BorderBrush"
+                Value="White" />
 
         <Setter Property="materialDesign:TextFieldAssist.HasOutlinedTextField"
                 Value="True" />
         <Setter Property="materialDesign:TextFieldAssist.UnderlineBrush"
-                Value="Black" />
+                Value="White" />
         <Setter Property="materialDesign:TextFieldAssist.TextFieldCornerRadius"
                 Value="4" />
         <Setter Property="materialDesign:HintAssist.Foreground"
@@ -383,9 +389,11 @@
            BasedOn="{StaticResource MaterialDesignOutlinedComboBox}">
         <Setter Property="materialDesign:TextFieldAssist.HasOutlinedTextField"
                 Value="True" />
+        <Setter Property="BorderBrush"
+                Value="White" />
 
         <Setter Property="materialDesign:TextFieldAssist.UnderlineBrush"
-                Value="Black" />
+                Value="White" />
         <Setter Property="materialDesign:TextFieldAssist.TextFieldCornerRadius"
                 Value="4" />
         <Setter Property="materialDesign:HintAssist.Foreground"
