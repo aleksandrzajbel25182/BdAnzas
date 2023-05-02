@@ -25,6 +25,8 @@ public partial class AnzasContext : DbContext
 
     public virtual DbSet<Place> Places { get; set; }
 
+    public virtual DbSet<Project> Projects { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=anzas;Username=postgres;Password=admin");
@@ -77,6 +79,11 @@ public partial class AnzasContext : DbContext
             entity.HasOne(d => d.PlaceSiteNavigation).WithMany(p => p.InfoDrills)
                 .HasForeignKey(d => d.PlaceSite)
                 .HasConstraintName("Info_Drill_PLACE (SITE)_fkey");
+
+            entity.HasOne(d => d.ProjectNavigation).WithMany(p => p.InfoDrills)
+                .HasForeignKey(d => d.Project)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("Info_Drill_Project_fkey");
 
             entity.HasOne(d => d.TypeLcodeNavigation).WithMany(p => p.InfoDrills)
                 .HasForeignKey(d => d.TypeLcode)
@@ -188,6 +195,20 @@ public partial class AnzasContext : DbContext
                 .HasMaxLength(300)
                 .HasComment("Название участка")
                 .HasColumnName("Name_Place(site)");
+        });
+
+        modelBuilder.Entity<Project>(entity =>
+        {
+            entity.HasKey(e => e.Uid).HasName("PROJECT_pkey");
+
+            entity.ToTable("PROJECT", tb => tb.HasComment("Проекты"));
+
+            entity.Property(e => e.Uid)
+                .ValueGeneratedNever()
+                .HasColumnName("UID");
+            entity.Property(e => e.Name).HasMaxLength(2000);
+            entity.Property(e => e.NameFull).HasMaxLength(4000);
+            entity.Property(e => e.OrgExecutor).HasColumnName("Org_executor");
         });
 
         OnModelCreatingPartial(modelBuilder);

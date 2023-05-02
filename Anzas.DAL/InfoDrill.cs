@@ -96,9 +96,13 @@ public partial class InfoDrill
     /// </summary>
     public string? NotesCommentsText { get; set; }
 
+    public int Project { get; set; }
+
     public virtual Person? GeologNavigation { get; set; }
 
     public virtual Place? PlaceSiteNavigation { get; set; }
+
+    public virtual Project ProjectNavigation { get; set; } = null!;
 
     public virtual Mine? TypeLcodeNavigation { get; set; }
 }
