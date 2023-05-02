@@ -1,4 +1,5 @@
-﻿using BdAnzas.Base;
+﻿using Anzas.DAL;
+using BdAnzas.Base;
 using BdAnzas.Commands;
 using BdAnzas.Content;
 using Egor92.MvvmNavigation;
@@ -16,7 +17,7 @@ namespace BdAnzas
     internal class MainViewModel: ViewModelBase , INavigatedToAware
     {
 
-
+        AnzasContext dbcontext = new AnzasContext();
         NavigationManager _navigationmaneger;
         /// <summary>
         /// Переменная хранимая данные переданные из другой страницы
@@ -51,7 +52,7 @@ namespace BdAnzas
             _navigationmaneger = new NavigationManager(ContentControl);
 
             
-            _navigationmaneger.Register<Info_Dril_View>("Info_Dril", () => new Info_DrilModel(_navigationmaneger));
+            _navigationmaneger.Register<Info_Dril_View>("Info_Dril", () => new Info_DrilModel(_navigationmaneger , dbcontext));
             _navigationmaneger.Register<Info_TrenchView>("Info_Trench", () => new Info_TrenchModel(_navigationmaneger));
 
 

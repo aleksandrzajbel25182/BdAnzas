@@ -400,5 +400,11 @@
                 Value="Black" />
     </Style>
 
+    <!--Стиль  текст по центру в колонках-->
+    <Style x:Key="CenterGridCell"
+           TargetType="DataGridCell">
+        <Setter Property="HorizontalAlignment"
+                Value="Center" />
+    </Style>
 
 </ResourceDictionary>

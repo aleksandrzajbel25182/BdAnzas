@@ -32,24 +32,23 @@
                                 Margin="20,10,0,0" />
 
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Top"
+                    <StackPanel Orientation="Horizontal"
+                                VerticalAlignment="Top"
                                 Height="90">
 
                         <TextBox Margin="20,10,0,0"
                                  Width="240"
-                               BorderBrush="White"
+                                 BorderBrush="White"
                                  HorizontalAlignment="Left"
                                  VerticalAlignment="Top"
                                  Style="{StaticResource StyleOutlinedTextBox}"
                                  materialDesign:HintAssist.Hint="Что ищем? "
-                                 materialDesign:HintAssist.FloatingScale="1"
-                                  />
+                                 materialDesign:HintAssist.FloatingScale="1" />
                         <ComboBox Style="{StaticResource StyleOutlinedComboBox}"
                                   materialDesign:HintAssist.Hint="Фильтр поиска"
                                   materialDesign:HintAssist.FloatingScale="1"
                                   VerticalAlignment="Top"
                                   Width="180"
-                                 
                                   Margin="20,10,0,15" />
                         <Button Style="{StaticResource StyleButton}"
                                 VerticalAlignment="Top"
@@ -74,7 +73,8 @@
                                 Margin="20,10,0,0" />
 
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Top"
+                    <StackPanel Orientation="Horizontal"
+                                VerticalAlignment="Top"
                                 Height="90">
 
                         <ComboBox Style="{StaticResource StyleOutlinedComboBox}"
@@ -84,6 +84,8 @@
                                   Width="200"
                                   Margin="20,20,0,0"
                                   Foreground="White" />
+                        <CheckBox x:Name="showImperial"
+                                  Content="Show Details" />
 
                         <Button Style="{StaticResource StyleCircleButton}"
                                 VerticalAlignment="Top"
@@ -110,8 +112,108 @@
             </materialDesign:Card>
         </StackPanel>
         <Grid Grid.Row="2">
-            <DataGrid Margin="20">
+            <DataGrid Margin="20"
+                      ItemsSource="{Binding InfoDrill}"
+                      SelectedItem="{Binding Selected_InfoDrill, Mode=TwoWay}"
+                      AutoGenerateColumns="False">
 
+                <DataGrid.InputBindings>
+                    <MouseBinding Gesture="LeftDoubleClick"
+                                  Command="{Binding GoInfoPointOBCommand , Mode=OneTime}" />
+                </DataGrid.InputBindings>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="№ скважины"
+                                        Binding="{Binding HoleId,Mode=OneWay}"
+                                        MinWidth="120"
+                                        Width="20"
+                                        CellStyle="{StaticResource CenterGridCell}"
+                                        Visibility="{Binding Source={x:Reference showImperial},
+                                 Path=IsChecked, 
+                                 Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    <DataGridTextColumn Header="Тип выработки"
+                                        Binding="{Binding TypeLcodeNavigation.TypeLcode, Mode=OneWay}"
+                                        MinWidth="180"
+                                        Width="*"
+                                        CellStyle="{StaticResource CenterGridCell}" />
+                    <DataGridTextColumn Header="Название участка"
+                                        Binding="{Binding PlaceSiteNavigation.NamePlaceSite,Mode=OneWay}"
+                                        MinWidth="160"
+                                        Width="*"
+                                        CellStyle="{StaticResource CenterGridCell}" />
+                    <DataGridTextColumn Header="Номер ПЛ"
+                                        Binding="{Binding Profile,Mode=OneWay}"
+                                        MinWidth="120"
+                                        Width="*"
+                                        CellStyle="{StaticResource CenterGridCell}" />
+                    <DataGridTextColumn Header="Долгота"
+                                        Binding="{Binding Easting,Mode=OneWay}"
+                                        MinWidth="120"
+                                        Width="*"
+                                        CellStyle="{StaticResource CenterGridCell}" />
+                    <DataGridTextColumn Header="Широта"
+                                        Binding="{Binding Northing,Mode=OneWay}"
+                                        MinWidth="120"
+                                        Width="*"
+                                        CellStyle="{StaticResource CenterGridCell}" />
+                    <DataGridTextColumn Header="Абс. отм."
+                                        Binding="{Binding Elevation,Mode=OneWay}"
+                                        MinWidth="120"
+                                        Width="*"
+                                        CellStyle="{StaticResource CenterGridCell}" />
+                    <DataGridTextColumn Header="Диаметр бурения,мм"
+                                        Binding="{Binding Diam,Mode=OneWay}"
+                                        MinWidth="180"
+                                        Width="*"
+                                        CellStyle="{StaticResource CenterGridCell}" />
+                    <DataGridTextColumn Header="Азимут ист.°"
+                                        Binding="{Binding Azimuth,Mode=OneWay}"
+                                        MinWidth="160"
+                                        Width="*"
+                                        CellStyle="{StaticResource CenterGridCell}" />
+                    <DataGridTextColumn Header="Угол наклона от горизонта,°"
+                                        Binding="{Binding Dip,Mode=OneWay}"
+                                        MinWidth="220"
+                                        Width="*"
+                                        CellStyle="{StaticResource CenterGridCell}" />
+                    <DataGridTextColumn Header=" Глубина скважины,м"
+                                        Binding="{Binding Depth,Mode=OneWay}"
+                                        MinWidth="180"
+                                        Width="*"
+                                        CellStyle="{StaticResource CenterGridCell}" />
+                    <DataGridTextColumn Header="Уровень ПВ, м"
+                                        Binding="{Binding Uroven,Mode=OneWay}"
+                                        MinWidth="140"
+                                        Width="*"
+                                        CellStyle="{StaticResource CenterGridCell}" />
+                    <DataGridTextColumn Header="Абс. отм. уровня, м"
+                                        Binding="{Binding UrAbs,Mode=OneWay}"
+                                        MinWidth="160"
+                                        Width="*"
+                                        CellStyle="{StaticResource CenterGridCell}" />
+                    <DataGridTextColumn Header="Начало бурения"
+                                        Binding="{Binding StartDate,Mode=OneWay}"
+                                        MinWidth="140"
+                                        Width="*"
+                                        CellStyle="{StaticResource CenterGridCell}" />
+                    <DataGridTextColumn Header="Окончание бурения"
+                                        Binding="{Binding EndDate,Mode=OneWay}"
+                                        MinWidth="160"
+                                        Width="*"
+                                        CellStyle="{StaticResource CenterGridCell}" />
+                    <DataGridTextColumn Header="Геолог"
+                                        Binding="{Binding GeologNavigation.Surname ,Mode=OneWay}"
+                                        MinWidth="120"
+                                        Width="*"
+                                        CellStyle="{StaticResource CenterGridCell}" />
+                    <DataGridTextColumn Header="Примечания"
+                                        Binding="{Binding NotesCommentsText,Mode=OneWay}"
+                                        MinWidth="120"
+                                        Width="*"
+                                        CellStyle="{StaticResource CenterGridCell}" />
+
+
+
+                </DataGrid.Columns>
             </DataGrid>
 
         </Grid>
