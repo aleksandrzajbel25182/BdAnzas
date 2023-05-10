@@ -1,9 +1,14 @@
 ﻿using Anzas.DAL;
 using BdAnzas.Base;
+using BdAnzas.Commands;
 using Egor92.MvvmNavigation;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows;
+using System.Windows.Data;
+using System.Windows.Input;
 
 namespace BdAnzas.Content
 {
@@ -17,12 +22,15 @@ namespace BdAnzas.Content
         /// <summary>
         /// Информаиция по скважинам
         /// </summary>
-        public ObservableCollection<InfoDrill> InfoDrill
+        public ObservableCollection<InfoDrill> InfoDrills
         {
             get => _infodrill;
             set => Set(ref _infodrill, value);
         }
 
+        /// <summary>
+        /// Выбранный элемент скважин
+        /// </summary>
         private InfoDrill? _selectedInfodril;
         public InfoDrill? Selected_InfoDrill
         {
@@ -30,7 +38,7 @@ namespace BdAnzas.Content
             set => Set(ref _selectedInfodril, value);
         }
 
-        
+
 
         public Info_DrilModel()
         {
@@ -41,16 +49,57 @@ namespace BdAnzas.Content
             this.navigationManager = navigationManager;
             this.dbcontext = db;
 
-            InfoDrill = dbcontext.InfoDrills
+            InfoDrills = dbcontext.InfoDrills
                 .Include(p => p.PlaceSiteNavigation)
                 .Include(item => item.TypeLcodeNavigation)
                 .Include(item => item.GeologNavigation)
                 .AsNoTracking().ToObservableCollection();
 
-            
-
-            //DatacolRouDistcrit = db.Routes.Where(r => r.IdDistrictNavigation.IdDistrict == PassedParameter).Include(us => us.User).AsNoTracking().ToObservableCollection();
+            DeleteCommand = new LamdaCommand(OnDeleteCommandExcuted, DeleteCommandExecute);
         }
+
+        public ICommand DeleteCommand { get; }
+        private bool DeleteCommandExecute(object p) => true;
+        private void OnDeleteCommandExcuted(object p)
+        {
+
+            try
+            {
+                InfoDrill infodrills = dbcontext.InfoDrills.FirstOrDefault(i => i.HoleId == Selected_InfoDrill.HoleId);
+                if (infodrills is not null)
+                {
+                    dbcontext.InfoDrills.Remove(infodrills);
+                    dbcontext.SaveChanges();
+                    InfoDrills.Remove(infodrills);
+                }             
+               
+                Refrash();
+                MessageBox.Show("Удаление прошло успешно");
+
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
+          
+
+
+        }
+       
+        /// <summary>
+        /// Очистка коллекции и заново чтение из базы данных.
+        /// </summary>
+        private void Refrash()
+        {
+            InfoDrills.Clear();
+            InfoDrills = dbcontext.InfoDrills
+               .Include(p => p.PlaceSiteNavigation)
+               .Include(item => item.TypeLcodeNavigation)
+               .Include(item => item.GeologNavigation)
+               .AsNoTracking().ToObservableCollection();
+        }
+
 
     }
 }
