@@ -400,6 +400,24 @@
                 Value="Black" />
     </Style>
 
+
+
+    <Style x:Key="StyleOutlinedComboBoxBlack"
+           TargetType="ComboBox"
+           BasedOn="{StaticResource MaterialDesignOutlinedComboBox}">
+        <Setter Property="materialDesign:TextFieldAssist.HasOutlinedTextField"
+                Value="True" />
+        <Setter Property="BorderBrush"
+                Value="Black" />
+
+        <Setter Property="materialDesign:TextFieldAssist.UnderlineBrush"
+                Value="Black" />
+        <Setter Property="materialDesign:TextFieldAssist.TextFieldCornerRadius"
+                Value="4" />
+        <Setter Property="materialDesign:HintAssist.Foreground"
+                Value="Black" />
+    </Style>
+
     <!--Стиль  текст по центру в колонках-->
     <Style x:Key="CenterGridCell"
            TargetType="DataGridCell">

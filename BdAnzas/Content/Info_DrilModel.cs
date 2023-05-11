@@ -1,6 +1,7 @@
 ﻿using Anzas.DAL;
 using BdAnzas.Base;
 using BdAnzas.Commands;
+using BdAnzas.Content.Windows;
 using Egor92.MvvmNavigation;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -56,8 +57,24 @@ namespace BdAnzas.Content
                 .AsNoTracking().ToObservableCollection();
 
             DeleteCommand = new LamdaCommand(OnDeleteCommandExcuted, DeleteCommandExecute);
+            AddWindowCommand = new LamdaCommand(OnAddWindowCommandExcuted, AddWindowCommandExecute);
+        }
+        #region
+        /// <summary>
+        /// Команда удаления 
+        /// </summary>
+        public ICommand AddWindowCommand { get; }
+        private bool AddWindowCommandExecute(object p) => true;
+        private void OnAddWindowCommandExcuted(object p)
+        {
+            AddWindow window = new AddWindow();
+            window.DataContext = new AddWindowViewModel();
+            window.ShowDialog();
         }
 
+       /// <summary>
+       /// Команда удаления 
+       /// </summary>
         public ICommand DeleteCommand { get; }
         private bool DeleteCommandExecute(object p) => true;
         private void OnDeleteCommandExcuted(object p)
@@ -86,7 +103,8 @@ namespace BdAnzas.Content
 
 
         }
-       
+
+        #endregion
         /// <summary>
         /// Очистка коллекции и заново чтение из базы данных.
         /// </summary>
@@ -99,6 +117,7 @@ namespace BdAnzas.Content
                .Include(item => item.GeologNavigation)
                .AsNoTracking().ToObservableCollection();
         }
+
 
 
     }
