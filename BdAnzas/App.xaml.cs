@@ -19,6 +19,8 @@ namespace BdAnzas
 
         protected override void OnStartup(StartupEventArgs e)
         {
+            //Переопределение поведения WPF, чтобы оно пропускало ввод точки при привязке к double с применением UpdateSourceTrigger=PropertyChanged
+            FrameworkCompatibilityPreferences.KeepTextBoxDisplaySynchronizedWithTextProperty = false;
             var window = new MainWindow();
             window.DataContext = new MainViewModel();
 
