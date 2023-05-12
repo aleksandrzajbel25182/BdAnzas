@@ -14,33 +14,30 @@
                          materialDesign:HintAssist.FloatingScale="1"
                          Margin="20,20,0,0"
                          Width="150"
-                         Text="{Binding HoleId}"
-                         />
+                         Text="{Binding HoleId, UpdateSourceTrigger=PropertyChanged}" />
                 <ComboBox  Style="{StaticResource StyleOutlinedComboBoxBlack}"
                            materialDesign:HintAssist.Hint="Тип выработки"
                            materialDesign:HintAssist.FloatingScale="1"
                            Margin="20,20,00,0"
                            Width="200"
-                           ItemsSource="{Binding Mines}"
-                           SelectedItem="{Binding SelectedMines}"
-                           DisplayMemberPath="TypeLcode"
-                           />
+                           ItemsSource="{Binding Mines ,UpdateSourceTrigger=PropertyChanged}"
+                           SelectedItem="{Binding SelectedMines , UpdateSourceTrigger=PropertyChanged}"
+                           DisplayMemberPath="TypeLcode" />
                 <ComboBox  Style="{StaticResource StyleOutlinedComboBoxBlack}"
                            materialDesign:HintAssist.Hint="Название участка"
                            materialDesign:HintAssist.FloatingScale="1"
                            Margin="20,20,20,0"
                            Width="200"
-                           ItemsSource="{Binding Places}"
-                           SelectedItem="{Binding SelectedPlaces}"
-                           DisplayMemberPath="NamePlaceSite"
-                           />
+                           ItemsSource="{Binding Places , UpdateSourceTrigger=PropertyChanged}"
+                           SelectedItem="{Binding SelectedPlaces ,UpdateSourceTrigger=PropertyChanged}"
+                           DisplayMemberPath="NamePlaceSite" />
                 <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
                          materialDesign:HintAssist.Hint="Номер ПЛ"
                          materialDesign:HintAssist.FloatingScale="1"
                          Margin="20,20,0,0"
                          Width="100"
-                         Text="{Binding Profile}"
-                         />
+                         PreviewTextInput="TextBox_PreviewTextInput"
+                         Text="{Binding Profile}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
@@ -48,26 +45,30 @@
                          materialDesign:HintAssist.FloatingScale="1"
                          Margin="20,20,0,0"
                          Width="170"
-                         Text="{Binding Easting}"
-                         />
+                         PreviewTextInput="TextBox_PreviewTextInput"
+                         Text="{Binding Easting ,UpdateSourceTrigger=PropertyChanged ,  StringFormat=N4}" />
                 <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
                          materialDesign:HintAssist.Hint="Широта"
                          materialDesign:HintAssist.FloatingScale="1"
                          Margin="20,20,0,0"
                          Width="170"
-                         Text="{Binding Northing}"/>
+                         PreviewTextInput="TextBox_PreviewTextInput"
+                         Text="{Binding Northing , UpdateSourceTrigger=PropertyChanged}" />
+
                 <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
                          materialDesign:HintAssist.Hint="Абс. Отм"
                          materialDesign:HintAssist.FloatingScale="1"
                          Margin="20,20,0,0"
                          Width="170"
-                         Text="{Binding Elevation}"/>
+                         PreviewTextInput="TextBox_PreviewTextInput"
+                         Text="{Binding Elevation , UpdateSourceTrigger=PropertyChanged}" />
                 <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
                          materialDesign:HintAssist.Hint="Диаметр бурения,мм"
                          materialDesign:HintAssist.FloatingScale="1"
                          Margin="20,20,0,0"
                          Width="150"
-                         Text="{Binding Diam}"/>
+                         PreviewTextInput="TextBox_PreviewTextInput"
+                         Text="{Binding Diam, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
@@ -75,25 +76,29 @@
                          materialDesign:HintAssist.FloatingScale="1"
                          Margin="20,20,0,0"
                          Width="170"
-                         Text="{Binding Azimuth}"/>
+                         PreviewTextInput="TextBox_PreviewTextInput"
+                         Text="{Binding Azimuth}" />
                 <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
                          materialDesign:HintAssist.Hint="Глубина скважины,м"
                          materialDesign:HintAssist.FloatingScale="1"
                          Margin="20,20,0,0"
                          Width="170"
-                         Text="{Binding Depth}"/>
+                         PreviewTextInput="TextBox_PreviewTextInput"
+                         Text="{Binding Depth , UpdateSourceTrigger=PropertyChanged}" />
                 <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
                          materialDesign:HintAssist.Hint="Уровень ПВ, м"
                          materialDesign:HintAssist.FloatingScale="1"
                          Margin="20,20,0,0"
                          Width="170"
-                         Text="{Binding Uroven}"/>
+                         Text="{Binding Uroven , UpdateSourceTrigger=PropertyChanged}" />
                 <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
                          materialDesign:HintAssist.Hint="Абс. отм. уровня,м"
                          materialDesign:HintAssist.FloatingScale="1"
                          Margin="20,20,0,0"
                          Width="150"
-                         Text="{Binding UrAbs}"/>
+                         IsEnabled="False"
+                         PreviewTextInput="TextBox_PreviewTextInput"
+                         Text="{Binding UrAbs}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <DatePicker Style="{StaticResource MaterialDesignOutlinedDatePicker}"
@@ -101,22 +106,23 @@
                             materialDesign:HintAssist.FloatingScale="1"
                             Height="50"
                             Width="220"
-                            Margin="20,20,0,0" />
+                            Margin="20,20,0,0"
+                            SelectedDate="{Binding StartDate}" />
                 <DatePicker Style="{StaticResource MaterialDesignOutlinedDatePicker}"
                             materialDesign:HintAssist.Hint="Окончание бурения"
                             materialDesign:HintAssist.FloatingScale="1"
                             Height="50"
                             Width="220"
-                            Margin="20,20,0,0" />
+                            Margin="20,20,0,0"
+                            SelectedDate="{Binding EndDate}" />
                 <ComboBox  Style="{StaticResource StyleOutlinedComboBoxBlack}"
                            materialDesign:HintAssist.Hint="Геолог"
                            materialDesign:HintAssist.FloatingScale="1"
                            Margin="20,20,00,0"
                            Width="200"
-                           ItemsSource="{Binding Persons}"
-                           SelectedItem="{Binding SelectedPersons}"
-                           DisplayMemberPath="Surname"
-                           />
+                           ItemsSource="{Binding Persons , UpdateSourceTrigger=PropertyChanged}"
+                           SelectedItem="{Binding SelectedPersons , UpdateSourceTrigger=PropertyChanged}"
+                           DisplayMemberPath="Surname" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
@@ -129,7 +135,7 @@
                          TextWrapping="Wrap"
                          VerticalAlignment="Top"
                          VerticalScrollBarVisibility="Auto"
-                         Text="{Binding NotesCommentsText}"/>
+                         Text="{Binding NotesCommentsText}" />
             </StackPanel>
             <Button Style="{StaticResource StyleButton}"
                     VerticalAlignment="Top"
@@ -138,7 +144,11 @@
                     Height="40"
                     FontSize="16"
                     Content="Сохранить"
-                    HorizontalAlignment="Right" />
+                    IsEnabled="{Binding SubmitEnabled }"
+                    HorizontalAlignment="Right"
+                    Command="{Binding SaveCommand}">
+
+            </Button>
 
 
         </StackPanel>

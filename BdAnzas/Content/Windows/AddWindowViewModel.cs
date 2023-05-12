@@ -38,7 +38,6 @@ namespace BdAnzas.Content.Windows
             _navigationmaneger.Register<AddInfoDrill_View>("Add_Dril", () => new AddInfoDrill_ViewModel(_navigationmaneger));
             _navigationmaneger.Navigate("Add_Dril");
 
-
         }
 
         public void OnNavigatedTo(object arg)
