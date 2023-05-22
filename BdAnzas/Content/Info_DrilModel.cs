@@ -69,7 +69,10 @@ namespace BdAnzas.Content
         {
             AddWindow window = new AddWindow();
             window.DataContext = new AddWindowViewModel();
-            window.ShowDialog();
+            if (window.ShowDialog() == false)
+            {
+                Refrash();
+            }
         }
 
        /// <summary>

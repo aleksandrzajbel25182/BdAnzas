@@ -127,11 +127,49 @@
 
                 </StackPanel>-->
                 <ContentControl Content="{Binding ContentControl}"
-                                Name="Content"
-                                />
+                                Name="Content" />
             </TabItem>
             <TabItem Header="Импорт файла">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <ComboBox  Style="{StaticResource StyleOutlinedComboBoxBlack}"
+                                   materialDesign:HintAssist.Hint="Таблица"
+                                   materialDesign:HintAssist.FloatingScale="1"
+                                   Margin="20,20,00,0"
+                                   Width="500"
+                                   ItemsSource="{Binding Tables}"
+                                   SelectedItem="{Binding SeletedTable}"
+                                   DisplayMemberPath="Title" />
 
+
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                 materialDesign:HintAssist.Hint="Путь к файлу"
+                                 materialDesign:HintAssist.FloatingScale="1"
+                                 Width="500"
+                                 Margin="20"
+                                 Text="{Binding PathFile}"
+                                 HorizontalAlignment="Left" />
+                        <Button  Style="{StaticResource StyleButton}"
+                                 Width="120"
+                                 Height="40"
+                                 Content="Выбрать"
+                                 Command="{Binding OpenFileDialogCommand , UpdateSourceTrigger=PropertyChanged}"
+                                 />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+
+                        <Button HorizontalAlignment="Right"
+                                Style="{StaticResource StyleButton}"
+                                Width="250"
+                                Height="50"
+                                Margin="50"
+                                Content="импортировать"
+                                Command="{Binding ImportCommand}"/>
+                    </StackPanel>
+                </StackPanel>
             </TabItem>
         </TabControl>
     </Grid>
