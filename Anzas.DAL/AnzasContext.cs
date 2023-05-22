@@ -27,6 +27,10 @@ public partial class AnzasContext : DbContext
 
     public virtual DbSet<Project> Projects { get; set; }
 
+    public virtual DbSet<Rock> Rocks { get; set; }
+
+    public virtual DbSet<RockCode> RockCodes { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=anzas;Username=postgres;Password=admin");
@@ -209,6 +213,79 @@ public partial class AnzasContext : DbContext
             entity.Property(e => e.Name).HasMaxLength(2000);
             entity.Property(e => e.NameFull).HasMaxLength(4000);
             entity.Property(e => e.OrgExecutor).HasColumnName("Org_executor");
+        });
+
+        modelBuilder.Entity<Rock>(entity =>
+        {
+            entity.HasKey(e => e.Uid).HasName("Rocks_pkey");
+
+            entity.ToTable(tb => tb.HasComment("Литология"));
+
+            entity.Property(e => e.Uid)
+                .ValueGeneratedNever()
+                .HasColumnName("UID");
+            entity.Property(e => e.Description)
+                .HasMaxLength(2000)
+                .HasComment("Описание керна");
+            entity.Property(e => e.From).HasComment("От");
+            entity.Property(e => e.Geolog).HasComment("Геолог");
+            entity.Property(e => e.HoleId)
+                .HasComment("№ выработки")
+                .HasColumnName("HoleID");
+            entity.Property(e => e.Kernm)
+                .HasComment("Выход керна, м")
+                .HasColumnName("KERNM");
+            entity.Property(e => e.Kernpc)
+                .HasComment("Выход керна, %")
+                .HasColumnName("KERNPC");
+            entity.Property(e => e.Length).HasComment("Длина интервала");
+            entity.Property(e => e.Mineral)
+                .HasMaxLength(2000)
+                .HasComment("Описание аншлифов")
+                .HasColumnName("MINERAL");
+            entity.Property(e => e.NotesCommentsText)
+                .HasMaxLength(2000)
+                .HasComment("Примечания")
+                .HasColumnName("NOTES (COMMENTS, TEXT)");
+            entity.Property(e => e.Petro)
+                .HasMaxLength(2000)
+                .HasComment("Описание шлифов")
+                .HasColumnName("PETRO");
+            entity.Property(e => e.Profile).HasComment("Номер ПЛ");
+            entity.Property(e => e.RockCode).HasComment("Код породы");
+            entity.Property(e => e.To).HasComment("До");
+
+            entity.HasOne(d => d.GeologNavigation).WithMany(p => p.Rocks)
+                .HasForeignKey(d => d.Geolog)
+                .HasConstraintName("Rocks_Geolog_fkey");
+
+            entity.HasOne(d => d.Hole).WithMany(p => p.Rocks)
+                .HasForeignKey(d => d.HoleId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("Rocks_HoleID_fkey");
+
+            entity.HasOne(d => d.RockCodeNavigation).WithMany(p => p.Rocks)
+                .HasForeignKey(d => d.RockCode)
+                .HasConstraintName("Rocks_RockCode_fkey");
+        });
+
+        modelBuilder.Entity<RockCode>(entity =>
+        {
+            entity.HasKey(e => e.Uid).HasName("Rock_codes_pkey");
+
+            entity.ToTable("Rock_codes", tb => tb.HasComment("Справочник породы"));
+
+            entity.Property(e => e.Uid)
+                .ValueGeneratedNever()
+                .HasColumnName("UID");
+            entity.Property(e => e.Rock)
+                .HasMaxLength(2000)
+                .HasComment("Порода")
+                .HasColumnName("ROCK");
+            entity.Property(e => e.RockCode1)
+                .HasMaxLength(20)
+                .HasComment("Код породы")
+                .HasColumnName("ROCK_CODE");
         });
 
         OnModelCreatingPartial(modelBuilder);

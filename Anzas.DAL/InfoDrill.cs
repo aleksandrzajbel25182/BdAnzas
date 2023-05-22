@@ -104,5 +104,7 @@ public partial class InfoDrill
 
     public virtual Project ProjectNavigation { get; set; } = null!;
 
+    public virtual ICollection<Rock> Rocks { get; set; } = new List<Rock>();
+
     public virtual Mine? TypeLcodeNavigation { get; set; }
 }

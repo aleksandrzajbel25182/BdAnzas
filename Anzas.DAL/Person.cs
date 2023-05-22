@@ -28,4 +28,6 @@ public partial class Person
     public virtual ICollection<InfoDrill> InfoDrills { get; set; } = new List<InfoDrill>();
 
     public virtual ICollection<InfoTrench> InfoTrenches { get; set; } = new List<InfoTrench>();
+
+    public virtual ICollection<Rock> Rocks { get; set; } = new List<Rock>();
 }
