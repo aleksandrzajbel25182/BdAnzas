@@ -11,6 +11,9 @@ using Egor92.MvvmNavigation.Abstractions;
 using Anzas.DAL;
 using System.IO;
 using System.Collections.Generic;
+using BdAnzas.Content.Windows.Add;
+using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace BdAnzas.Content.Windows
 {
@@ -52,10 +55,29 @@ namespace BdAnzas.Content.Windows
         public Tables SeletedTable
         {
             get => _selectedTable;
-            set => Set(ref _selectedTable, value);
+            set
+            {
+                _selectedTable = value;
+                OnPropertyChanged("SeletedTable");
+                OnPropertyChanged("SubmitEnabled");
+            }
         }
 
-
+        private ObservableCollection<Skvagins> _skvagina;
+        /// <summary>
+        /// Для выпадающего списка Скважин.
+        /// </summary>
+        public ObservableCollection<Skvagins> Skvagina
+        {
+            get => _skvagina;
+            set => Set(ref _skvagina, value);
+        }
+        private Skvagins _selectedSkvagina;
+        public Skvagins SelectedSkvagina
+        {
+            get => _selectedSkvagina;
+            set => Set(ref _selectedSkvagina, value);
+        }
 
 
         public AddWindowViewModel()
@@ -65,20 +87,55 @@ namespace BdAnzas.Content.Windows
             _navigationmaneger = new NavigationManager(ContentControl);
             //Регистрируем 
             _navigationmaneger.Register<AddInfoDrill_View>("Add_Dril", () => new AddInfoDrill_ViewModel(_navigationmaneger));
+            _navigationmaneger.Register<AddRocksView>("Add_Rock", () => new AddRocksViewModel(_navigationmaneger));
             _navigationmaneger.Navigate("Add_Dril");
+
+            Skvagina = new ObservableCollection<Skvagins>();
+            using (AnzasContext db = new AnzasContext())
+            {
+                var drills = db.InfoDrills.AsNoTracking().ToObservableCollection();
+                foreach (var item in drills)
+                {
+                    Skvagina.Add(new Skvagins { Uid = item.Uid, Title = item.HoleId });
+                }
+               
+            } 
+           
 
             Tables = new ObservableCollection<Tables>()
             {
                 new Tables(){Title = "Информация по скважинам (Info_Drill)"},
                  new Tables(){Title = "Информация по канавам (Info_Trench)" },
-                  new Tables(){Title = "Информация по маршрутам (Info_Route)"}
+                  new Tables(){Title = "Информация по маршрутам (Info_Route)"},
+                   new Tables(){Title = "Литология(Rocks)"}
             };
+       
             OpenFileDialogCommand = new LamdaCommand(OnOpenFileDialogCommandExcuted, OpenFileDialogExecute);
             ImportCommand = new LamdaCommand(OnImportCommandExcuted, ImportCommandExecute);
+           
+
+
         }
         #region Commands
-
-
+       
+        /// <summary>
+        /// Метод проверяющий была ли выбрана таблица Rocks
+        /// </summary>
+        public bool SubmitEnabled
+        {
+            get
+            {
+                if(SeletedTable != null)
+                {
+                    if (SeletedTable.Title == "Литология(Rocks)")
+                    {
+                        return true;
+                    }
+                }
+                else return false;
+                return false;
+            }
+        }
 
         /// <summary>
         /// Команда выбора файла для импорта 
@@ -97,7 +154,12 @@ namespace BdAnzas.Content.Windows
         private bool ImportCommandExecute(object p) => true;
         private void OnImportCommandExcuted(object p)
         {
-            ImportFile(PathFile);
+
+            if (ImportFile())
+            {
+                MessageBox.Show("Импорт прошел без ошибок");
+            }
+           
         }
         #endregion
 
@@ -111,49 +173,49 @@ namespace BdAnzas.Content.Windows
             openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             if (openFileDialog.ShowDialog() == true)
             {
-                PathFile = @""+Path.GetFullPath(openFileDialog.FileName);
+                PathFile = @"" + Path.GetFullPath(openFileDialog.FileName);
             }
         }
 
 
-        private void ImportFile(string fileNames)
+        private bool ImportFile()
         {
             try
             {
-
-
-                Excel ex = new Excel(@"C:\Users\ZAI\Desktop\Shablon.xlsx", "Лист 1");
-
                
 
-                List<InfoDrill> list = new List<InfoDrill>();
-
-                //list = ex.ReadExcelToDataTable();
-                //ex.ImportFile(list)
-
-
-
-
-
-
-                using (AnzasContext db = new AnzasContext())
+                switch (SeletedTable.Title)
                 {
+                    case "Информация по скважинам(Info_Drill)":
+                        MessageBox.Show("В разарботке");
+                        break;
+                    case "Информация по канавам (Info_Trench)":
+                        MessageBox.Show("В разарботке");
+                        break;
+                    case "Информация по маршрутам (Info_Route)":
+                        MessageBox.Show("В разарботке");
+                        break;
+                    case "Литология(Rocks)":
+                        Excel ex = new Excel(PathFile, "Rocks", SelectedSkvagina.Uid);
+                         ex.SaveBase();
+                        return true;
+                        break;
 
-
-
-                    //db.InfoDrills.Add()
-
-                    //db.Add(dt);
-
-
-
+                    default:
+                        return false;
+                        
                 }
+
+                return false;
+              
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message);
+                return false;
+               
             }
+            return false;
 
         }
 
@@ -163,6 +225,26 @@ namespace BdAnzas.Content.Windows
         {
 
         }
+    }
+
+    public class Skvagins
+    {
+        private int uid;
+
+        public int Uid
+        {
+            get { return uid; }
+            set { uid = value; }
+        }
+
+        private string _title;
+
+        public string Title
+        {
+            get { return _title; }
+            set { _title = value; }
+        }
+
     }
 
     public class Tables

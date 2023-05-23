@@ -138,7 +138,20 @@
                                    Margin="20,20,00,0"
                                    Width="500"
                                    ItemsSource="{Binding Tables}"
-                                   SelectedItem="{Binding SeletedTable}"
+                                   SelectedItem="{Binding SeletedTable , UpdateSourceTrigger=PropertyChanged }"
+                                   DisplayMemberPath="Title" />
+
+
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <ComboBox  Style="{StaticResource StyleOutlinedComboBoxBlack}"
+                                   materialDesign:HintAssist.Hint="Скважина"
+                                   materialDesign:HintAssist.FloatingScale="1"
+                                   Margin="20,20,00,0"
+                                   Width="500"
+                                   IsEnabled="{Binding SubmitEnabled }"
+                                   ItemsSource="{Binding Skvagina}"
+                                   SelectedItem="{Binding SelectedSkvagina , UpdateSourceTrigger=PropertyChanged}"
                                    DisplayMemberPath="Title" />
 
 
