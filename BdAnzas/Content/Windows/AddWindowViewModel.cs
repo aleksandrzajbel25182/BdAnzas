@@ -80,7 +80,7 @@ namespace BdAnzas.Content.Windows
         }
 
 
-        public AddWindowViewModel()
+        public AddWindowViewModel(string page)
         {
             ContentControl = new AddInfoDrill_View();
             //1. Create navigation manager
@@ -88,7 +88,24 @@ namespace BdAnzas.Content.Windows
             //Регистрируем 
             _navigationmaneger.Register<AddInfoDrill_View>("Add_Dril", () => new AddInfoDrill_ViewModel(_navigationmaneger));
             _navigationmaneger.Register<AddRocksView>("Add_Rock", () => new AddRocksViewModel(_navigationmaneger));
-            _navigationmaneger.Navigate("Add_Dril");
+            switch (page)
+            {
+                case "Информация по скважинам":
+                    _navigationmaneger.Navigate("Add_Dril");
+
+                    break;
+
+                case "Литология":
+                    _navigationmaneger.Navigate("Add_Rock");
+                    break;
+
+                default:
+                    break;
+            }
+
+           
+
+
 
             Skvagina = new ObservableCollection<Skvagins>();
             using (AnzasContext db = new AnzasContext())

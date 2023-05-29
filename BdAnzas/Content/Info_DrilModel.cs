@@ -68,7 +68,7 @@ namespace BdAnzas.Content
         private void OnAddWindowCommandExcuted(object p)
         {
             AddWindow window = new AddWindow();
-            window.DataContext = new AddWindowViewModel();
+            window.DataContext = new AddWindowViewModel("Информация по скважинам");
             if (window.ShowDialog() == false)
             {
                 Refrash();

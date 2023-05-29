@@ -34,7 +34,8 @@
                         Content="Инклинометрия" />
                 <Button Style="{StaticResource StyleMenuButton}"
                         Margin="0,1,0,0"
-                        Content="Литология" />
+                        Content="Литология"
+                        Command="{Binding GoRockCommand}"/>
 
             </StackPanel>
 

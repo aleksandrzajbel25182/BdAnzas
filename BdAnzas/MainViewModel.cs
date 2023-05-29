@@ -54,7 +54,7 @@ namespace BdAnzas
             
             _navigationmaneger.Register<Info_Dril_View>("Info_Dril", () => new Info_DrilModel(_navigationmaneger , dbcontext));
             _navigationmaneger.Register<Info_TrenchView>("Info_Trench", () => new Info_TrenchModel(_navigationmaneger));
-
+            _navigationmaneger.Register<RocksView>("Rocks", () => new RocksViewModel(_navigationmaneger));
 
 
             _navigationmaneger.Navigate("Info_Dril");
@@ -64,6 +64,8 @@ namespace BdAnzas
 
             GoInfoTrenchCommand = new LamdaCommand(OnGoInfoTrenchCommandCommandExcuted, CanGoInfoTrenchCommandExecute);
             GoInfo_DrilCommand = new LamdaCommand(OnInfo_DrilCommandCommandExcuted, CanInfo_DrilCommandExecute);
+            GoRockCommand = new LamdaCommand(OnGoRockCommandExcuted, CanGoRockCommandExecute);
+
         }
 
         #region Info_Trench
@@ -81,6 +83,16 @@ namespace BdAnzas
         private void OnInfo_DrilCommandCommandExcuted(object p)
         {
             _navigationmaneger.Navigate("Info_Dril");
+        }
+        #endregion
+
+
+        #region Rock
+        public ICommand GoRockCommand { get; }
+        private bool CanGoRockCommandExecute(object p) => true;
+        private void OnGoRockCommandExcuted(object p)
+        {
+            _navigationmaneger.Navigate("Rocks");
         }
         #endregion
 
