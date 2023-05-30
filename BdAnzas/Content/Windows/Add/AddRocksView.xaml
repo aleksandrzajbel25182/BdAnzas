@@ -7,119 +7,139 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d">
     <Grid>
-        <StackPanel>
-            <StackPanel Orientation="Horizontal">
+        <ScrollViewer>
 
-                <ComboBox  Style="{StaticResource StyleOutlinedComboBoxBlack}"
-                           materialDesign:HintAssist.Hint="Номер выработки(скважины)"
-                           materialDesign:HintAssist.FloatingScale="1"
-                           Margin="20,20,00,0"
-                           Width="200" />
-                <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                         materialDesign:HintAssist.Hint="Номер ПЛ"
-                         materialDesign:HintAssist.FloatingScale="1"
-                         Margin="20,20,0,0"
-                         Width="100"
-                         />
-                <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                         materialDesign:HintAssist.Hint="От"
-                         materialDesign:HintAssist.FloatingScale="1"
-                         Margin="20,20,0,0"
-                         Width="110"
-                         />
-                <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                         materialDesign:HintAssist.Hint="До"
-                         materialDesign:HintAssist.FloatingScale="1"
-                         Margin="20,20,0,0"
-                         Width="110"
-                         />
-                <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                         materialDesign:HintAssist.Hint="Длина интервала"
-                         materialDesign:HintAssist.FloatingScale="1"
-                         Margin="20,20,0,0"
-                         Width="150"
-                         IsEnabled="False"
-                         />
+
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+
+                    <ComboBox  Style="{StaticResource StyleOutlinedComboBoxBlack}"
+                               materialDesign:HintAssist.Hint="Номер выработки(скважины)"
+                               materialDesign:HintAssist.FloatingScale="1"
+                               Margin="20,20,00,0"
+                               Width="200"
+                               ItemsSource="{Binding InfoDrills , UpdateSourceTrigger=PropertyChanged}"
+                               SelectedItem="{Binding SelectedInfoDrill , UpdateSourceTrigger=PropertyChanged}"
+                               DisplayMemberPath="HoleId" />
+                    <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             materialDesign:HintAssist.Hint="Номер ПЛ"
+                             materialDesign:HintAssist.FloatingScale="1"
+                             Margin="20,20,0,0"
+                             Width="100"
+                             IsEnabled="False"
+                             Text="{Binding  SelectedInfoDrill.Profile}" />
+                    <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             materialDesign:HintAssist.Hint="От"
+                             materialDesign:HintAssist.FloatingScale="1"
+                             Margin="20,20,0,0"
+                             Width="110"
+                             Text="{Binding From , UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             materialDesign:HintAssist.Hint="До"
+                             materialDesign:HintAssist.FloatingScale="1"
+                             Margin="20,20,0,0"
+                             Width="110"
+                             Text="{Binding To , UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             materialDesign:HintAssist.Hint="Длина интервала"
+                             materialDesign:HintAssist.FloatingScale="1"
+                             Margin="20,20,0,0"
+                             Width="150"
+                             IsEnabled="False"
+                             Text="{Binding Length , UpdateSourceTrigger=PropertyChanged ,  StringFormat=N2}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             materialDesign:HintAssist.Hint="Выход керна,м"
+                             materialDesign:HintAssist.FloatingScale="1"
+                             Margin="20,20,0,0"
+                             Width="170"
+                             Text="{Binding Kernm, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             materialDesign:HintAssist.Hint="Выход керна %"
+                             materialDesign:HintAssist.FloatingScale="1"
+                             Margin="20,20,0,0"
+                             Width="170"
+                             Text="{Binding Kernpc}"
+                             IsEnabled="False" />
+                    <ComboBox  Style="{StaticResource StyleOutlinedComboBoxBlack}"
+                               materialDesign:HintAssist.Hint="Код Породы"
+                               materialDesign:HintAssist.FloatingScale="1"
+                               Margin="20,20,00,0"
+                               Width="150"
+                               ItemsSource="{Binding RockCodes , UpdateSourceTrigger=PropertyChanged}"
+                               SelectedItem="{Binding SelectedRockCode , UpdateSourceTrigger=PropertyChanged}"
+                               DisplayMemberPath="RockCode1" />
+                    <ComboBox  Style="{StaticResource StyleOutlinedComboBoxBlack}"
+                               materialDesign:HintAssist.Hint="Геолог"
+                               materialDesign:HintAssist.FloatingScale="1"
+                               Margin="20,20,00,0"
+                               Width="200"
+                               ItemsSource="{Binding Persons ,UpdateSourceTrigger=PropertyChanged}"
+                               SelectedItem="{Binding SelectedPersons , UpdateSourceTrigger=PropertyChanged}"
+                               DisplayMemberPath="Surname" />
+
+
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             materialDesign:HintAssist.Hint="Описание керна"
+                             materialDesign:HintAssist.FloatingScale="1"
+                             Margin="20,20,0,0"
+                             Width="750"
+                             TextWrapping="Wrap"
+                             Text="{Binding Description , UpdateSourceTrigger=PropertyChanged}" />
+
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+
+                    <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             materialDesign:HintAssist.Hint="Описание шлифов"
+                             materialDesign:HintAssist.FloatingScale="1"
+                             Margin="20,20,10,0"
+                             Width="750"
+                             TextWrapping="Wrap"
+                             Text="{Binding Petro}" />
+
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+
+                    <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             materialDesign:HintAssist.Hint="Описание аншлифов"
+                             materialDesign:HintAssist.FloatingScale="1"
+                             Margin="20,20,0,0"
+                             Width="750"
+                             TextWrapping="Wrap"
+                             Text="{Binding Mineral}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             materialDesign:HintAssist.Hint="Примечание"
+                             materialDesign:HintAssist.FloatingScale="1"
+                             Margin="20,20,0,0"
+                             Width="750"
+                             Height="150"
+                             AcceptsReturn="True"
+                             TextWrapping="Wrap"
+                             VerticalAlignment="Top"
+                             VerticalScrollBarVisibility="Auto"
+                             Text="{Binding NotesCommentsText}" />
+                </StackPanel>
+                <Button Style="{StaticResource StyleButton}"
+                        VerticalAlignment="Top"
+                        Margin="20,10,30,0"
+                        Width="120"
+                        Height="40"
+                        FontSize="16"
+                        Content="Сохранить"
+                        IsEnabled="{ Binding SubmitEnabled}"
+                        Command="{Binding SaveCommand}"
+                        HorizontalAlignment="Right">
+
+                </Button>
+
+
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                         materialDesign:HintAssist.Hint="Выход керна,м"
-                         materialDesign:HintAssist.FloatingScale="1"
-                         Margin="20,20,0,0"
-                         Width="170"
-                          />
-                <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                         materialDesign:HintAssist.Hint="Выход керна %"
-                         materialDesign:HintAssist.FloatingScale="1"
-                         Margin="20,20,0,0"
-                         Width="170"
-                      
-                         IsEnabled="False" />
-                <ComboBox  Style="{StaticResource StyleOutlinedComboBoxBlack}"
-                           materialDesign:HintAssist.Hint="Код Породы"
-                           materialDesign:HintAssist.FloatingScale="1"
-                           Margin="20,20,00,0"
-                           Width="150" />
-                <ComboBox  Style="{StaticResource StyleOutlinedComboBoxBlack}"
-                           materialDesign:HintAssist.Hint="Геолог"
-                           materialDesign:HintAssist.FloatingScale="1"
-                           Margin="20,20,00,0"
-                           Width="200" />
-
-
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                         materialDesign:HintAssist.Hint="Описание керна"
-                         materialDesign:HintAssist.FloatingScale="1"
-                         Margin="20,20,0,0"
-                         Width="750"
-                         TextWrapping="Wrap" />
-
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-
-                <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                         materialDesign:HintAssist.Hint="Описание шлифов"
-                         materialDesign:HintAssist.FloatingScale="1"
-                         Margin="20,20,0,0"
-                         Width="750"
-                         TextWrapping="Wrap" />
-
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-
-                <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                         materialDesign:HintAssist.Hint="Описание аншлифов"
-                         materialDesign:HintAssist.FloatingScale="1"
-                         Margin="20,20,0,0"
-                         Width="750"
-                         TextWrapping="Wrap" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                         materialDesign:HintAssist.Hint="Примечание"
-                         materialDesign:HintAssist.FloatingScale="1"
-                         Margin="20,20,0,0"
-                         Width="750"
-                         Height="150"
-                         AcceptsReturn="True"
-                         TextWrapping="Wrap"
-                         VerticalAlignment="Top"
-                         VerticalScrollBarVisibility="Auto" />
-            </StackPanel>
-            <Button Style="{StaticResource StyleButton}"
-                    VerticalAlignment="Top"
-                    Margin="20,10,30,0"
-                    Width="120"
-                    Height="40"
-                    FontSize="16"
-                    Content="Сохранить"
-                    HorizontalAlignment="Right">
-
-            </Button>
-
-
-        </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>

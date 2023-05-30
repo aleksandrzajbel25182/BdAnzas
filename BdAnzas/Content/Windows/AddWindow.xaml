@@ -126,6 +126,7 @@
 
 
                 </StackPanel>-->
+                
                 <ContentControl Content="{Binding ContentControl}"
                                 Name="Content" />
             </TabItem>
