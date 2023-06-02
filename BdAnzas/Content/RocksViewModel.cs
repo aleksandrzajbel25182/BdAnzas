@@ -66,7 +66,7 @@ namespace BdAnzas.Content
         private void OnAddWindowCommandExcuted(object p)
         {
             AddWindow window = new AddWindow();
-            window.DataContext = new AddWindowViewModel("Литология");
+            window.DataContext = new AddEditWindowViewModel("Литология" , true);
             if (window.ShowDialog() == false)
             {
                 Refrash();

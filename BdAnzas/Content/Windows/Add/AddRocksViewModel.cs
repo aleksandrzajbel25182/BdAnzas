@@ -16,7 +16,7 @@ namespace BdAnzas.Content.Windows.Add
 {
     internal class AddRocksViewModel : ViewModelBase
     {
-        private NavigationManager navigationmaneger;
+        
 
 
         private ObservableCollection<InfoDrill> _infoDrills;
@@ -68,7 +68,6 @@ namespace BdAnzas.Content.Windows.Add
         {
             get => _kernpc; set => SetProperty(ref _kernpc, value);
         }
-
         private double? _kernpc;
         /// <summary>
         /// Код породы
@@ -140,9 +139,27 @@ namespace BdAnzas.Content.Windows.Add
         private string? _notesCommentsText;
 
 
-        public AddRocksViewModel(NavigationManager navigationmaneger)
+        public AddRocksViewModel( )
         {
-            this.navigationmaneger = navigationmaneger;
+            RockCodes = new ObservableCollection<RockCode>();
+            Persons = new ObservableCollection<Person>();
+            InfoDrills = new ObservableCollection<InfoDrill>();
+            using (AnzasContext db = new AnzasContext())
+            {
+
+                RockCodes = db.RockCodes.AsNoTracking().ToObservableCollection();
+                Persons = db.People.AsNoTracking().ToObservableCollection();
+                InfoDrills = db.InfoDrills.AsNoTracking().ToObservableCollection();
+
+                //var a = db.InfoDrills.Select(u => u.HoleId).ToObservableCollection();
+            }
+            SaveCommand = new LamdaCommand(OnSaveCommandExcuted, SaveCommandExecute);
+        }
+
+
+        public AddRocksViewModel(int id)
+        {
+
 
             RockCodes = new ObservableCollection<RockCode>();
             Persons = new ObservableCollection<Person>();
@@ -160,6 +177,7 @@ namespace BdAnzas.Content.Windows.Add
             SaveCommand = new LamdaCommand(OnSaveCommandExcuted, SaveCommandExecute);
 
         }
+
 
         public ICommand SaveCommand { get; }
         private bool SaveCommandExecute(object p) => true;

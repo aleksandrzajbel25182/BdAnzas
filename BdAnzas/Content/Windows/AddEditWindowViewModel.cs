@@ -17,11 +17,29 @@ using System.Threading.Tasks;
 
 namespace BdAnzas.Content.Windows
 {
-    internal class AddWindowViewModel : ViewModelBase, INavigatedToAware
+    internal class AddEditWindowViewModel : ViewModelBase
     {
         NavigationManager _navigationmaneger;
 
+        /// <summary>
+        /// Включаем отключаем видимость
+        /// </summary>
+        private bool _isVisibility;
+        public bool IsVisibility
+        {
+            get => _isVisibility;
+            set => Set(ref _isVisibility, value);
+        }
 
+        /// <summary>
+        /// Шапка окна
+        /// </summary>
+        private string _title;
+        public string Title
+        {
+            get => _title;
+            set => Set(ref _title, value);
+        }
         private string _pathFile;
         public string PathFile
         {
@@ -79,33 +97,24 @@ namespace BdAnzas.Content.Windows
             set => Set(ref _selectedSkvagina, value);
         }
 
-
-        public AddWindowViewModel(string page)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="page">Страница которую нужно вывести</param>
+        /// <param name="edit">Режим редактирования/Добавления. True - добавление. False-редактирование</param>
+        public AddEditWindowViewModel(string page, bool edit)
         {
             ContentControl = new AddInfoDrill_View();
-            //1. Create navigation manager
+
             _navigationmaneger = new NavigationManager(ContentControl);
             //Регистрируем 
-            _navigationmaneger.Register<AddInfoDrill_View>("Add_Dril", () => new AddInfoDrill_ViewModel(_navigationmaneger));
-            _navigationmaneger.Register<AddRocksView>("Add_Rock", () => new AddRocksViewModel(_navigationmaneger));
-            switch (page)
-            {
-                case "Информация по скважинам":
-                    _navigationmaneger.Navigate("Add_Dril");
+            _navigationmaneger.Register<AddInfoDrill_View>("Add_Dril", () => new AddIEditnfoDrill_ViewModel());
+            _navigationmaneger.Register<AddRocksView>("Add_Rock", () => new AddRocksViewModel());
 
-                    break;
+            IsVisibility = edit;
+            Title = page;
 
-                case "Литология":
-                    _navigationmaneger.Navigate("Add_Rock");
-                    break;
-
-                default:
-                    break;
-            }
-
-           
-
-
+            NavigatePage(page);
 
             Skvagina = new ObservableCollection<Skvagins>();
             using (AnzasContext db = new AnzasContext())
@@ -115,9 +124,9 @@ namespace BdAnzas.Content.Windows
                 {
                     Skvagina.Add(new Skvagins { Uid = item.Uid, Title = item.HoleId });
                 }
-               
-            } 
-           
+
+            }
+
 
             Tables = new ObservableCollection<Tables>()
             {
@@ -126,34 +135,39 @@ namespace BdAnzas.Content.Windows
                   new Tables(){Title = "Информация по маршрутам (Info_Route)"},
                    new Tables(){Title = "Литология(Rocks)"}
             };
-       
+
             OpenFileDialogCommand = new LamdaCommand(OnOpenFileDialogCommandExcuted, OpenFileDialogExecute);
             ImportCommand = new LamdaCommand(OnImportCommandExcuted, ImportCommandExecute);
-           
+
+
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="page">Страница которую нужно вывести</param>
+        /// <param name="edit">Режим редактирования/Добавления. True - добавление. False-редактирование</param>
+        /// <param name="id">Идентификатор таблицы</param>
+        public AddEditWindowViewModel(string page, bool edit , int id)
+        {
+            ContentControl = new AddInfoDrill_View();
+
+            _navigationmaneger = new NavigationManager(ContentControl);
+            //Регистрируем 
+            _navigationmaneger.Register<AddInfoDrill_View>("Add_Dril", () => new AddIEditnfoDrill_ViewModel(id));
+            _navigationmaneger.Register<AddRocksView>("Add_Rock", () => new AddRocksViewModel(id));
+
+            IsVisibility = edit;
+            Title = page;
+
+            NavigatePage(page);
+
 
 
         }
         #region Commands
-       
-        /// <summary>
-        /// Метод проверяющий была ли выбрана таблица Rocks
-        /// </summary>
-        public bool SubmitEnabled
-        {
-            get
-            {
-                if(SeletedTable != null)
-                {
-                    if (SeletedTable.Title == "Литология(Rocks)")
-                    {
-                        return true;
-                    }
-                }
-                else return false;
-                return false;
-            }
-        }
 
+      
         /// <summary>
         /// Команда выбора файла для импорта 
         /// </summary>
@@ -176,9 +190,48 @@ namespace BdAnzas.Content.Windows
             {
                 MessageBox.Show("Импорт прошел без ошибок");
             }
-           
+
         }
         #endregion
+
+        private void NavigatePage(string _page)
+        {
+            switch (_page)
+            {
+                case "Информация по скважинам":
+                    _navigationmaneger.Navigate("Add_Dril");
+
+                    break;
+
+                case "Литология":
+                    _navigationmaneger.Navigate("Add_Rock");
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+
+        /// <summary>
+        /// Метод проверяющий была ли выбрана таблица Rocks
+        /// </summary>
+        public bool SubmitEnabled
+        {
+            get
+            {
+                if (SeletedTable != null)
+                {
+                    if (SeletedTable.Title == "Литология(Rocks)")
+                    {
+                        return true;
+                    }
+                }
+                else return false;
+                return false;
+            }
+        }
+
 
         /// <summary>
         /// Функция выбора файла для импорта
@@ -199,7 +252,7 @@ namespace BdAnzas.Content.Windows
         {
             try
             {
-               
+
 
                 switch (SeletedTable.Title)
                 {
@@ -214,34 +267,28 @@ namespace BdAnzas.Content.Windows
                         break;
                     case "Литология(Rocks)":
                         Excel ex = new Excel(PathFile, "Rocks", SelectedSkvagina.Uid);
-                         ex.SaveBase();
+                        ex.SaveBase();
                         return true;
                         break;
 
                     default:
                         return false;
-                        
+
                 }
 
                 return false;
-              
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 return false;
-               
+
             }
             return false;
 
         }
 
-
-
-        public void OnNavigatedTo(object arg)
-        {
-
-        }
     }
 
     public class Skvagins

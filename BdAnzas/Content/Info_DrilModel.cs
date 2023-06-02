@@ -6,6 +6,8 @@ using Egor92.MvvmNavigation;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Data;
@@ -19,7 +21,7 @@ namespace BdAnzas.Content
         private AnzasContext dbcontext;
 
 
-        private ObservableCollection<InfoDrill> _infodrill = new ObservableCollection<InfoDrill>();
+        private ObservableCollection<InfoDrill> _infodrill;
         /// <summary>
         /// Информаиция по скважинам
         /// </summary>
@@ -27,7 +29,10 @@ namespace BdAnzas.Content
         {
             get => _infodrill;
             set => Set(ref _infodrill, value);
+           
         }
+
+
 
         /// <summary>
         /// Выбранный элемент скважин
@@ -41,6 +46,7 @@ namespace BdAnzas.Content
 
 
 
+
         public Info_DrilModel()
         {
         }
@@ -49,6 +55,8 @@ namespace BdAnzas.Content
         {
             this.navigationManager = navigationManager;
             this.dbcontext = db;
+          
+            InfoDrills = new ObservableCollection<InfoDrill>();
 
             InfoDrills = dbcontext.InfoDrills
                 .Include(p => p.PlaceSiteNavigation)
@@ -56,28 +64,58 @@ namespace BdAnzas.Content
                 .Include(item => item.GeologNavigation)
                 .AsNoTracking().ToObservableCollection();
 
+           
+
+
             DeleteCommand = new LamdaCommand(OnDeleteCommandExcuted, DeleteCommandExecute);
             AddWindowCommand = new LamdaCommand(OnAddWindowCommandExcuted, AddWindowCommandExecute);
+            EditCommand = new LamdaCommand(OnEditCommandExcuted, EditCommandExecute);
+           
+           
         }
         #region
         /// <summary>
-        /// Команда удаления 
+        /// Команда добавление новых элементов 
         /// </summary>
         public ICommand AddWindowCommand { get; }
         private bool AddWindowCommandExecute(object p) => true;
         private void OnAddWindowCommandExcuted(object p)
         {
+           
             AddWindow window = new AddWindow();
-            window.DataContext = new AddWindowViewModel("Информация по скважинам");
+            window.DataContext = new AddEditWindowViewModel("Информация по скважинам", true);
             if (window.ShowDialog() == false)
             {
                 Refrash();
             }
-        }
 
-       /// <summary>
-       /// Команда удаления 
-       /// </summary>
+        }
+        /// <summary>
+        /// Командра разрешения редактирования
+        /// </summary>
+        public ICommand EditCommand { get; }
+        private bool EditCommandExecute(object p) => true;
+        private void OnEditCommandExcuted(object p)
+        {
+            AddWindow window = new AddWindow();
+            if (Selected_InfoDrill != null)
+            {
+                window.DataContext = new AddEditWindowViewModel("Информация по скважинам", false, Selected_InfoDrill.Uid);
+                if (window.ShowDialog() == false)
+                {
+                    Refrash();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Необходимо выбрать из таблицы один элемент", "Ошибка редактирования", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+      
+
+        /// <summary>
+        /// Команда удаления 
+        /// </summary>
         public ICommand DeleteCommand { get; }
         private bool DeleteCommandExecute(object p) => true;
         private void OnDeleteCommandExcuted(object p)
@@ -90,7 +128,7 @@ namespace BdAnzas.Content
                 {
                     dbcontext.InfoDrills.Remove(infodrills);
                     dbcontext.SaveChanges();
-                    InfoDrills.Remove(infodrills);
+                    //InfoDrills.Remove(infodrills);
                 }             
                
                 Refrash();

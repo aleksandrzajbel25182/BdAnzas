@@ -16,11 +16,12 @@ using System.Windows.Input;
 
 namespace BdAnzas.Content.Windows
 {
-    internal class AddInfoDrill_ViewModel : ViewModelBase, INavigatedToAware
+    internal class AddIEditnfoDrill_ViewModel : ViewModelBase
     {
-
-        private NavigationManager navigationmaneger;
-
+        /// <summary>
+        /// Редактируем или нет?
+        /// </summary>
+        private bool _ediFlag;
 
         #region Свойства
 
@@ -45,7 +46,6 @@ namespace BdAnzas.Content.Windows
         /// </summary>
         public ObservableCollection<Mine> Mines { get => _mines; set => Set(ref _mines, value); }
         private ObservableCollection<Mine> _mines = new ObservableCollection<Mine>();
-
 
         /// <summary>
         /// Выбранный элемент Типа выработки
@@ -83,17 +83,16 @@ namespace BdAnzas.Content.Windows
         }
         private Place _selectedPlaces;
 
-
         /// <summary>
         /// Номер ПЛ
         /// </summary>
-        public double Profile { get => _profile; set => Set(ref _profile, value); }
-        private double _profile;
+        public double? Profile { get => _profile; set => Set(ref _profile, value); }
+        private double? _profile;
 
         /// <summary>
         /// Долгота
         /// </summary>
-        public double Easting
+        public double? Easting
         {
             get => _easting;
             set
@@ -103,12 +102,12 @@ namespace BdAnzas.Content.Windows
                 OnPropertyChanged("SubmitEnabled");
             }
         }
-        private double _easting;
+        private double? _easting;
 
         /// <summary>
         /// Широта
         /// </summary>
-        public double Northing
+        public double? Northing
         {
             get => _northing;
             set
@@ -118,18 +117,18 @@ namespace BdAnzas.Content.Windows
                 OnPropertyChanged("SubmitEnabled");
             }
         }
-        private double _northing;
+        private double? _northing;
 
         /// <summary>
         /// Абс. отм.
         /// </summary>
-        public double Elevation { get => _elevation; set => SetProperty(ref _elevation, value); }
-        private double _elevation;
+        public double? Elevation { get => _elevation; set => SetProperty(ref _elevation, value); }
+        private double? _elevation;
 
         /// <summary>
         /// Диаметр бурения, мм
         /// </summary>
-        public double Diam
+        public double? Diam
         {
             get => _diam;
             set
@@ -139,24 +138,24 @@ namespace BdAnzas.Content.Windows
                 OnPropertyChanged("SubmitEnabled");
             }
         }
-        private double _diam;
+        private double? _diam;
 
         /// <summary>
         /// Азимут ист., °
         /// </summary>
-        public double Azimuth { get => _azimuth; set => Set(ref _azimuth, value); }
-        private double _azimuth;
+        public double? Azimuth { get => _azimuth; set => Set(ref _azimuth, value); }
+        private double? _azimuth;
 
         /// <summary>
         /// Угол наклона от горизонта, °
         /// </summary>
-        public double Dip { get => _dip; set => Set(ref _dip, value); }
-        private double _dip;
+        public double? Dip { get => _dip; set => Set(ref _dip, value); }
+        private double? _dip;
 
         /// <summary>
         /// Глубина скважины,м
         /// </summary>
-        public double Depth
+        public double? Depth
         {
             get => _depth;
 
@@ -167,24 +166,24 @@ namespace BdAnzas.Content.Windows
                 OnPropertyChanged("SubmitEnabled");
             }
         }
-        private double _depth;
+        private double? _depth;
 
         /// <summary>
         /// Уровень ПВ, м
         /// </summary>
-        public double Uroven { get => _uroven; set => SetProperty(ref _uroven, value); }
-        private double _uroven;
+        public double? Uroven { get => _uroven; set => SetProperty(ref _uroven, value); }
+        private double? _uroven;
 
         /// <summary>
         /// Абс. отм. уровня, м
         /// 
         /// </summary>
-        public double UrAbs
+        public double? UrAbs
         {
             get => _urAbs;
             set => SetProperty(ref _urAbs, value);
         }
-        private double _urAbs;
+        private double? _urAbs;
 
         /// <summary>
         /// Начало бурения
@@ -222,8 +221,8 @@ namespace BdAnzas.Content.Windows
         /// <summary>
         /// Примечания
         /// </summary>
-        public string NotesCommentsText { get => _notesCommentsText; set => Set(ref _notesCommentsText, value); }
-        private string _notesCommentsText;
+        public string? NotesCommentsText { get => _notesCommentsText; set => Set(ref _notesCommentsText, value); }
+        private string? _notesCommentsText;
 
         public bool SubmitEnabled
         {
@@ -251,9 +250,9 @@ namespace BdAnzas.Content.Windows
         #endregion
 
 
-        public AddInfoDrill_ViewModel(NavigationManager navigationmaneger)
+        public AddIEditnfoDrill_ViewModel()
         {
-            this.navigationmaneger = navigationmaneger;
+            _ediFlag = false;
             StartDate = DateTime.Now;
             EndDate = DateTime.Now;
 
@@ -267,9 +266,100 @@ namespace BdAnzas.Content.Windows
 
         }
 
+        public AddIEditnfoDrill_ViewModel(int id)
+        {
+            _ediFlag = true;
+            //StartDate = DateTime.Now;
+            //EndDate = DateTime.Now;
+
+            using (AnzasContext db = new AnzasContext())
+            {
+
+                var list = db.InfoDrills.FirstOrDefault(i => i.Uid == id);
+
+                HoleId = list.HoleId;              
+                Profile = list.Profile;
+                Easting = list.Easting;
+                Northing = list.Northing;
+                Elevation = list.Elevation;
+                Diam = list.Diam;
+                Azimuth = list.Azimuth;
+                Dip = list.Dip;
+                Depth = list.Depth;
+                Uroven = list.Uroven;
+                UrAbs = list.UrAbs;
+                if (list.StartDate != null)
+                    StartDate = new DateTime(list.StartDate.Value.Year, list.StartDate.Value.Month, list.StartDate.Value.Day);
+                if (list.EndDate != null)
+                    EndDate = new DateTime(list.EndDate.Value.Year, list.EndDate.Value.Month, list.EndDate.Value.Day);
+
+
+                Persons = db.People.AsNoTracking().ToObservableCollection();
+                Mines = db.Mines.AsNoTracking().ToObservableCollection();
+                Places = db.Places.AsNoTracking().ToObservableCollection();
+                
+                SelectedPersons = Persons[(int)list.Geolog-1];
+                SelectedMines = Mines[(int)list.TypeLcode-1];
+                SelectedPlaces = Places[(int)list.PlaceSite-1];
+
+            }
+
+
+            SaveCommand = new LamdaCommand(OnSaveCommandExcuted, SaveCommandExecute);
+
+        }
+
         public ICommand SaveCommand { get; }
         private bool SaveCommandExecute(object p) => true;
         private void OnSaveCommandExcuted(object p)
+        {
+            if (!_ediFlag)
+            {
+                SaveInfodrill();
+            }
+            else
+            {
+                UpdataInfodrill();
+            }
+
+        }
+       
+        private bool UpdataInfodrill()
+        {
+            try
+            {
+                using (AnzasContext db = new AnzasContext())
+                {
+                   
+                  
+
+                    var message = "Были внесены измения. Вы хотите их сохранить?";
+                    var result = MessageBox.Show(message, "Изменения",
+                             MessageBoxButton.YesNo,
+                             MessageBoxImage.Question);
+
+                    if (result == MessageBoxResult.Yes) 
+                    {
+                        //db.Update();
+                        db.SaveChanges();
+                        return true;
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
+            return true;
+        }
+        /// <summary>
+        /// Функция 
+        /// </summary>
+        /// <returns></returns>
+        private bool SaveInfodrill()
         {
             try
             {
@@ -307,22 +397,21 @@ namespace BdAnzas.Content.Windows
                     {
                         db.InfoDrills.Add(infoDrill);
                         db.SaveChanges();
+                        return true;
                     }
+
                 }
 
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                return false;
                 throw;
             }
-
+            return true;
         }
 
-        public void OnNavigatedTo(object arg)
-        {
-
-        }
 
         // Получаем сразу значение абс отм уровня
         protected override void PropertyNewValue<T>(ref T fieldProperty, T newValue, string propertyName)
