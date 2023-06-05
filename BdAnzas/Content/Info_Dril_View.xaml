@@ -203,8 +203,15 @@
                           AutoGenerateColumns="False"
                           CanUserReorderColumns="True"
                           IsReadOnly="True">
-
-                 
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="DataGridColumnHeader"
+                               BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
+                            <Style.Setters>
+                                <Setter Property="HorizontalContentAlignment"
+                                        Value="Center" />
+                            </Style.Setters>
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="№ скважины"
                                             Binding="{Binding HoleId , UpdateSourceTrigger=PropertyChanged}"
@@ -346,7 +353,7 @@
 
 
                     </DataGrid.Columns>
-                </DataGrid>              
+                </DataGrid>
             </StackPanel>
         </Grid>
 

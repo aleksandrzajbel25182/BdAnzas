@@ -188,8 +188,18 @@
                       SelectedItem="{Binding SelectedRocks, Mode=TwoWay}"
                       AutoGenerateColumns="False"
                       Grid.ColumnSpan="2">
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader"
+                           BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
+                        <Style.Setters>
+                            <Setter Property="HorizontalContentAlignment"
+                                    Value="Center" />
+                        </Style.Setters>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+               
 
-                <!--<DataGrid.InputBindings>
+                    <!--<DataGrid.InputBindings>
                     <MouseBinding Gesture="LeftDoubleClick"
                                   Command="{Binding GoInfoPointOBCommand , Mode=OneTime}" />
                 </DataGrid.InputBindings>-->

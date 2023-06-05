@@ -53,7 +53,7 @@ namespace BdAnzas
 
             
             _navigationmaneger.Register<Info_Dril_View>("Info_Dril", () => new Info_DrilModel(_navigationmaneger , dbcontext));
-            _navigationmaneger.Register<Info_TrenchView>("Info_Trench", () => new Info_TrenchModel(_navigationmaneger));
+            _navigationmaneger.Register<Info_TrenchView>("Info_Trench", () => new Info_TrenchModel());
             _navigationmaneger.Register<RocksView>("Rocks", () => new RocksViewModel(_navigationmaneger));
 
 

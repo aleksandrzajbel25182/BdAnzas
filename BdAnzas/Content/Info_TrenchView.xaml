@@ -6,6 +6,21 @@
              xmlns:local="clr-namespace:BdAnzas.Content"
              mc:Ignorable="d"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+    <UserControl.Resources>
+        <Style x:Key="CkekedAlL"
+               TargetType="CheckBox"
+               BasedOn="{StaticResource MaterialDesignCheckBox}">
+            <Setter Property="Foreground"
+                    Value="Black"></Setter>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=AllCheked,Path=IsChecked}"
+                             Value="True">
+                    <Setter Property="IsChecked"
+                            Value="True" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
     <Grid>
 
         <Grid.RowDefinitions>
@@ -82,7 +97,71 @@
                                   VerticalAlignment="Top"
                                   Width="200"
                                   Margin="20,20,0,0"
-                                  Foreground="White" />
+                                  Foreground="White">
+                            <CheckBox x:Name="AllCheked"
+                                      Content="Все столбцы"
+                                      Foreground="Black"
+                                      IsChecked="True" />
+
+                            <CheckBox x:Name="HoleIdCheked"
+                                      Content="№ выработки"
+                                      Style="{StaticResource CkekedAlL}">
+                            </CheckBox>
+
+                            <CheckBox x:Name="TypeLcodeCheked"
+                                      Content="Тип выработки"
+                                      Style="{StaticResource CkekedAlL}" />
+                            <CheckBox x:Name="PlaceSiteCheked"
+                                      Content="Название участка"
+                                      Style="{StaticResource CkekedAlL}" />
+                            <CheckBox x:Name="ProfileCheked"
+                                      Content="Номер ПЛ"
+                                      Style="{StaticResource CkekedAlL}" />
+
+                            <CheckBox x:Name="Easting1Cheked"
+                                      Content="Долгота (начало)"
+                                      Style="{StaticResource CkekedAlL}" />
+                            <CheckBox x:Name="Northing1Cheked"
+                                      Content="Широта (начало)"
+                                      Style="{StaticResource CkekedAlL}" />
+                            <CheckBox x:Name="Elevation1Cheked"
+                                      Content="Абс. отм. (начало)"
+                                      Style="{StaticResource CkekedAlL}" />
+                            <CheckBox x:Name="Easting2Cheked"
+                                      Content="Долгота (конец)"
+                                      Style="{StaticResource CkekedAlL}" />
+                            <CheckBox x:Name="Northing2Cheked"
+                                      Content="Широта (конец)"
+                                      Style="{StaticResource CkekedAlL}" />
+                            <CheckBox x:Name="Elevation2Cheked"
+                                      Content="Абс. отм. (конец)"
+                                      Style="{StaticResource CkekedAlL}" />
+                            <CheckBox x:Name="AzimuthCheked"
+                                      Content="Азимут ист.°"
+                                      Style="{StaticResource CkekedAlL}" />
+                            <CheckBox x:Name="LengthCheked"
+                                      Content="Длина канавы,м"
+                                      Style="{StaticResource CkekedAlL}" />
+                            <CheckBox x:Name="DepthCheked"
+                                      Content="Глубина канавы,м"
+                                      Style="{StaticResource CkekedAlL}" />
+                            <CheckBox x:Name="WidthCheked"
+                                      Content="Ширина канавы,м"
+                                      Style="{StaticResource CkekedAlL}" />
+                            <CheckBox x:Name="StartDateCheked"
+                                      Content="Начало проходки"
+                                      Style="{StaticResource CkekedAlL}" />
+                            <CheckBox x:Name="EndDateCheked"
+                                      Content="Окончание проходки"
+                                      Style="{StaticResource CkekedAlL}" />
+                            <CheckBox x:Name="GeologCheked"
+                                      Content="Геолог"
+                                      Style="{StaticResource CkekedAlL}" />
+                            <CheckBox x:Name="NotesCommentsTextCheked"
+                                      Content="Примечания"
+                                      Style="{StaticResource CkekedAlL}" />
+
+                        </ComboBox>
 
                         <Button Style="{StaticResource StyleCircleButton}"
                                 VerticalAlignment="Top"
@@ -109,8 +188,169 @@
             </materialDesign:Card>
         </StackPanel>
         <Grid Grid.Row="2">
-            <DataGrid Margin="20">
+            <DataGrid Margin="20"
+                      ItemsSource="{Binding InfoTrench}"
+                      SelectedItem="{Binding SelectedInfoTrench}"
+                      AutoGenerateColumns="False"
+                      CanUserReorderColumns="True"
+                      IsReadOnly="True">
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader" BasedOn ="{StaticResource MaterialDesignDataGridColumnHeader}">
+                        <Style.Setters>
+                            <Setter Property="HorizontalContentAlignment"
+                                    Value="Center" />
+                        </Style.Setters>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="№ Выработки"
+                                        Binding="{Binding HoleId , UpdateSourceTrigger=PropertyChanged}"
+                                        MinWidth="120"
+                                        Width="20"
+                                        CellStyle="{StaticResource CenterGridCell}"
+                                        Visibility="{Binding Source={x:Reference HoleIdCheked},
+                                                                    Path=IsChecked, 
+                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    <DataGridTextColumn Header="Тип выработки"
+                                        Binding="{Binding TypeLcodeNavigation.TypeLcode }"
+                                        MinWidth="180"
+                                        Width="*"
+                                        CellStyle="{StaticResource CenterGridCell}"
+                                        Visibility="{Binding Source={x:Reference TypeLcodeCheked},
+                                                                    Path=IsChecked, 
+                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    <DataGridTextColumn Header="Название участка"
+                                        Binding="{Binding PlaceSiteNavigation.NamePlaceSite}"
+                                        MinWidth="160"
+                                        Width="*"
+                                        CellStyle="{StaticResource CenterGridCell}"
+                                        Visibility="{Binding Source={x:Reference PlaceSiteCheked},
+                                                                    Path=IsChecked, 
+                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    <DataGridTextColumn Header="Номер ПЛ"
+                                        Binding="{Binding Profile}"
+                                        MinWidth="120"
+                                        Width="*"
+                                        CellStyle="{StaticResource CenterGridCell}"
+                                        Visibility="{Binding Source={x:Reference ProfileCheked},
+                                                                    Path=IsChecked, 
+                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    <DataGridTextColumn Header="Долгота(начало)"
+                                        Binding="{Binding Easting1}"
+                                        MinWidth="150"
+                                        Width="*"
+                                        CellStyle="{StaticResource CenterGridCell}"
+                                        Visibility="{Binding Source={x:Reference Easting1Cheked},
+                                                                    Path=IsChecked, 
+                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    <DataGridTextColumn Header="Широта(начало)"
+                                        Binding="{Binding Northing1}"
+                                        MinWidth="150"
+                                        Width="*"
+                                        CellStyle="{StaticResource CenterGridCell}"
+                                        Visibility="{Binding Source={x:Reference Northing1Cheked},
+                                                                    Path=IsChecked, 
+                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    <DataGridTextColumn Header="Абс. отм. (начало)"
+                                        Binding="{Binding Elevation1}"
+                                        MinWidth="150"
+                                        Width="*"
+                                        CellStyle="{StaticResource CenterGridCell}"
+                                        Visibility="{Binding Source={x:Reference Elevation1Cheked},
+                                                                    Path=IsChecked, 
+                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
+                   
+                    <DataGridTextColumn Header="Долгота(конец)"
+                                        Binding="{Binding Easting2}"
+                                        MinWidth="150"
+                                        Width="*"
+                                        CellStyle="{StaticResource CenterGridCell}"
+                                        Visibility="{Binding Source={x:Reference Easting2Cheked},
+                                                                    Path=IsChecked, 
+                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    <DataGridTextColumn Header="Широта(конец)"
+                                        Binding="{Binding Northing2}"
+                                        MinWidth="150"
+                                        Width="*"
+                                        CellStyle="{StaticResource CenterGridCell}"
+                                        Visibility="{Binding Source={x:Reference Northing2Cheked},
+                                                                    Path=IsChecked, 
+                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    <DataGridTextColumn Header="Абс. отм.(конец)"
+                                        Binding="{Binding Elevation2}"
+                                        MinWidth="180"
+                                        Width="*"
+                                        CellStyle="{StaticResource CenterGridCell}"
+                                        Visibility="{Binding Source={x:Reference Elevation2Cheked},
+                                                                    Path=IsChecked, 
+                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    <DataGridTextColumn Header="Азимут ист.°"
+                                        Binding="{Binding Azimuth}"
+                                        MinWidth="140"
+                                        Width="*"
+                                        CellStyle="{StaticResource CenterGridCell}"
+                                        Visibility="{Binding Source={x:Reference AzimuthCheked},
+                                                                    Path=IsChecked, 
+                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    <DataGridTextColumn Header="Длина канавы,м"
+                                        Binding="{Binding Length}"
+                                        MinWidth="160"
+                                        Width="*"
+                                        CellStyle="{StaticResource CenterGridCell}"
+                                        Visibility="{Binding Source={x:Reference LengthCheked},
+                                                                    Path=IsChecked, 
+                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    <DataGridTextColumn Header="Глубина канавы,м"
+                                        Binding="{Binding Depth}"
+                                        MinWidth="140"
+                                        Width="*"
+                                        CellStyle="{StaticResource CenterGridCell}"
+                                        Visibility="{Binding Source={x:Reference DepthCheked},
+                                                                    Path=IsChecked, 
+                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    <DataGridTextColumn Header="Ширина канавы,м"
+                                        Binding="{Binding Width}"
+                                        MinWidth="160"
+                                        Width="*"
+                                        CellStyle="{StaticResource CenterGridCell}"
+                                        Visibility="{Binding Source={x:Reference WidthCheked},
+                                                                    Path=IsChecked, 
+                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    <DataGridTextColumn Header="Начало проходки"
+                                        Binding="{Binding StartDate}"
+                                        MinWidth="120"
+                                        Width="*"
+                                        CellStyle="{StaticResource CenterGridCell}"
+                                        Visibility="{Binding Source={x:Reference StartDateCheked},
+                                                                    Path=IsChecked, 
+                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    <DataGridTextColumn Header="Окончание проходки"
+                                        Binding="{Binding EndDate}"
+                                        MinWidth="165"
+                                        Width="*"
+                                        CellStyle="{StaticResource CenterGridCell}"
+                                        Visibility="{Binding Source={x:Reference EndDateCheked},
+                                                                    Path=IsChecked, 
+                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
 
+                    <DataGridTextColumn Header="Геолог"
+                                        Binding="{Binding GeologNavigation.Surname}"
+                                        MinWidth="120"
+                                        Width="*"
+                                        CellStyle="{StaticResource CenterGridCell}"
+                                        Visibility="{Binding Source={x:Reference GeologCheked},
+                                                                    Path=IsChecked, 
+                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                    <DataGridTextColumn Header="Примечания"
+                                        Binding="{Binding NotesCommentsText}"
+                                        MinWidth="120"
+                                        Width="*"
+                                        CellStyle="{StaticResource CenterGridCell}"
+                                        Visibility="{Binding Source={x:Reference NotesCommentsTextCheked},
+                                                                    Path=IsChecked, 
+                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
+                </DataGrid.Columns>
             </DataGrid>
 
         </Grid>
