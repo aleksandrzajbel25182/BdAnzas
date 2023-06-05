@@ -108,7 +108,7 @@ namespace BdAnzas.Content
             }
             else
             {
-                MessageBox.Show("Необходимо выбрать из таблицы один элемент", "Ошибка редактирования", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Необходимо выбрать из таблицы один элемент", "Ошибка редактирования", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
       
@@ -123,16 +123,32 @@ namespace BdAnzas.Content
 
             try
             {
-                InfoDrill infodrills = dbcontext.InfoDrills.FirstOrDefault(i => i.HoleId == Selected_InfoDrill.HoleId);
-                if (infodrills is not null)
+                if (Selected_InfoDrill != null)
                 {
-                    dbcontext.InfoDrills.Remove(infodrills);
-                    dbcontext.SaveChanges();
-                    //InfoDrills.Remove(infodrills);
-                }             
-               
-                Refrash();
-                MessageBox.Show("Удаление прошло успешно");
+
+                    InfoDrill infodrills = dbcontext.InfoDrills.FirstOrDefault(i => i.HoleId == Selected_InfoDrill.HoleId);
+                    if (infodrills is not null)
+                    {
+                        var strmessege = @$"Вы действительно хотите удалить скважину: {Selected_InfoDrill.HoleId}";
+                     var result = MessageBox.Show(strmessege, "Удаление", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                        if (result == MessageBoxResult.Yes) 
+                        {
+
+                            MessageBox.Show("Удаление прошло успешно");
+                            dbcontext.InfoDrills.Remove(infodrills);
+                            dbcontext.SaveChanges();
+                            //InfoDrills.Remove(infodrills);
+                            Refrash();
+                        }
+                    }
+
+
+                    
+                }
+                else
+                {
+                    MessageBox.Show("Не выбран объект для удаления","Удаление",MessageBoxButton.OK,MessageBoxImage.Warning);
+                }
 
             }
             catch (System.Exception ex)
