@@ -165,7 +165,9 @@
 
                         <Button Style="{StaticResource StyleCircleButton}"
                                 VerticalAlignment="Top"
-                                Margin="20,20,15,0">
+                                Margin="20,20,15,0"
+                               Command="{StaticResource}" 
+                                >
                             <Image Source="/Resources/Icons/edit.png"
                                    Height="20" />
                         </Button>
