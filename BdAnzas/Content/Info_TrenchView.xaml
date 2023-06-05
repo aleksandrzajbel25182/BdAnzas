@@ -165,18 +165,22 @@
 
                         <Button Style="{StaticResource StyleCircleButton}"
                                 VerticalAlignment="Top"
+                                ToolTip="Редактировать"
                                 Margin="20,20,15,0">
                             <Image Source="/Resources/Icons/edit.png"
                                    Height="20" />
                         </Button>
                         <Button Style="{StaticResource StyleCircleButton}"
                                 Margin="0,20,15,0"
+                                ToolTip="Добавить"
                                 VerticalAlignment="Top">
                             <Image Source="/Resources/Icons/add.png"
                                    Height="20" />
                         </Button>
                         <Button Style="{StaticResource StyleCircleButton}"
                                 Margin="0,20,0,0"
+                                ToolTip="Удалить"
+                                Command="{Binding DeleteCommand}"
                                 VerticalAlignment="Top">
                             <Image Source="/Resources/Icons/delete.png"
                                    Height="20" />
