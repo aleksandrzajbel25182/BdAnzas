@@ -22,7 +22,11 @@ namespace BdAnzas.Content.Windows
         /// Редактируем или нет?
         /// </summary>
         private bool _ediFlag;
-
+        /// <summary>
+        /// Храним id для обновления
+        /// </summary>
+        private int _id;
+        
         #region Свойства
 
 
@@ -249,7 +253,9 @@ namespace BdAnzas.Content.Windows
 
         #endregion
 
-
+        /// <summary>
+        /// Конструктор при котором будет происходить добавления в базу 
+        /// </summary>
         public AddIEditnfoDrill_ViewModel()
         {
             _ediFlag = false;
@@ -266,6 +272,9 @@ namespace BdAnzas.Content.Windows
 
         }
 
+        /// <summary>
+        /// Конструктор при котором будет происходить обновления с базой 
+        /// </summary>
         public AddIEditnfoDrill_ViewModel(int id)
         {
             _ediFlag = true;
@@ -276,8 +285,8 @@ namespace BdAnzas.Content.Windows
             {
 
                 var list = db.InfoDrills.FirstOrDefault(i => i.Uid == id);
-
-                HoleId = list.HoleId;              
+                _id = id;
+                HoleId = list.HoleId;
                 Profile = list.Profile;
                 Easting = list.Easting;
                 Northing = list.Northing;
@@ -297,11 +306,11 @@ namespace BdAnzas.Content.Windows
                 Persons = db.People.AsNoTracking().ToObservableCollection();
                 Mines = db.Mines.AsNoTracking().ToObservableCollection();
                 Places = db.Places.AsNoTracking().ToObservableCollection();
-                
-                SelectedPersons = Persons[(int)list.Geolog-1];
-                SelectedMines = Mines[(int)list.TypeLcode-1];
-                SelectedPlaces = Places[(int)list.PlaceSite-1];
 
+                SelectedPersons = Persons[(int)list.Geolog - 1];
+                SelectedMines = Mines[(int)list.TypeLcode - 1];
+                SelectedPlaces = Places[(int)list.PlaceSite - 1];
+                
             }
 
 
@@ -323,30 +332,51 @@ namespace BdAnzas.Content.Windows
             }
 
         }
-       
+
+        /// <summary>
+        /// ФУнкция обновления данных 
+        /// </summary>
+        /// <returns></returns>
         private bool UpdataInfodrill()
         {
             try
             {
                 using (AnzasContext db = new AnzasContext())
                 {
-                   
-                  
-
+                    InfoDrill infoDrill = new InfoDrill
+                    {
+                        Uid = _id,
+                        HoleId = HoleId,
+                        TypeLcode = SelectedMines.Uid,
+                        PlaceSite = SelectedPlaces.Uid,
+                        Profile = Profile,
+                        Easting = Easting,
+                        Northing = Northing,
+                        Elevation = Elevation,
+                        Diam = Diam,
+                        Azimuth = Azimuth,
+                        Dip = Dip,
+                        Depth = Depth,
+                        Uroven = Uroven,
+                        UrAbs = UrAbs,
+                        StartDate = new DateOnly(StartDate.Year, StartDate.Month, StartDate.Day),
+                        EndDate = new DateOnly(EndDate.Year, EndDate.Month, EndDate.Day),
+                        Geolog = SelectedPersons.Uid,
+                        NotesCommentsText = NotesCommentsText
+                    };
+                                        
                     var message = "Были внесены измения. Вы хотите их сохранить?";
                     var result = MessageBox.Show(message, "Изменения",
                              MessageBoxButton.YesNo,
                              MessageBoxImage.Question);
 
-                    if (result == MessageBoxResult.Yes) 
+                    if (result == MessageBoxResult.Yes)
                     {
-                        //db.Update();
+                        db.Update(infoDrill);
                         db.SaveChanges();
                         return true;
-                    }
-
+                    }                    
                 }
-
             }
             catch (Exception ex)
             {
@@ -356,7 +386,7 @@ namespace BdAnzas.Content.Windows
             return true;
         }
         /// <summary>
-        /// Функция 
+        /// Функция  сохранения 
         /// </summary>
         /// <returns></returns>
         private bool SaveInfodrill()

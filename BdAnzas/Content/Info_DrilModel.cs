@@ -73,7 +73,7 @@ namespace BdAnzas.Content
            
            
         }
-        #region
+        #region команды
         /// <summary>
         /// Команда добавление новых элементов 
         /// </summary>
