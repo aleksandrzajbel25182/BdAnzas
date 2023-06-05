@@ -86,16 +86,28 @@ namespace BdAnzas.Content
             //DeleteCommand = new LamdaCommand(OnDeleteCommandExcuted, DeleteCommandExecute);
             //AddWindowCommand = new LamdaCommand(OnAddWindowCommandExcuted, AddWindowCommandExecute);
         }
-        public ICommand OpenItemCommand => new RelayCommand(OpenItem);
+        public ICommand OpenItemCommand => new RelayCommand(OpenWindowEdit, CanOpenWindowEdit);
 
-        private void OpenItem(object parameter)
+        /// <summary>
+        /// Метод для редактирования
+        /// </summary>
+
+        private void OpenWindowEdit()
         {
-            // Получение выбранного элемента из параметра команды
-            var selectedItem = parameter as MyModel;
-
-            // Создание нового окна и передача выбранного элемента
-            var window = new MyWindow(selectedItem);
-            window.ShowDialog();
+            AddWindow window = new AddWindow();
+            if(Selected_InfoDrill != null)
+            {
+                window.DataContext = new AddEditWindowViewModel("Информация по скважинам", true, Selected_InfoDrill.Uid);
+                if (window.ShowDialog() == false)
+                {
+                    //Refrash();
+                }
+            }
+            
+        }
+        private bool CanOpenWindowEdit()
+        {
+            return Selected_InfoDrill != null;
         }
 
         /*

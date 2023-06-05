@@ -20,7 +20,8 @@ namespace BdAnzas.Content.Windows
     {
 
         private NavigationManager navigationmaneger;
-
+        private bool _editflag;
+        private int uid;
 
         #region Свойства
 
@@ -224,7 +225,7 @@ namespace BdAnzas.Content.Windows
         /// </summary>
         public string NotesCommentsText { get => _notesCommentsText; set => Set(ref _notesCommentsText, value); }
         private string _notesCommentsText;
-
+     
         public bool SubmitEnabled
         {
             get
@@ -264,6 +265,14 @@ namespace BdAnzas.Content.Windows
                 Places = db.Places.AsNoTracking().ToObservableCollection();
             }
             SaveCommand = new LamdaCommand(OnSaveCommandExcuted, SaveCommandExecute);
+
+        }
+
+        public AddInfoDrill_ViewModel(bool flag, int uid)
+        {
+            this._editflag = flag;
+            this.uid = uid;
+
 
         }
 

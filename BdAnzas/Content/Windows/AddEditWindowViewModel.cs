@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 
 namespace BdAnzas.Content.Windows
 {
-    internal class AddWindowViewModel : ViewModelBase, INavigatedToAware
+    internal class AddEditWindowViewModel : ViewModelBase, INavigatedToAware
     {
         NavigationManager _navigationmaneger;
 
@@ -80,7 +80,7 @@ namespace BdAnzas.Content.Windows
         }
 
 
-        public AddWindowViewModel()
+        public AddEditWindowViewModel()
         {
             ContentControl = new AddInfoDrill_View();
             //1. Create navigation manager
@@ -116,8 +116,22 @@ namespace BdAnzas.Content.Windows
 
 
         }
+
+        public AddEditWindowViewModel(string title, bool flag, int uid)
+        {
+            ContentControl = new AddInfoDrill_View();
+            //1. Create navigation manager
+            _navigationmaneger = new NavigationManager(ContentControl);
+            //Регистрируем 
+            _navigationmaneger.Register<AddInfoDrill_View>("Add_Dril", () => new AddInfoDrill_ViewModel(flag,uid));
+            _navigationmaneger.Register<AddRocksView>("Add_Rock", () => new AddRocksViewModel(_navigationmaneger));
+            _navigationmaneger.Navigate("Add_Dril");
+
+            
+
+        }
         #region Commands
-       
+
         /// <summary>
         /// Метод проверяющий была ли выбрана таблица Rocks
         /// </summary>
