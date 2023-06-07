@@ -11,8 +11,17 @@ namespace Anzas.DAL.Services
     {
         IEnumerable<T> GetAll();
         Task<T> GetByIdAsync(int id);
-        Task AddAsync(T entity);
-        Task UpdateAsync(T entity);
-        Task DeleteAsync(T entity);
+        T GetById(int id);
+
+        T Add(T item);
+        Task AddAsync(T item , CancellationToken Cancel = default);
+
+        void Update(T item);
+        Task UpdateAsync(T item, CancellationToken Cancel = default);
+
+        void Remove(int id);
+        Task RemoveAsync(int id, CancellationToken Cancel = default);
+
+        int Max();
     }
 }
