@@ -136,9 +136,6 @@ namespace BdAnzas.Content.ViewModel
                    new Tables(){Title = "Литология(Rocks)"}
             };
 
-            //OpenFileDialogCommand = new LamdaCommand(OnOpenFileDialogCommandExcuted, OpenFileDialogExecute);
-            //ImportCommand = new LamdaCommand(OnImportCommandExcuted, ImportCommandExecute);
-
         }
 
         public AddEditWindowViewModel(string title, int uid)
@@ -246,7 +243,6 @@ namespace BdAnzas.Content.ViewModel
         {
             try
             {
-
 
                 switch (SeletedTable.Title)
                 {
