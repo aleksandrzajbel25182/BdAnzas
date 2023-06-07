@@ -7,129 +7,20 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:mde="clr-namespace:MaterialDesignExtensions.Controls;assembly=MaterialDesignExtensions"
         mc:Ignorable="d"
-        Title="AddWindow"
+        Title="{Binding Title}"
         Height="610"
         Width="800">
     <Grid>
         <TabControl Style="{StaticResource MaterialDesignTabControl}"
                     mde:TabControlAssist.TabHeaderInactiveBrush="Black"
                     mde:TabControlAssist.TabHeaderHighlightBrush="#4B56C0">
-            <TabItem Header="Одиночные данные ">
-                <!--<StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                                 materialDesign:HintAssist.Hint="№ Скважины "
-                                 materialDesign:HintAssist.FloatingScale="1"
-                                 Margin="20,20,0,0"
-                                 Width="150" />
-                        <ComboBox  Style="{StaticResource StyleOutlinedComboBox}"
-                                   materialDesign:HintAssist.Hint="Тип выработки"
-                                   materialDesign:HintAssist.FloatingScale="1"
-                                   Margin="20,20,00,0"
-                                   Width="200" />
-                        <ComboBox  Style="{StaticResource StyleOutlinedComboBox}"
-                                   materialDesign:HintAssist.Hint="Название участка"
-                                   materialDesign:HintAssist.FloatingScale="1"
-                                   Margin="20,20,20,0"
-                                   Width="200" />
-                        <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                                 materialDesign:HintAssist.Hint="Номер ПЛ"
-                                 materialDesign:HintAssist.FloatingScale="1"
-                                 Margin="20,20,0,0"
-                                 Width="100" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                                 materialDesign:HintAssist.Hint="Долгота"
-                                 materialDesign:HintAssist.FloatingScale="1"
-                                 Margin="20,20,0,0"
-                                 Width="170" />
-                        <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                                 materialDesign:HintAssist.Hint="Широта"
-                                 materialDesign:HintAssist.FloatingScale="1"
-                                 Margin="20,20,0,0"
-                                 Width="170" />
-                        <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                                 materialDesign:HintAssist.Hint="Абс. Отм"
-                                 materialDesign:HintAssist.FloatingScale="1"
-                                 Margin="20,20,0,0"
-                                 Width="170" />
-                        <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                                 materialDesign:HintAssist.Hint="Диаметр бурения,мм"
-                                 materialDesign:HintAssist.FloatingScale="1"
-                                 Margin="20,20,0,0"
-                                 Width="150" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                                 materialDesign:HintAssist.Hint="Азимут ист.°"
-                                 materialDesign:HintAssist.FloatingScale="1"
-                                 Margin="20,20,0,0"
-                                 Width="170" />
-                        <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                                 materialDesign:HintAssist.Hint="Глубина скважины,м"
-                                 materialDesign:HintAssist.FloatingScale="1"
-                                 Margin="20,20,0,0"
-                                 Width="170" />
-                        <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                                 materialDesign:HintAssist.Hint="Уровень ПВ, м"
-                                 materialDesign:HintAssist.FloatingScale="1"
-                                 Margin="20,20,0,0"
-                                 Width="170" />
-                        <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                                 materialDesign:HintAssist.Hint="Абс. отм. уровня,м"
-                                 materialDesign:HintAssist.FloatingScale="1"
-                                 Margin="20,20,0,0"
-                                 Width="150" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <DatePicker Style="{StaticResource MaterialDesignOutlinedDatePicker}"
-                                    materialDesign:HintAssist.Hint="Начао бурения"
-                                    materialDesign:HintAssist.FloatingScale="1"
-                                    Height="50"
-                                    Width="220"
-                                    IsEnabled="False"
-                                    Margin="20,20,0,0" />
-                        <DatePicker Style="{StaticResource MaterialDesignOutlinedDatePicker}"
-                                    materialDesign:HintAssist.Hint="Окончание бурения"
-                                    materialDesign:HintAssist.FloatingScale="1"
-                                    Height="50"
-                                    Width="220"
-                                    IsEnabled="False"
-                                    Margin="20,20,0,0" />
-                        <ComboBox  Style="{StaticResource StyleOutlinedComboBox}"
-                                   materialDesign:HintAssist.Hint="Геолог"
-                                   materialDesign:HintAssist.FloatingScale="1"
-                                   Margin="20,20,00,0"
-                                   Width="200" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                                 materialDesign:HintAssist.Hint="Примечание"
-                                 materialDesign:HintAssist.FloatingScale="1"
-                                 Margin="20,20,0,0"
-                                 Width="750"
-                                 Height="150"
-                                 AcceptsReturn="True"
-                                 TextWrapping="Wrap"
-                                 VerticalAlignment="Top"
-                                 VerticalScrollBarVisibility="Auto" />
-                    </StackPanel>
-                    <Button Style="{StaticResource StyleButton}"
-                            VerticalAlignment="Top"
-                            Margin="20,10,30,0"
-                            Width="120"
-                            Height="40"
-                            FontSize="16"
-                            Content="Сохранить"
-                            HorizontalAlignment="Right" />
-
-
-                </StackPanel>-->
+            <TabItem Header="Одиночные данные">
+              
                 <ContentControl Content="{Binding ContentControl}"
                                 Name="Content" />
             </TabItem>
-            <TabItem Header="Импорт файла">
+            <TabItem Header="Импорт файла"
+                     Visibility="{Binding IsVisibility ,Converter={StaticResource BooleanToVisibilityConverter}}">
                 <StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <ComboBox  Style="{StaticResource StyleOutlinedComboBoxBlack}"

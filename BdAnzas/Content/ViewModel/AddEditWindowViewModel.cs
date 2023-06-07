@@ -14,12 +14,35 @@ using System.Collections.Generic;
 using BdAnzas.Content.Windows.Add;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
+using BdAnzas.Constants;
+using BdAnzas.Content.Windows;
 
-namespace BdAnzas.Content.Windows
+namespace BdAnzas.Content.ViewModel
 {
-    internal class AddEditWindowViewModel : ViewModelBase, INavigatedToAware
+    internal class AddEditWindowViewModel : ViewModelBase
     {
         NavigationManager _navigationmaneger;
+
+
+        private string _title;
+        /// <summary>
+        /// Шапка окна
+        /// </summary>
+        public string Title
+        {
+            get { return _title; }
+            set { _title = value; }
+        }
+
+        private bool _isVisibility;
+        /// <summary>
+        /// Видимость вкладки импорта
+        /// </summary>
+        public bool IsVisibility
+        {
+            get { return _isVisibility; }
+            set { _isVisibility = value; }
+        }
 
 
         private string _pathFile;
@@ -80,17 +103,19 @@ namespace BdAnzas.Content.Windows
         }
 
 
-        public AddEditWindowViewModel()
+        public AddEditWindowViewModel(string title)
         {
+            Title = title;
+            IsVisibility = true;
+
             ContentControl = new AddInfoDrill_View();
-            //1. Create navigation manager
             _navigationmaneger = new NavigationManager(ContentControl);
-            //Регистрируем 
-            _navigationmaneger.Register<AddInfoDrill_View>("Add_Dril", () => new AddInfoDrill_ViewModel(_navigationmaneger));
-            _navigationmaneger.Register<AddRocksView>("Add_Rock", () => new AddRocksViewModel(_navigationmaneger));
-            _navigationmaneger.Navigate("Add_Dril");
+
+            RegisterNavigate(null);
+            _navigationmaneger.Navigate(title);
 
             Skvagina = new ObservableCollection<Skvagins>();
+
             using (AnzasContext db = new AnzasContext())
             {
                 var drills = db.InfoDrills.AsNoTracking().ToObservableCollection();
@@ -98,9 +123,10 @@ namespace BdAnzas.Content.Windows
                 {
                     Skvagina.Add(new Skvagins { Uid = item.Uid, Title = item.HoleId });
                 }
-               
-            } 
-           
+            }
+
+
+
 
             Tables = new ObservableCollection<Tables>()
             {
@@ -109,27 +135,51 @@ namespace BdAnzas.Content.Windows
                   new Tables(){Title = "Информация по маршрутам (Info_Route)"},
                    new Tables(){Title = "Литология(Rocks)"}
             };
-       
-            OpenFileDialogCommand = new LamdaCommand(OnOpenFileDialogCommandExcuted, OpenFileDialogExecute);
-            ImportCommand = new LamdaCommand(OnImportCommandExcuted, ImportCommandExecute);
-           
 
+            //OpenFileDialogCommand = new LamdaCommand(OnOpenFileDialogCommandExcuted, OpenFileDialogExecute);
+            //ImportCommand = new LamdaCommand(OnImportCommandExcuted, ImportCommandExecute);
 
         }
 
-        public AddEditWindowViewModel(string title, bool flag, int uid)
+        public AddEditWindowViewModel(string title, int uid)
         {
-            ContentControl = new AddInfoDrill_View();
-            //1. Create navigation manager
-            _navigationmaneger = new NavigationManager(ContentControl);
-            //Регистрируем 
-            _navigationmaneger.Register<AddInfoDrill_View>("Add_Dril", () => new AddInfoDrill_ViewModel(flag,uid));
-            _navigationmaneger.Register<AddRocksView>("Add_Rock", () => new AddRocksViewModel(_navigationmaneger));
-            _navigationmaneger.Navigate("Add_Dril");
+            Title = title;
+            IsVisibility = false;
 
-            
+            ContentControl = new AddInfoDrill_View();
+
+            _navigationmaneger = new NavigationManager(ContentControl);
+
+            RegisterNavigate(uid);
+            _navigationmaneger.Navigate(title);
 
         }
+
+        /// <summary>
+        /// Регистрируем модели представления(ViewModel) и представления(view). Если id != null то регистриуем модели представления, которые
+        /// имеют конструктор принимающий идентификатор
+        /// </summary>
+        /// <param name="id">Идентификатор модели</param>
+        private void RegisterNavigate(int? id)
+        {
+
+            if (id == null)
+            {
+                _navigationmaneger.Register<AddInfoDrill_View>(NavigationKeys.InfoDrillKey, () => new AddInfoDrill_ViewModel());
+                _navigationmaneger.Register<AddEditInfoTrench_View>(NavigationKeys.InfoTrenchKey, () => new AddEditInfoTrench_ViewModel());
+
+                _navigationmaneger.Register<AddRocksView>(NavigationKeys.RocksKey, () => new AddRocksViewModel());
+            }
+            else
+            {
+                _navigationmaneger.Register<AddInfoDrill_View>(NavigationKeys.InfoDrillKey, () => new AddInfoDrill_ViewModel((int)id));
+                _navigationmaneger.Register<AddEditInfoTrench_View>(NavigationKeys.InfoTrenchKey, () => new AddEditInfoTrench_ViewModel((int)id));
+                _navigationmaneger.Register<AddRocksView>(NavigationKeys.RocksKey, () => new AddRocksViewModel((int)id));
+
+            }
+        }
+
+
         #region Commands
 
         /// <summary>
@@ -139,7 +189,7 @@ namespace BdAnzas.Content.Windows
         {
             get
             {
-                if(SeletedTable != null)
+                if (SeletedTable != null)
                 {
                     if (SeletedTable.Title == "Литология(Rocks)")
                     {
@@ -173,7 +223,7 @@ namespace BdAnzas.Content.Windows
             {
                 MessageBox.Show("Импорт прошел без ошибок");
             }
-           
+
         }
         #endregion
 
@@ -196,7 +246,7 @@ namespace BdAnzas.Content.Windows
         {
             try
             {
-               
+
 
                 switch (SeletedTable.Title)
                 {
@@ -211,34 +261,29 @@ namespace BdAnzas.Content.Windows
                         break;
                     case "Литология(Rocks)":
                         Excel ex = new Excel(PathFile, "Rocks", SelectedSkvagina.Uid);
-                         ex.SaveBase();
+                        ex.SaveBase();
                         return true;
                         break;
 
                     default:
                         return false;
-                        
+
                 }
 
                 return false;
-              
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 return false;
-               
+
             }
             return false;
 
         }
 
 
-
-        public void OnNavigatedTo(object arg)
-        {
-
-        }
     }
 
     public class Skvagins

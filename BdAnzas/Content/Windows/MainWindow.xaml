@@ -21,11 +21,11 @@
                 <Button Style="{StaticResource StyleMenuButton}"
                         Margin="0,70,0,0"
                         Content="Информация по скважинам"
-                        Command="{Binding GoInfo_DrilCommand}"/>
+                       />
                 <Button Style="{StaticResource StyleMenuButton}"
                         Margin="0,1,0,0"
                         Content="Информация по канавам"
-                        Command="{Binding GoInfoTrenchCommand}"/>
+                       />
                 <Button Style="{StaticResource StyleMenuButton}"
                         Margin="0,1,0,0"
                         Content="Информация по маршрутам" />

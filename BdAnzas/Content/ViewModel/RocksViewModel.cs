@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BdAnzas.Content
+namespace BdAnzas.Content.ViewModel
 {
-    internal class RocksViewModel:ViewModelBase
+    internal class RocksViewModel : ViewModelBase
     {
     }
 }

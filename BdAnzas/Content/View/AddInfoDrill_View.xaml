@@ -146,7 +146,7 @@
                     Content="Сохранить"
                     IsEnabled="{Binding SubmitEnabled }"
                     HorizontalAlignment="Right"
-                    Command="{Binding SaveCommand}">
+                    Command="{Binding SaveInfoDrillCommand}">
 
             </Button>
 

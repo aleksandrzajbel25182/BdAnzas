@@ -9,9 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace BdAnzas.Content.Windows.Add
+namespace BdAnzas.Content.ViewModel
 {
-    internal class AddEditInfoTrench_ViewModel: ViewModelBase
+    internal class AddEditInfoTrench_ViewModel : ViewModelBase
     {
 
         // <summary>
@@ -119,14 +119,14 @@ namespace BdAnzas.Content.Windows.Add
             {
 
                 var list = db.InfoTrenches.FirstOrDefault(i => i.Uid == id);
-              
+
 
 
                 Persons = db.People.AsNoTracking().ToObservableCollection();
                 Mines = db.Mines.AsNoTracking().ToObservableCollection();
                 Places = db.Places.AsNoTracking().ToObservableCollection();
 
-                SelectedPersons = Persons[(int)list.Geolog - 1];
+                SelectedPersons = Persons[list.Geolog - 1];
                 SelectedMines = Mines[(int)list.TypeLcode - 1];
                 SelectedPlaces = Places[(int)list.PlaceSite - 1];
 
@@ -191,7 +191,7 @@ namespace BdAnzas.Content.Windows.Add
             }
             return true;
         }
-       
+
         /// <summary>
         /// Функция  сохранения 
         /// </summary>

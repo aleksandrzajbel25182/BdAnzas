@@ -1,4 +1,5 @@
 ﻿using BdAnzas.Content;
+using BdAnzas.Content.ViewModel;
 using Egor92.MvvmNavigation;
 using Egor92.MvvmNavigation.Abstractions;
 using System;
