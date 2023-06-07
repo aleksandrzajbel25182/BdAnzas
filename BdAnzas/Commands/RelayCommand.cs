@@ -10,11 +10,12 @@ namespace BdAnzas.Commands
     public class RelayCommand : ICommand
     {
         private readonly Action<object> _execute;
-        private readonly Predicate<object> _canExecute;
+        private readonly Func<object, bool> _canExecute;
 
-        public RelayCommand(Action<object> execute, Predicate<object> canExecute = null)
+
+        public RelayCommand(Action<object> execute, Func<object, bool> canExecute = null)
         {
-            _execute = execute ?? throw new ArgumentNullException(nameof(execute));
+            _execute = execute;
             _canExecute = canExecute;
         }
 
@@ -28,10 +29,6 @@ namespace BdAnzas.Commands
             _execute(parameter);
         }
 
-        public event EventHandler CanExecuteChanged
-        {
-            add { CommandManager.RequerySuggested += value; }
-            remove { CommandManager.RequerySuggested -= value; }
-        }
+        public event EventHandler CanExecuteChanged;
     }
 }
