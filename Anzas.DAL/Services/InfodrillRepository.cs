@@ -83,63 +83,6 @@ namespace Anzas.DAL.Services
             _dbContext.InfoDrills.Update(item);
             await _dbContext.SaveChangesAsync(Cancel).ConfigureAwait(false);
         }
-
-        //public InfoDrill Add(InfoDrill item)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public async Task AddAsync(InfoDrill entity)
-        //{
-        //    await _dbContext.InfoDrills.AddAsync(entity);
-        //    await _dbContext.SaveChangesAsync();
-        //}
-
-        //public async Task DeleteAsync(InfoDrill entity)
-        //{
-        //    _dbContext.InfoDrills.Remove(entity);
-        //    await _dbContext.SaveChangesAsync();
-        //}
-
-        //public IEnumerable<InfoDrill> GetAll()
-        //{
-        //    return _dbContext.InfoDrills
-        //        .Include(p => p.PlaceSiteNavigation)
-        //        .Include(item => item.TypeLcodeNavigation)
-        //        .Include(item => item.GeologNavigation).AsNoTracking().ToList();
-        //}
-
-
-
-        //public async Task<InfoDrill> GetByIdAsync(int id)
-        //{
-        //    return await _dbContext.InfoDrills.FindAsync(id);
-        //}
-
-        //public async Task Maxsync()
-        //{
-        //    return await _dbContext.InfoDrills.Max(i=>i.Uid);
-        //}
-
-        //public void Remove(int id)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public Task RemoveAsync(InfoDrill entity)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public void Update(InfoDrill item)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public async Task UpdateAsync(InfoDrill entity)
-        //{
-        //    _dbContext.InfoDrills.Update(entity);
-        //    await _dbContext.SaveChangesAsync();
-        //}
+       
     }
 }
