@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -52,17 +53,27 @@ namespace BdAnzas.Content.ViewModel
             _navigationmaneger = new NavigationManager(ContentControl);
 
             _navigationmaneger.Register<Info_Dril_View>(NavigationKeys.InfoDrillKey, () => new Info_DrilModel(dbcontext));
-            _navigationmaneger.Register<Info_TrenchView>(NavigationKeys.InfoTrenchKey, () => new Info_TrenchModel(_navigationmaneger));
-
-
-
+            _navigationmaneger.Register<Info_TrenchView>(NavigationKeys.InfoTrenchKey, () => new Info_TrenchModel());
+            _navigationmaneger.Register<RocksView>(NavigationKeys.RocksKey, () => new RocksViewModel());
             _navigationmaneger.Navigate(NavigationKeys.InfoDrillKey);
-
-
-
         }
 
-
+        private ICommand _navigateCommand;
+        public ICommand NavigateCommand
+        {
+            get
+            {
+                if (_navigateCommand == null)
+                {
+                    _navigateCommand = new RelayCommand(param => DoParameterisedCommand(param));
+                }
+                return _navigateCommand;
+            }
+        }
+        private void DoParameterisedCommand(object parameter)
+        {
+            _navigationmaneger.Navigate(parameter.ToString());
+        }
 
     }
 }

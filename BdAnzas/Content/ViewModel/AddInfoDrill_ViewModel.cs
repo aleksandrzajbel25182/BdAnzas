@@ -17,7 +17,7 @@ namespace BdAnzas.Content.ViewModel
         private readonly InfodrillRepository _infodrillRepository;
         private DialogManager _dialogManager;
         private bool _editflag; // флаг для понимания редактировать или обновлять данные
-        private int uid; // идентификатор для обновления данных
+      
         private InfoDrill _drill = new InfoDrill();
         public InfoDrill Drill
         {
@@ -281,8 +281,7 @@ namespace BdAnzas.Content.ViewModel
         /// <param name="uid">Идентификтор скважины</param>
         public AddInfoDrill_ViewModel(int uid)
         {
-            _editflag = true;
-            this.uid = uid;
+            _editflag = true;           
 
             AnzasContext anzasContext = new AnzasContext();
             _infodrillRepository = new InfodrillRepository(anzasContext);
@@ -381,7 +380,7 @@ namespace BdAnzas.Content.ViewModel
                                                         , InfoMessege.YesNoCancel, InfoMessege.Information);
                 if (result == MessageBoxResult.Yes)
                     await _infodrillRepository.UpdateAsync(Drill).ConfigureAwait(false);
-                _dialogManager.ShowMessage($"Данные успешно обновлены", "Обновление записи в базу данных", InfoMessege.OK, InfoMessege.Error);
+                _dialogManager.ShowMessage($"Данные успешно обновлены", "Обновление записи в базу данных", InfoMessege.OK, InfoMessege.Information);
             }
             catch (Exception ex)
             {

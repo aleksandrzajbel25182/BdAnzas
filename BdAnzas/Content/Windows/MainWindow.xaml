@@ -21,20 +21,29 @@
                 <Button Style="{StaticResource StyleMenuButton}"
                         Margin="0,70,0,0"
                         Content="Информация по скважинам"
-                       />
+                        Command="{Binding NavigateCommand}"
+                        CommandParameter="Информация по скважинам" />
                 <Button Style="{StaticResource StyleMenuButton}"
                         Margin="0,1,0,0"
                         Content="Информация по канавам"
+                        Command="{Binding NavigateCommand}"
+                        CommandParameter="Информация по канавам"
                        />
                 <Button Style="{StaticResource StyleMenuButton}"
                         Margin="0,1,0,0"
-                        Content="Информация по маршрутам" />
+                        Content="Информация по маршрутам"
+                        Command="{Binding NavigateCommand}"
+                        CommandParameter="Информация по маршрутам"/>
                 <Button Style="{StaticResource StyleMenuButton}"
                         Margin="0,1,0,0"
-                        Content="Инклинометрия" />
+                        Content="Инклинометрия скважин"
+                        Command="{Binding NavigateCommand}"
+                        CommandParameter="Инклинометрия скважин" />
                 <Button Style="{StaticResource StyleMenuButton}"
                         Margin="0,1,0,0"
-                        Content="Литология" />
+                        Content="Литология скважин"
+                        Command="{Binding NavigateCommand}"
+                        CommandParameter="Литология скважин" />
 
             </StackPanel>
 
@@ -43,114 +52,6 @@
             <ContentControl Content="{Binding ContentControl}"
                             Name="Cont"
                             MaxHeight="1400" />
-
-            <!--<Grid.RowDefinitions>
-                <RowDefinition Height="55*" />
-                <RowDefinition Height="200*" />
-                <RowDefinition Height="675*" />
-            </Grid.RowDefinitions>
-
-            <StackPanel Grid.Row="1"
-                        Orientation="Horizontal">
-                <materialDesign:Card Width="625"
-                                     Margin="20,0,0,0"
-                                     Height="130"
-                                     Background="#4B56C0">
-                    <StackPanel>
-                        <StackPanel>
-                            <Label  Content="Поиск"
-                                    FontSize="20"
-                                    Foreground="White"
-                                    Margin="20,10,0,0" />
-
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal"
-                                    Height="90">
-
-                            <TextBox Margin="20,10,0,0"
-                                     Width="240"
-                                     Foreground="Black"
-                                     Background="White"
-                                     HorizontalAlignment="Left"
-                                     VerticalAlignment="Top"
-                                     Style="{StaticResource StyleOutlinedTextBox}"
-                                     materialDesign:HintAssist.Hint="Что ищем? "
-                                     materialDesign:HintAssist.FloatingScale="1"
-                                     Text="Ghbdt" />
-                            <ComboBox Style="{StaticResource StyleOutlinedComboBox}"
-                                      materialDesign:HintAssist.Hint="Фильтр поиска"
-                                      materialDesign:HintAssist.FloatingScale="1"
-                                      VerticalAlignment="Top"
-                                      Width="180"
-                                      Margin="20,10,0,15"
-                                      SelectionChanged="ComboBox_SelectionChanged" />
-                            <Button Style="{StaticResource StyleButton}"
-                                    VerticalAlignment="Top"
-                                    Margin="20,10,0,15"
-                                    Width="120"
-                                    Height="50"
-                                    FontSize="16"
-                                    Content="Искать" />
-                        </StackPanel>
-                    </StackPanel>
-
-                </materialDesign:Card>
-                <materialDesign:Card Width="400"
-                                     Margin="50,0,0,0"
-                                     Height="130"
-                                     Background="#4B56C0">
-                    <StackPanel>
-                        <StackPanel>
-                            <Label  Content="Главная"
-                                    FontSize="20"
-                                    Foreground="White"
-                                    Margin="20,10,0,0" />
-
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal"
-                                    Height="90">
-
-                            <ComboBox materialDesign:HintAssist.Hint="Отображение столбцов   "
-                                      materialDesign:HintAssist.FloatingScale="1"
-                                      VerticalAlignment="Center"
-                                      Width="180"
-                                      Margin="20" 
-                                      Foreground="White"/>
-
-                            <Button Style="{StaticResource StyleCircleButton}"
-                                    VerticalAlignment="Center"
-                                    Margin="20,0,15,0">
-                                <Image Source="Resources/Icons/edit.png"
-                                       Height="20" />
-                            </Button>
-                            <Button Style="{StaticResource StyleCircleButton}"
-                                    Margin="0,0,15,0"
-                                    VerticalAlignment="Center">
-                                <Image Source="Resources/Icons/add.png"
-                                       Height="20" />
-                            </Button>
-                            <Button Style="{StaticResource StyleCircleButton}"
-                                    Margin="0,0,0,0"
-                                    VerticalAlignment="Center">
-                                <Image Source="Resources/Icons/delete.png"
-                                       Height="20" />
-                            </Button>
-
-
-
-
-
-                        </StackPanel>
-                    </StackPanel>
-
-                </materialDesign:Card>
-            </StackPanel>
-            <Grid Grid.Row="2">
-                <DataGrid Margin="20">
-                    
-                </DataGrid>
-
-            </Grid>-->
 
         </Grid>
 

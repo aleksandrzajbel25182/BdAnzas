@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Anzas.DAL.Services
 {
-    internal class InfoTrenchRepository : IRepository<InfoTrench>
+    public  class InfoTrenchRepository : IRepository<InfoTrench>
     {
         private readonly AnzasContext _dbContext;
 
