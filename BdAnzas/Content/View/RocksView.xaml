@@ -200,21 +200,14 @@
                 </DataGrid.ColumnHeaderStyle>
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="№ скважины"
-                                        Binding="{Binding HoleId,Mode=OneWay}"
+                                        Binding="{Binding Hole.HoleId,Mode=OneWay}"
                                         MinWidth="120"
                                         Width="20"
                                         CellStyle="{StaticResource CenterGridCell}"
                                         Visibility="{Binding Source={x:Reference HoleIdCheked},
                                                                     Path=IsChecked, 
                                                                     Converter={StaticResource BooleanToVisibilityConverter}}" />
-                    <DataGridTextColumn Header="Номер ПЛ"
-                                        Binding="{Binding Profile.TypeLcode, Mode=OneWay}"
-                                        MinWidth="160"
-                                        Width="*"
-                                        CellStyle="{StaticResource CenterGridCell}"
-                                        Visibility="{Binding Source={x:Reference ProfileCheked},
-                                                                    Path=IsChecked, 
-                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
+                   
                     <DataGridTextColumn Header="ОТ"
                                         Binding="{Binding From ,Mode=OneWay}"
                                         MinWidth="100"

@@ -18,7 +18,6 @@ namespace BdAnzas.Content.ViewModel
     {
         RockRepository _rockRepository; 
         private ObservableCollection<Rock> _rocks;
-
         public ObservableCollection<Rock> Rocks
         {
             get => _rocks;
@@ -29,9 +28,8 @@ namespace BdAnzas.Content.ViewModel
 
             }
         }
+        
         private Rock _selectedRocks;
-    
-
         public Rock SelectedRocks
         {
             get => _selectedRocks;
@@ -49,6 +47,7 @@ namespace BdAnzas.Content.ViewModel
               _rockRepository= new RockRepository(anzasContext);
             Rocks = new ObservableCollection<Rock>(_rockRepository.GetAll());
 
+           
         }
 
 
