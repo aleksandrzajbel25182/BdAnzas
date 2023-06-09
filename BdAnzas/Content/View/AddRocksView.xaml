@@ -7,6 +7,9 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d">
     <Grid>
+        <ScrollViewer>
+            
+       
         <StackPanel>
             <StackPanel Orientation="Horizontal">
 
@@ -82,7 +85,7 @@
                 <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
                          materialDesign:HintAssist.Hint="Описание шлифов"
                          materialDesign:HintAssist.FloatingScale="1"
-                         Margin="20,20,0,0"
+                         Margin="20,20,25,0"
                          Width="750"
                          TextWrapping="Wrap" />
 
@@ -121,5 +124,6 @@
 
 
         </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>
