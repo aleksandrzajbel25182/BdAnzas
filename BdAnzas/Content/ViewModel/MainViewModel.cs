@@ -3,6 +3,7 @@ using BdAnzas.Base;
 using BdAnzas.Commands;
 using BdAnzas.Constants;
 using BdAnzas.Content;
+using BdAnzas.Content.View;
 using Egor92.MvvmNavigation;
 using Egor92.MvvmNavigation.Abstractions;
 using System;
@@ -54,6 +55,7 @@ namespace BdAnzas.Content.ViewModel
 
             _navigationmaneger.Register<Info_Dril_View>(NavigationKeys.InfoDrillKey, () => new Info_DrilModel(dbcontext));
             _navigationmaneger.Register<Info_TrenchView>(NavigationKeys.InfoTrenchKey, () => new Info_TrenchModel());
+            _navigationmaneger.Register<Info_Route_View>(NavigationKeys.InfoRoutehKey, () => new Info_Route_ViewModel());
             _navigationmaneger.Register<RocksView>(NavigationKeys.RocksKey, () => new RocksViewModel());
             _navigationmaneger.Navigate(NavigationKeys.InfoDrillKey);
         }
