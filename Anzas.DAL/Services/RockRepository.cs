@@ -34,6 +34,7 @@ namespace Anzas.DAL.Services
         public IEnumerable<Rock> GetAll()
         {
             return _dbContext.Rocks
+                .Include(item => item.Hole)
                     .Include(item => item.GeologNavigation)
                     .Include(item => item.RockCodeNavigation).AsNoTracking().ToList();
         }

@@ -269,7 +269,7 @@ namespace BdAnzas.Content.ViewModel
                 var maxid = _rockRepository.Max();
                 Rock rock = new Rock
                 {
-                    Uid = maxid,
+                    Uid = maxid+1,
                     HoleId = SelectedInfoDrill.Uid,
                     Profile = SelectedInfoDrill.Uid,
                     From = From,

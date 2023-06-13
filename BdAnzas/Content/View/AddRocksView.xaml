@@ -17,51 +17,67 @@
                                materialDesign:HintAssist.Hint="Номер выработки(скважины)"
                                materialDesign:HintAssist.FloatingScale="1"
                                Margin="20,20,00,0"
-                               Width="200" />
+                               Width="200"
+                               ItemsSource="{Binding InfoDrills , UpdateSourceTrigger=PropertyChanged}"
+                               SelectedItem="{Binding SelectedInfoDrill , UpdateSourceTrigger=PropertyChanged}"
+                               DisplayMemberPath="HoleId" />
                     <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
                              materialDesign:HintAssist.Hint="Номер ПЛ"
                              materialDesign:HintAssist.FloatingScale="1"
                              Margin="20,20,0,0"
-                             Width="100" />
+                             Width="100"
+                             IsEnabled="False"
+                             Text="{Binding  SelectedInfoDrill.Profile}" />
                     <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
                              materialDesign:HintAssist.Hint="От"
                              materialDesign:HintAssist.FloatingScale="1"
                              Margin="20,20,0,0"
-                             Width="110" />
+                             Width="110"
+                             Text="{Binding From , UpdateSourceTrigger=PropertyChanged}" />
                     <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
                              materialDesign:HintAssist.Hint="До"
                              materialDesign:HintAssist.FloatingScale="1"
                              Margin="20,20,0,0"
-                             Width="110" />
+                             Width="110"
+                             Text="{Binding To , UpdateSourceTrigger=PropertyChanged}" />
                     <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
                              materialDesign:HintAssist.Hint="Длина интервала"
                              materialDesign:HintAssist.FloatingScale="1"
                              Margin="20,20,0,0"
                              Width="150"
-                             IsEnabled="False" />
+                             IsEnabled="False"
+                             Text="{Binding Length , UpdateSourceTrigger=PropertyChanged ,  StringFormat=N2}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
                              materialDesign:HintAssist.Hint="Выход керна,м"
                              materialDesign:HintAssist.FloatingScale="1"
                              Margin="20,20,0,0"
-                             Width="170" />
+                             Width="170"
+                             Text="{Binding Kernm, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
                              materialDesign:HintAssist.Hint="Выход керна %"
                              materialDesign:HintAssist.FloatingScale="1"
                              Margin="20,20,0,0"
                              Width="170"
+                             Text="{Binding Kernpc , StringFormat=N2}"
                              IsEnabled="False" />
                     <ComboBox  Style="{StaticResource StyleOutlinedComboBoxBlack}"
                                materialDesign:HintAssist.Hint="Код Породы"
                                materialDesign:HintAssist.FloatingScale="1"
                                Margin="20,20,00,0"
-                               Width="150" />
+                               Width="150"
+                               ItemsSource="{Binding RockCodes , UpdateSourceTrigger=PropertyChanged}"
+                               SelectedItem="{Binding SelectedRockCode , UpdateSourceTrigger=PropertyChanged}"
+                               DisplayMemberPath="RockCode1" />
                     <ComboBox  Style="{StaticResource StyleOutlinedComboBoxBlack}"
                                materialDesign:HintAssist.Hint="Геолог"
                                materialDesign:HintAssist.FloatingScale="1"
                                Margin="20,20,00,0"
-                               Width="200" />
+                               Width="200"
+                               ItemsSource="{Binding Persons ,UpdateSourceTrigger=PropertyChanged}"
+                               SelectedItem="{Binding SelectedPersons , UpdateSourceTrigger=PropertyChanged}"
+                               DisplayMemberPath="Surname" />
 
 
                 </StackPanel>
@@ -71,7 +87,8 @@
                              materialDesign:HintAssist.FloatingScale="1"
                              Margin="20,20,0,0"
                              Width="750"
-                             TextWrapping="Wrap" />
+                             TextWrapping="Wrap"
+                             Text="{Binding Description , UpdateSourceTrigger=PropertyChanged}" />
 
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
@@ -79,9 +96,10 @@
                     <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
                              materialDesign:HintAssist.Hint="Описание шлифов"
                              materialDesign:HintAssist.FloatingScale="1"
-                             Margin="20,20,25,0"
+                             Margin="20,20,10,0"
                              Width="750"
-                             TextWrapping="Wrap" />
+                             TextWrapping="Wrap"
+                             Text="{Binding Petro}" />
 
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
@@ -91,7 +109,8 @@
                              materialDesign:HintAssist.FloatingScale="1"
                              Margin="20,20,0,0"
                              Width="750"
-                             TextWrapping="Wrap" />
+                             TextWrapping="Wrap"
+                             Text="{Binding Mineral}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
@@ -103,7 +122,8 @@
                              AcceptsReturn="True"
                              TextWrapping="Wrap"
                              VerticalAlignment="Top"
-                             VerticalScrollBarVisibility="Auto" />
+                             VerticalScrollBarVisibility="Auto"
+                             Text="{Binding NotesCommentsText}" />
                 </StackPanel>
                 <Button Style="{StaticResource StyleButton}"
                         VerticalAlignment="Top"
@@ -112,6 +132,7 @@
                         Height="40"
                         FontSize="16"
                         Content="Сохранить"
+                        IsEnabled="{ Binding SubmitEnabled}"
                         Command="{Binding SaveRockCommand}"
                         HorizontalAlignment="Right">
 
