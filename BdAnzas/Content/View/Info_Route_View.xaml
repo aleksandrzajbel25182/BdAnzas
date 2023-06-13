@@ -105,20 +105,15 @@
                                       IsChecked="True" />
 
                             <CheckBox x:Name="HoleIdCheked"
-                                      Content="№ скважины"
-                                      Style="{StaticResource CkekedAlL}">
-                            </CheckBox>
+                                      Content="№ маршрута"
+                                      Style="{StaticResource CkekedAlL}" />
 
                             <CheckBox x:Name="TypeLcodeCheked"
                                       Content="Тип выработки"
                                       Style="{StaticResource CkekedAlL}" />
                             <CheckBox x:Name="PlaceSiteCheked"
                                       Content="Название участка"
-                                      Style="{StaticResource CkekedAlL}" />
-                            <CheckBox x:Name="ProfileCheked"
-                                      Content="Номер ПЛ"
-                                      Style="{StaticResource CkekedAlL}" />
-
+                                      Style="{StaticResource CkekedAlL}" />  
                             <CheckBox x:Name="Easting1Cheked"
                                       Content="Долгота (начало)"
                                       Style="{StaticResource CkekedAlL}" />
@@ -182,8 +177,8 @@
         </StackPanel>
         <Grid Grid.Row="2">
             <DataGrid Margin="20"
-                      ItemsSource="{Binding InfoDrills , Mode=TwoWay}"
-                      SelectedItem="{Binding Selected_InfoDrill, Mode=TwoWay}"
+                      ItemsSource="{Binding Routes , Mode=TwoWay}"
+                      SelectedItem="{Binding SelectedRoute, Mode=TwoWay}"
                       AutoGenerateColumns="False">
 
                 <!--<DataGrid.InputBindings>
