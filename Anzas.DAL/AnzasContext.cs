@@ -17,6 +17,8 @@ public partial class AnzasContext : DbContext
 
     public virtual DbSet<InfoDrill> InfoDrills { get; set; }
 
+    public virtual DbSet<InfoRoute> InfoRoutes { get; set; }
+
     public virtual DbSet<InfoTrench> InfoTrenches { get; set; }
 
     public virtual DbSet<Mine> Mines { get; set; }
@@ -92,6 +94,55 @@ public partial class AnzasContext : DbContext
             entity.HasOne(d => d.TypeLcodeNavigation).WithMany(p => p.InfoDrills)
                 .HasForeignKey(d => d.TypeLcode)
                 .HasConstraintName("Info_Drill_TYPE (LCODE)_fkey");
+        });
+
+        modelBuilder.Entity<InfoRoute>(entity =>
+        {
+            entity.HasKey(e => e.Uid).HasName("Info_Route_pkey");
+
+            entity.ToTable("Info_Route", tb => tb.HasComment("Информация по маршрутам"));
+
+            entity.Property(e => e.Uid)
+                .ValueGeneratedNever()
+                .HasColumnName("UID");
+            entity.Property(e => e.Date).HasComment("Дата");
+            entity.Property(e => e.Easting1).HasComment("Долгота (начало)");
+            entity.Property(e => e.Easting2).HasComment("Долгота (конец)");
+            entity.Property(e => e.Elevation1).HasComment("Абс. отм. (начало)");
+            entity.Property(e => e.Elevation2).HasComment("Абс. отм. (конец)");
+            entity.Property(e => e.HoleId)
+                .HasComment("№ маршрута")
+                .HasColumnType("character varying")
+                .HasColumnName("HoleID");
+            entity.Property(e => e.Length)
+                .HasComment("Длина маршрута")
+                .HasColumnName("LENGTH");
+            entity.Property(e => e.Northing1).HasComment("Долгота (начало)");
+            entity.Property(e => e.Northing2).HasComment("Широта (конец)");
+            entity.Property(e => e.NotesCommentsText)
+                .HasMaxLength(2000)
+                .HasColumnName("NOTES (COMMENTS, TEXT)");
+            entity.Property(e => e.PlaceSite)
+                .HasComment("Название участка")
+                .HasColumnName("PLACE (SITE)");
+            entity.Property(e => e.TypeLcode)
+                .HasComment("Тип выработки")
+                .HasColumnName("TYPE (LCODE)");
+
+            entity.HasOne(d => d.GeologNavigation).WithMany(p => p.InfoRoutes)
+                .HasForeignKey(d => d.Geolog)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("Info_Route_Geolog_fkey");
+
+            entity.HasOne(d => d.PlaceSiteNavigation).WithMany(p => p.InfoRoutes)
+                .HasForeignKey(d => d.PlaceSite)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("Info_Route_PLACE (SITE)_fkey");
+
+            entity.HasOne(d => d.TypeLcodeNavigation).WithMany(p => p.InfoRoutes)
+                .HasForeignKey(d => d.TypeLcode)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("Info_Route_TYPE (LCODE)_fkey");
         });
 
         modelBuilder.Entity<InfoTrench>(entity =>

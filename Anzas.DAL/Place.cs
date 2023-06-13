@@ -17,5 +17,7 @@ public partial class Place
 
     public virtual ICollection<InfoDrill> InfoDrills { get; set; } = new List<InfoDrill>();
 
+    public virtual ICollection<InfoRoute> InfoRoutes { get; set; } = new List<InfoRoute>();
+
     public virtual ICollection<InfoTrench> InfoTrenches { get; set; } = new List<InfoTrench>();
 }
