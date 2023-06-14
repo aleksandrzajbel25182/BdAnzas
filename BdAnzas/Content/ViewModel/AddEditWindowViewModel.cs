@@ -16,6 +16,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using BdAnzas.Constants;
 using BdAnzas.Content.Windows;
+using BdAnzas.Content.View;
 
 namespace BdAnzas.Content.ViewModel
 {
@@ -164,13 +165,14 @@ namespace BdAnzas.Content.ViewModel
             {
                 _navigationmaneger.Register<AddInfoDrill_View>(NavigationKeys.InfoDrillKey, () => new AddInfoDrill_ViewModel());
                 _navigationmaneger.Register<AddEditInfoTrench_View>(NavigationKeys.InfoTrenchKey, () => new AddEditInfoTrench_ViewModel());
-
+                _navigationmaneger.Register<AddEdit_InfoRoute_View>(NavigationKeys.InfoRoutehKey, () => new AddEdit_InfoRoute_ViewModel());
                 _navigationmaneger.Register<AddRocksView>(NavigationKeys.RocksKey, () => new AddRocksViewModel());
             }
             else
             {
                 _navigationmaneger.Register<AddInfoDrill_View>(NavigationKeys.InfoDrillKey, () => new AddInfoDrill_ViewModel((int)id));
                 _navigationmaneger.Register<AddEditInfoTrench_View>(NavigationKeys.InfoTrenchKey, () => new AddEditInfoTrench_ViewModel((int)id));
+                _navigationmaneger.Register<AddEdit_InfoRoute_View>(NavigationKeys.InfoRoutehKey, () => new AddEdit_InfoRoute_ViewModel((int)id));
                 _navigationmaneger.Register<AddRocksView>(NavigationKeys.RocksKey, () => new AddRocksViewModel((int)id));
 
             }

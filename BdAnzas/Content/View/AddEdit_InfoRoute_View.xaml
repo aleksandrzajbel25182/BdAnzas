@@ -1,0 +1,133 @@
+﻿<UserControl x:Class="BdAnzas.Content.View.AddEdit_InfoRoute_View"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BdAnzas.Content.View"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d">
+    <Grid>
+        <ScrollViewer>
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             materialDesign:HintAssist.Hint="№ Маршрута "
+                             materialDesign:HintAssist.FloatingScale="1"
+                             Margin="20,20,0,0"
+                             Width="150"
+                             Text="{Binding HoleId, UpdateSourceTrigger=PropertyChanged}" />
+                    <ComboBox  Style="{StaticResource StyleOutlinedComboBoxBlack}"
+                               materialDesign:HintAssist.Hint="Тип выработки"
+                               materialDesign:HintAssist.FloatingScale="1"
+                               Margin="20,20,00,0"
+                               Width="200"
+                               ItemsSource="{Binding Mines ,UpdateSourceTrigger=PropertyChanged}"
+                               SelectedItem="{Binding SelectedMines , UpdateSourceTrigger=PropertyChanged}"
+                               DisplayMemberPath="TypeLcode" />
+                    <ComboBox  Style="{StaticResource StyleOutlinedComboBoxBlack}"
+                               materialDesign:HintAssist.Hint="Название участка"
+                               materialDesign:HintAssist.FloatingScale="1"
+                               Margin="20,20,20,0"
+                               Width="200"
+                               ItemsSource="{Binding Places , UpdateSourceTrigger=PropertyChanged}"
+                               SelectedItem="{Binding SelectedPlaces ,UpdateSourceTrigger=PropertyChanged}"
+                               DisplayMemberPath="NamePlaceSite" />
+                   
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             materialDesign:HintAssist.Hint="Долгота(Начало)"
+                             materialDesign:HintAssist.FloatingScale="1"
+                             Margin="20,20,0,0"
+                             Width="170"
+                             Text="{Binding Easting1 ,UpdateSourceTrigger=PropertyChanged ,  StringFormat=N4}" />
+                    <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             materialDesign:HintAssist.Hint="Широта(Начало)"
+                             materialDesign:HintAssist.FloatingScale="1"
+                             Margin="20,20,0,0"
+                             Width="170"
+                             Text="{Binding Northing1 , UpdateSourceTrigger=PropertyChanged}" />
+
+                    <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             materialDesign:HintAssist.Hint="Абс. Отм(НАчало)"
+                             materialDesign:HintAssist.FloatingScale="1"
+                             Margin="20,20,0,0"
+                             Width="170"
+                             Text="{Binding Elevation1 , UpdateSourceTrigger=PropertyChanged}" />
+
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             materialDesign:HintAssist.Hint="Долгота(Конец)"
+                             materialDesign:HintAssist.FloatingScale="1"
+                             Margin="20,20,0,0"
+                             Width="170"
+                             Text="{Binding Easting2}" />
+                    <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             materialDesign:HintAssist.Hint="Широта(конец)"
+                             materialDesign:HintAssist.FloatingScale="1"
+                             Margin="20,20,0,0"
+                             Width="170"
+                             Text="{Binding Northing2 , UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             materialDesign:HintAssist.Hint="Абс.отм.(Конец)"
+                             materialDesign:HintAssist.FloatingScale="1"
+                             Margin="20,20,0,0"
+                             Width="170"
+                             Text="{Binding Elevation2 , UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             materialDesign:HintAssist.Hint="Длина маршрута,м"
+                             materialDesign:HintAssist.FloatingScale="1"
+                             Margin="20,20,0,0"
+                             Width="150"
+                             Text="" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+
+                    <DatePicker Style="{StaticResource MaterialDesignOutlinedDatePicker}"
+                                materialDesign:HintAssist.Hint="Дата"
+                                materialDesign:HintAssist.FloatingScale="1"
+                                Height="50"
+                                Width="220"
+                                Margin="20,20,0,0"
+                                SelectedDate="{Binding Date}" />
+                    <ComboBox  Style="{StaticResource StyleOutlinedComboBoxBlack}"
+                               materialDesign:HintAssist.Hint="Геолог"
+                               materialDesign:HintAssist.FloatingScale="1"
+                               Margin="20,20,00,0"
+                               Width="200"
+                               ItemsSource="{Binding Persons , UpdateSourceTrigger=PropertyChanged}"
+                               SelectedItem="{Binding SelectedPersons , UpdateSourceTrigger=PropertyChanged}"
+                               DisplayMemberPath="Surname" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             materialDesign:HintAssist.Hint="Примечание"
+                             materialDesign:HintAssist.FloatingScale="1"
+                             Margin="20,20,0,0"
+                             Width="750"
+                             Height="150"
+                             AcceptsReturn="True"
+                             TextWrapping="Wrap"
+                             VerticalAlignment="Top"
+                             VerticalScrollBarVisibility="Auto"
+                             Text="{Binding NotesCommentsText}" />
+                </StackPanel>
+                <Button Style="{StaticResource StyleButton}"
+                        VerticalAlignment="Top"
+                        Margin="20,10,30,0"
+                        Width="120"
+                        Height="40"
+                        FontSize="16"
+                        Content="Сохранить"
+                        IsEnabled="{Binding SubmitEnabled }"
+                        HorizontalAlignment="Right"
+                        Command="{Binding SaveInfoRouteCommand}">
+
+                </Button>
+
+
+            </StackPanel>
+        </ScrollViewer>     
+    </Grid>
+</UserControl>

@@ -16,101 +16,75 @@ using System.Windows.Input;
 
 namespace BdAnzas.Content.ViewModel
 {
-    internal class AddEditInfoTrench_ViewModel : ViewModelBase
+    internal class AddEdit_InfoRoute_ViewModel : ViewModelBase
     {
-        private readonly InfoTrenchRepository _infoTrenchRepository;
+        private readonly InfoRouteRepository _infoRouteRepository;
         private DialogManager _dialogManager;
         private bool _editflag; // флаг для понимания редактировать или обновлять данные
-     
+        private InfoRoute route;
 
         #region Свойства
 
-        private InfoTrench _trenchs = new InfoTrench();
-        public InfoTrench Trenchs
+
+        /// <summary>
+        /// № маршрута
+        /// </summary>
+        public string HoleId
         {
-            get => _trenchs;
-            set => Set(ref _trenchs, value);
+            get => _holeid; set
+            {
+                _holeid = value;
+                OnPropertyChanged("HoleId");
+                OnPropertyChanged("SubmitEnabled");
+            }
         }
+        private string _holeid;
 
-        /// <summary>
-        /// № выработки
-        /// </summary>
-        private string _holeId;
-        public string HoleId { get => _holeId; set=>Set(ref _holeId,value); }      
 
-        /// <summary>
-        /// Название участка
-        /// </summary>
-        public int? PlaceSite { get => _placeSite; set => Set(ref _placeSite, value); }
-        private int? _placeSite;
-        /// <summary>
-        /// Номер ПЛ
-        /// </summary>
-        public double? Profile { get => _profile; set => Set(ref _profile, value); }
-        private double? _profile;
         /// <summary>
         /// Долгота (начало)
         /// </summary>
         public double? Easting1 { get => _easting1; set => Set(ref _easting1, value); }
-        private double? _easting1;
+        public double? _easting1;
         /// <summary>
-        /// Широта (начало)
+        /// Долгота (начало)
         /// </summary>
         public double? Northing1 { get => _northing1; set => Set(ref _northing1, value); }
-        private double? _northing1;
+        public double? _northing1;
         /// <summary>
         /// Абс. отм. (начало)
         /// </summary>
         public double? Elevation1 { get => _elevation1; set => Set(ref _elevation1, value); }
-        private double? _elevation1;
+        public double? _elevation1;
+
         /// <summary>
         /// Долгота (конец)
         /// </summary>
         public double? Easting2 { get => _easting2; set => Set(ref _easting2, value); }
-        private double? _easting2;
+        public double? _easting2;
+
         /// <summary>
         /// Широта (конец)
         /// </summary>
         public double? Northing2 { get => _northing2; set => Set(ref _northing2, value); }
-        private double? _northing2;
+        public double? _northing2;
         /// <summary>
         /// Абс. отм. (конец)
         /// </summary>
         public double? Elevation2 { get => _elevation2; set => Set(ref _elevation2, value); }
-        private double? _elevation2;
+        public double? _elevation2;
         /// <summary>
-        /// Азимут ист., °
-        /// </summary>
-        public double? Azimuth { get => _azimuth; set => Set(ref _azimuth, value); }
-        private double? _azimuth;
-        /// <summary>
-        /// Длина канавы,м
+        /// Длина маршрута
         /// </summary>
         public double? Length { get => _length; set => Set(ref _length, value); }
-        private double? _length;
+        public double? _length;
         /// <summary>
-        /// Глубина канавы,м
+        /// Дата
         /// </summary>
-        public double? Depth { get => _depth; set => Set(ref _depth, value); }
-        private double? _depth;
+        public DateTime? Date { get => _date; set => Set(ref _date, value); }
+        public DateTime? _date;
         /// <summary>
-        /// Ширина канавы,м
-        /// </summary>
-        public double? Width { get => _width; set => Set(ref _width, value); }
-        private double? _width;
-        /// <summary>
-        /// Начало проходки
-        /// </summary>
-        public DateTime StartDate { get => _startDate; set => Set(ref _startDate, value); }
-        private DateTime _startDate;
-        /// <summary>
-        /// Окончание проходки
-        /// </summary>
-        public DateTime EndDate { get => _endDate; set => Set(ref _endDate, value); }
-        private DateTime _endDate;
-
-        /// <summary>
-        /// Примечания
+        /// Примечание
         /// </summary>
         public string? NotesCommentsText { get => _notesCommentsText; set => Set(ref _notesCommentsText, value); }
         public string? _notesCommentsText;
@@ -202,45 +176,46 @@ namespace BdAnzas.Content.ViewModel
                 else return false;
             }
         }
-
-
         #endregion
 
-        /// <summary>
-        /// Конструктор при котором будет происходить добавления в базу 
-        /// </summary>
-        public AddEditInfoTrench_ViewModel()
+
+
+        public AddEdit_InfoRoute_ViewModel()
         {
+            AnzasContext anzasConxtet = new AnzasContext();
+            _infoRouteRepository = new InfoRouteRepository(anzasConxtet);
             _editflag = false;
             _dialogManager = new DialogManager();
-            //StartDate = DateTime.Now;
-            //EndDate = DateTime.Now;
-            AnzasContext anzasContext = new AnzasContext();
-            _infoTrenchRepository = new InfoTrenchRepository(anzasContext);
+            route = new InfoRoute();
             using (AnzasContext db = new AnzasContext())
             {
                 Persons = db.People.AsNoTracking().ToObservableCollection();
                 Mines = db.Mines.AsNoTracking().ToObservableCollection();
                 Places = db.Places.AsNoTracking().ToObservableCollection();
             }
-            //SaveCommand = new LamdaCommand(OnSaveCommandExcuted, SaveCommandExecute);
 
         }
 
-       
-
-        /// <summary>
-        /// Конструктор при котором будет происходить обновления с базой 
-        /// </summary>
-        public AddEditInfoTrench_ViewModel(int id)
+        public AddEdit_InfoRoute_ViewModel(int id)
         {
             _editflag = true;
-            //StartDate = DateTime.Now;
-            //EndDate = DateTime.Now;
-            AnzasContext anzasContext = new AnzasContext();
-            _infoTrenchRepository = new InfoTrenchRepository(anzasContext);
             _dialogManager = new DialogManager();
-            Trenchs = _infoTrenchRepository.GetById(id);
+            AnzasContext anzasConxtet = new AnzasContext();
+            _infoRouteRepository = new InfoRouteRepository(anzasConxtet);
+            route = new InfoRoute();
+            route = _infoRouteRepository.GetById(id);
+
+            HoleId = route.HoleId;
+            Easting1 = route.Easting1;
+            Easting2 = route.Easting2;
+            Northing1 = route.Northing1;
+            Northing2 = route.Northing2;
+            Elevation1 = route.Elevation1;
+            Elevation2 = route.Elevation2;
+            Length = route.Length;
+            NotesCommentsText = route.NotesCommentsText;
+            if (route.Date != null)
+                Date = new DateTime(route.Date.Value.Year, route.Date.Value.Month, route.Date.Value.Day);
 
             using (AnzasContext db = new AnzasContext())
             {
@@ -248,91 +223,64 @@ namespace BdAnzas.Content.ViewModel
                 Mines = db.Mines.AsNoTracking().ToObservableCollection();
                 Places = db.Places.AsNoTracking().ToObservableCollection();
             }
-            SelectedPersons = Persons[Trenchs.Geolog - 1];
-            SelectedMines = Mines[(int)Trenchs.TypeLcode - 1];
-            SelectedPlaces = Places[(int)Trenchs.PlaceSite - 1];
-
-            HoleId = Trenchs.HoleId;
-            Profile = Trenchs.Profile;
-            Easting1 = Trenchs.Easting1;
-            Easting2 = Trenchs.Easting2;
-            Northing1 = Trenchs.Northing1;
-            Northing2 = Trenchs.Northing2;
-            Elevation1 = Trenchs.Elevation1;
-            Elevation2 = Trenchs.Elevation2;
-            Azimuth = Trenchs.Azimuth;
-            Length = Trenchs.Length;
-            Width = Trenchs.Width;
-            Depth = Trenchs.Width;
-            NotesCommentsText = Trenchs.NotesCommentsText;
-            if (Trenchs.StartDate != null)
-                StartDate = new DateTime(Trenchs.StartDate.Value.Year, Trenchs.StartDate.Value.Month, Trenchs.StartDate.Value.Day);
-            if (Trenchs.EndDate != null)
-                EndDate = new DateTime(Trenchs.EndDate.Value.Year, Trenchs.EndDate.Value.Month, Trenchs.EndDate.Value.Day);
-
-
+            SelectedPersons = Persons[route.Geolog - 1];
+            SelectedMines = Mines[(int)route.TypeLcode - 1];
+            SelectedPlaces = Places[(int)route.PlaceSite - 1];
         }
-
 
         #region Команды
 
         /// <summary>
         /// Команда сохранения
         /// </summary>
-        private ICommand _saveTrenchCommand;
-        public ICommand SaveTrenchCommand
+        private ICommand _saveInfoRouteCommand;
+        public ICommand SaveInfoRouteCommand
         {
             get
             {
-                if (_saveTrenchCommand == null)
+                if (_saveInfoRouteCommand == null)
                 {
                     if (_editflag)
-                        _saveTrenchCommand = new RelayCommand(param => EditTrenchs());
+                        _saveInfoRouteCommand = new RelayCommand(param => EditInfoRoute());
                     else
-                        _saveTrenchCommand = new RelayCommand(param => AddInfoTrenchs());
+                        _saveInfoRouteCommand = new RelayCommand(param => AddInfoRoute());
 
                 }
-                return _saveTrenchCommand;
+                return _saveInfoRouteCommand;
             }
         }
 
         #endregion
 
         /// <summary>
-        /// Метод обновления данных по Infodril
+        /// Метод обновления данных по Route
         /// </summary>
-        private async void EditTrenchs()
+        private async void EditInfoRoute()
         {
             try
             {
 
-                if (Trenchs != null)
+                if (route != null)
                 {
-
-                    Trenchs.HoleId = HoleId;
-                    Trenchs.Profile = Profile;
-                    Trenchs.Easting1 = Easting1;
-                    Trenchs.Easting2 = Easting2;
-                    Trenchs.Northing1 = Northing1;
-                    Trenchs.Northing2 = Northing2;
-                    Trenchs.Elevation1 = Elevation1;
-                    Trenchs.Elevation2 = Elevation2;
-                    Trenchs.Azimuth = Azimuth;
-                    Trenchs.Length = Length;
-                    Trenchs.Width = Width;
-                    Trenchs.Depth = Depth;
-                    Trenchs.NotesCommentsText = NotesCommentsText;
-                    Trenchs.StartDate = new DateOnly(StartDate.Year, StartDate.Month, StartDate.Day);
-                    Trenchs.EndDate = new DateOnly(EndDate.Year, EndDate.Month, EndDate.Day);
-                    Trenchs.Geolog = SelectedPersons.Uid;
-                    Trenchs.TypeLcode = SelectedMines.Uid;
-                    Trenchs.PlaceSite = SelectedPlaces.Uid;
+                    route.HoleId = HoleId;
+                    route.Easting1 = Easting1;
+                    route.Easting2 = Easting2;
+                    route.Northing1 = Northing1;
+                    route.Northing2 = Northing2;
+                    route.Elevation1 = Elevation1;
+                    route.Elevation2 = Elevation2;
+                    route.Length = Length;
+                    route.NotesCommentsText = NotesCommentsText;
+                    route.Date = new DateOnly(Date.Value.Year, Date.Value.Month, Date.Value.Day);
+                    route.Geolog = SelectedPersons.Uid;
+                    route.TypeLcode = SelectedMines.Uid;
+                    route.PlaceSite = SelectedPlaces.Uid;
                 };
                 var result = _dialogManager.ShowMessageResult("Были внесены изминения, вы хотите их сохранить?"
                                                         , "Обновление записи в базу данных"
                                                         , InfoMessege.YesNoCancel, InfoMessege.Information);
                 if (result == MessageBoxResult.Yes)
-                    await _infoTrenchRepository.UpdateAsync(Trenchs).ConfigureAwait(false);
+                    await _infoRouteRepository.UpdateAsync(route).ConfigureAwait(false);
                 _dialogManager.ShowMessage($"Данные успешно обновлены", "Обновление записи в базу данных", InfoMessege.OK, InfoMessege.Information);
             }
             catch (Exception ex)
@@ -345,37 +293,32 @@ namespace BdAnzas.Content.ViewModel
         /// <summary>
         /// Метод Добавления новых данных по InfoTrench
         /// </summary>
-        private async void AddInfoTrenchs()
+        private async void AddInfoRoute()
         {
             try
             {
 
-                var id = _infoTrenchRepository.Max();
+                var id = _infoRouteRepository.Max();
                 // заполните нужные поля в infoDrill
-                Trenchs = new InfoTrench()
+                route = new InfoRoute()
                 {
                     Uid = id+1,
                     HoleId = HoleId,
-                    Profile = Profile,
                     Easting1 = Easting1,
                     Easting2 = Easting2,
                     Northing1 = Northing1,
                     Northing2 = Northing2,
                     Elevation1 = Elevation1,
                     Elevation2 = Elevation2,
-                    Azimuth = Azimuth,
                     Length = Length,
-                    Width = Width,
-                    Depth = Depth,
                     NotesCommentsText = NotesCommentsText,
-                    StartDate = new DateOnly(StartDate.Year, StartDate.Month, StartDate.Day),
-                    EndDate = new DateOnly(EndDate.Year, EndDate.Month, EndDate.Day),
+                    Date = new DateOnly(Date.Value.Year, Date.Value.Month, Date.Value.Day),
                     Geolog = SelectedPersons.Uid,
                     TypeLcode = SelectedMines.Uid,
                     PlaceSite = SelectedPlaces.Uid
                 };
 
-                await _infoTrenchRepository.AddAsync(Trenchs).ConfigureAwait(false);
+                await _infoRouteRepository.AddAsync(route).ConfigureAwait(false);
                 _dialogManager.ShowMessage("Новая запись в базу данных успешно добавлена", "Запись в базу данных", InfoMessege.OK, InfoMessege.Information);
             }
             catch (Exception ex)
