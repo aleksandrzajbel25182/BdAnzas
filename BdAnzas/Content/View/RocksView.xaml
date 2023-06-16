@@ -181,137 +181,275 @@
 
             </materialDesign:Card>
         </StackPanel>
-        <StackPanel Orientation="Vertical"
-                     Grid.Row="2">
+        <TabControl  Grid.Row="2">
+            <TabItem Header="Скважин">
+                <StackPanel Orientation="Vertical"
+                            Grid.Row="2">
 
 
-            <DataGrid Margin="20,20,20,20"
-                      ItemsSource="{Binding Rocks , Mode=TwoWay}"
-                      SelectedItem="{Binding SelectedRocks, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                      AutoGenerateColumns="False">
-                <DataGrid.ColumnHeaderStyle>
-                    <Style TargetType="DataGridColumnHeader"
-                           BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
-                        <Style.Setters>
-                            <Setter Property="HorizontalContentAlignment"
-                                    Value="Center" />
-                        </Style.Setters>
-                    </Style>
-                </DataGrid.ColumnHeaderStyle>
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="№ скважины"
-                                        Binding="{Binding Hole.HoleId,Mode=OneWay}"
-                                        MinWidth="120"
-                                        Width="20"
-                                        CellStyle="{StaticResource CenterGridCell}"
-                                        Visibility="{Binding Source={x:Reference HoleIdCheked},
-                                                                    Path=IsChecked, 
-                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
-                   
-                    <DataGridTextColumn Header="ОТ"
-                                        Binding="{Binding From ,Mode=OneWay}"
-                                        MinWidth="100"
-                                        Width="*"
-                                        CellStyle="{StaticResource CenterGridCell}"
-                                        Visibility="{Binding Source={x:Reference FromCheked},
-                                                                    Path=IsChecked, 
-                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
-                    <DataGridTextColumn Header="ДО"
-                                        Binding="{Binding To,Mode=OneWay}"
-                                        MinWidth="100"
-                                        Width="*"
-                                        CellStyle="{StaticResource CenterGridCell}"
-                                        Visibility="{Binding Source={x:Reference ToCheked},
-                                                                    Path=IsChecked, 
-                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
-                    <DataGridTextColumn Header="Длина интервала"
-                                        Binding="{Binding Length,Mode=OneWay}"
-                                        MinWidth="150"
-                                        Width="*"
-                                        CellStyle="{StaticResource CenterGridCell}"
-                                        Visibility="{Binding Source={x:Reference LengthCheked},
-                                                                    Path=IsChecked, 
-                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
-                    <DataGridTextColumn Header="Выход керна"
-                                        Binding="{Binding Kernm,Mode=OneWay}"
-                                        MinWidth="120"
-                                        Width="*"
-                                        CellStyle="{StaticResource CenterGridCell}"
-                                        Visibility="{Binding Source={x:Reference KernmCheked},
-                                                                    Path=IsChecked, 
-                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
-                    <DataGridTextColumn Header="Выход керна,%"
-                                        Binding="{Binding Kernpc,Mode=OneWay}"
-                                        MinWidth="150"
-                                        Width="*"
-                                        CellStyle="{StaticResource CenterGridCell}"
-                                        Visibility="{Binding Source={x:Reference KernpcCheked},
-                                                                    Path=IsChecked, 
-                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
-                    <DataGridTextColumn Header="Код породы"
-                                        Binding="{Binding RockCodeNavigation.RockCode1,Mode=OneWay}"
-                                        MinWidth="180"
-                                        Width="*"
-                                        CellStyle="{StaticResource CenterGridCell}"
-                                        Visibility="{Binding Source={x:Reference RockCodeCheked},
-                                                                    Path=IsChecked, 
-                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
-                    <DataGridTextColumn Header="Описание керна"
-                                        Binding="{Binding Description,Mode=OneWay}"
-                                        MinWidth="250"
-                                        Width="*"
-                                        CellStyle="{StaticResource CenterGridCell}"
-                                        Visibility="{Binding Source={x:Reference DescriptionCheked},
-                                                                    Path=IsChecked, 
-                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
-                    <DataGridTextColumn Header="Геолог"
-                                        Binding="{Binding GeologNavigation.Surname,Mode=OneWay}"
-                                        MinWidth="120"
-                                        Width="*"
-                                        CellStyle="{StaticResource CenterGridCell}"
-                                        Visibility="{Binding Source={x:Reference GeologCheked},
-                                                                    Path=IsChecked, 
-                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
-                    <DataGridTextColumn Header="Описание шлифов"
-                                        Binding="{Binding Petro,Mode=OneWay}"
-                                        MinWidth="180"
-                                        Width="*"
-                                        CellStyle="{StaticResource CenterGridCell}"
-                                        Visibility="{Binding Source={x:Reference PetroCheked},
-                                                                    Path=IsChecked, 
-                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
-                    <DataGridTextColumn Header="Описание аншлифов"
-                                        Binding="{Binding Mineral,Mode=OneWay}"
-                                        MinWidth="140"
-                                        Width="*"
-                                        CellStyle="{StaticResource CenterGridCell}"
-                                        Visibility="{Binding Source={x:Reference MineralCheked},
-                                                                    Path=IsChecked, 
-                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
-                    <DataGridTextColumn Header="Примечания"
-                                        Binding="{Binding NotesCommentsText,Mode=OneWay}"
-                                        MinWidth="160"
-                                        Width="*"
-                                        CellStyle="{StaticResource CenterGridCell}"
-                                        Visibility="{Binding Source={x:Reference NotesCommentsTextCheked},
+                    <DataGrid Margin="20,20,20,20"
+                              ItemsSource="{Binding Rocks , Mode=TwoWay}"
+                              SelectedItem="{Binding SelectedRocks, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              AutoGenerateColumns="False">
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="DataGridColumnHeader"
+                                   BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
+                                <Style.Setters>
+                                    <Setter Property="HorizontalContentAlignment"
+                                            Value="Center" />
+                                </Style.Setters>
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="№ скважины"
+                                                Binding="{Binding Hole.HoleId,Mode=OneWay}"
+                                                MinWidth="120"
+                                                Width="20"
+                                                CellStyle="{StaticResource CenterGridCell}"
+                                                Visibility="{Binding Source={x:Reference HoleIdCheked},
                                                                     Path=IsChecked, 
                                                                     Converter={StaticResource BooleanToVisibilityConverter}}" />
 
+                            <DataGridTextColumn Header="ОТ"
+                                                Binding="{Binding From ,Mode=OneWay}"
+                                                MinWidth="100"
+                                                Width="*"
+                                                CellStyle="{StaticResource CenterGridCell}"
+                                                Visibility="{Binding Source={x:Reference FromCheked},
+                                                                    Path=IsChecked, 
+                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <DataGridTextColumn Header="ДО"
+                                                Binding="{Binding To,Mode=OneWay}"
+                                                MinWidth="100"
+                                                Width="*"
+                                                CellStyle="{StaticResource CenterGridCell}"
+                                                Visibility="{Binding Source={x:Reference ToCheked},
+                                                                    Path=IsChecked, 
+                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <DataGridTextColumn Header="Длина интервала"
+                                                Binding="{Binding Length,Mode=OneWay}"
+                                                MinWidth="150"
+                                                Width="*"
+                                                CellStyle="{StaticResource CenterGridCell}"
+                                                Visibility="{Binding Source={x:Reference LengthCheked},
+                                                                    Path=IsChecked, 
+                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <DataGridTextColumn Header="Выход керна"
+                                                Binding="{Binding Kernm,Mode=OneWay}"
+                                                MinWidth="120"
+                                                Width="*"
+                                                CellStyle="{StaticResource CenterGridCell}"
+                                                Visibility="{Binding Source={x:Reference KernmCheked},
+                                                                    Path=IsChecked, 
+                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <DataGridTextColumn Header="Выход керна,%"
+                                                Binding="{Binding Kernpc,Mode=OneWay}"
+                                                MinWidth="150"
+                                                Width="*"
+                                                CellStyle="{StaticResource CenterGridCell}"
+                                                Visibility="{Binding Source={x:Reference KernpcCheked},
+                                                                    Path=IsChecked, 
+                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <DataGridTextColumn Header="Код породы"
+                                                Binding="{Binding RockCodeNavigation.RockCode1,Mode=OneWay}"
+                                                MinWidth="180"
+                                                Width="*"
+                                                CellStyle="{StaticResource CenterGridCell}"
+                                                Visibility="{Binding Source={x:Reference RockCodeCheked},
+                                                                    Path=IsChecked, 
+                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <DataGridTextColumn Header="Описание керна"
+                                                Binding="{Binding Description,Mode=OneWay}"
+                                                MinWidth="250"
+                                                Width="*"
+                                                CellStyle="{StaticResource CenterGridCell}"
+                                                Visibility="{Binding Source={x:Reference DescriptionCheked},
+                                                                    Path=IsChecked, 
+                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <DataGridTextColumn Header="Геолог"
+                                                Binding="{Binding GeologNavigation.Surname,Mode=OneWay}"
+                                                MinWidth="120"
+                                                Width="*"
+                                                CellStyle="{StaticResource CenterGridCell}"
+                                                Visibility="{Binding Source={x:Reference GeologCheked},
+                                                                    Path=IsChecked, 
+                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <DataGridTextColumn Header="Описание шлифов"
+                                                Binding="{Binding Petro,Mode=OneWay}"
+                                                MinWidth="180"
+                                                Width="*"
+                                                CellStyle="{StaticResource CenterGridCell}"
+                                                Visibility="{Binding Source={x:Reference PetroCheked},
+                                                                    Path=IsChecked, 
+                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <DataGridTextColumn Header="Описание аншлифов"
+                                                Binding="{Binding Mineral,Mode=OneWay}"
+                                                MinWidth="140"
+                                                Width="*"
+                                                CellStyle="{StaticResource CenterGridCell}"
+                                                Visibility="{Binding Source={x:Reference MineralCheked},
+                                                                    Path=IsChecked, 
+                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <DataGridTextColumn Header="Примечания"
+                                                Binding="{Binding NotesCommentsText,Mode=OneWay}"
+                                                MinWidth="160"
+                                                Width="*"
+                                                CellStyle="{StaticResource CenterGridCell}"
+                                                Visibility="{Binding Source={x:Reference NotesCommentsTextCheked},
+                                                                    Path=IsChecked, 
+                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
 
 
 
-                </DataGrid.Columns>
-            </DataGrid>
-            <TextBox Text="{Binding SelectedRocks.Description}"
-                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                     Margin="20,20,20,20"
-                     TextWrapping="Wrap"
-                     IsReadOnly="True"
-                     materialDesign:HintAssist.Hint="Описание керна "
-                     materialDesign:HintAssist.FloatingScale="1" />
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <TextBox Text="{Binding SelectedRocks.Description}"
+                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             Margin="20,20,20,20"
+                             TextWrapping="Wrap"
+                             IsReadOnly="True"
+                             materialDesign:HintAssist.Hint="Описание керна "
+                             materialDesign:HintAssist.FloatingScale="1" />
 
 
-        </StackPanel>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Маршрутов">
+                <!--<StackPanel Orientation="Vertical"
+                            Grid.Row="2">
+
+
+                    <DataGrid Margin="20,20,20,20"
+                              ItemsSource="{Binding Rocks , Mode=TwoWay}"
+                              SelectedItem="{Binding SelectedRocks, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              AutoGenerateColumns="False">
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="DataGridColumnHeader"
+                                   BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
+                                <Style.Setters>
+                                    <Setter Property="HorizontalContentAlignment"
+                                            Value="Center" />
+                                </Style.Setters>
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="№ скважины"
+                                                Binding="{Binding Hole.HoleId,Mode=OneWay}"
+                                                MinWidth="120"
+                                                Width="20"
+                                                CellStyle="{StaticResource CenterGridCell}"
+                                                Visibility="{Binding Source={x:Reference HoleIdCheked},
+                                                                    Path=IsChecked, 
+                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                            <DataGridTextColumn Header="ОТ"
+                                                Binding="{Binding From ,Mode=OneWay}"
+                                                MinWidth="100"
+                                                Width="*"
+                                                CellStyle="{StaticResource CenterGridCell}"
+                                                Visibility="{Binding Source={x:Reference FromCheked},
+                                                                    Path=IsChecked, 
+                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <DataGridTextColumn Header="ДО"
+                                                Binding="{Binding To,Mode=OneWay}"
+                                                MinWidth="100"
+                                                Width="*"
+                                                CellStyle="{StaticResource CenterGridCell}"
+                                                Visibility="{Binding Source={x:Reference ToCheked},
+                                                                    Path=IsChecked, 
+                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <DataGridTextColumn Header="Длина интервала"
+                                                Binding="{Binding Length,Mode=OneWay}"
+                                                MinWidth="150"
+                                                Width="*"
+                                                CellStyle="{StaticResource CenterGridCell}"
+                                                Visibility="{Binding Source={x:Reference LengthCheked},
+                                                                    Path=IsChecked, 
+                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <DataGridTextColumn Header="Выход керна"
+                                                Binding="{Binding Kernm,Mode=OneWay}"
+                                                MinWidth="120"
+                                                Width="*"
+                                                CellStyle="{StaticResource CenterGridCell}"
+                                                Visibility="{Binding Source={x:Reference KernmCheked},
+                                                                    Path=IsChecked, 
+                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <DataGridTextColumn Header="Выход керна,%"
+                                                Binding="{Binding Kernpc,Mode=OneWay}"
+                                                MinWidth="150"
+                                                Width="*"
+                                                CellStyle="{StaticResource CenterGridCell}"
+                                                Visibility="{Binding Source={x:Reference KernpcCheked},
+                                                                    Path=IsChecked, 
+                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <DataGridTextColumn Header="Код породы"
+                                                Binding="{Binding RockCodeNavigation.RockCode1,Mode=OneWay}"
+                                                MinWidth="180"
+                                                Width="*"
+                                                CellStyle="{StaticResource CenterGridCell}"
+                                                Visibility="{Binding Source={x:Reference RockCodeCheked},
+                                                                    Path=IsChecked, 
+                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <DataGridTextColumn Header="Описание керна"
+                                                Binding="{Binding Description,Mode=OneWay}"
+                                                MinWidth="250"
+                                                Width="*"
+                                                CellStyle="{StaticResource CenterGridCell}"
+                                                Visibility="{Binding Source={x:Reference DescriptionCheked},
+                                                                    Path=IsChecked, 
+                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <DataGridTextColumn Header="Геолог"
+                                                Binding="{Binding GeologNavigation.Surname,Mode=OneWay}"
+                                                MinWidth="120"
+                                                Width="*"
+                                                CellStyle="{StaticResource CenterGridCell}"
+                                                Visibility="{Binding Source={x:Reference GeologCheked},
+                                                                    Path=IsChecked, 
+                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <DataGridTextColumn Header="Описание шлифов"
+                                                Binding="{Binding Petro,Mode=OneWay}"
+                                                MinWidth="180"
+                                                Width="*"
+                                                CellStyle="{StaticResource CenterGridCell}"
+                                                Visibility="{Binding Source={x:Reference PetroCheked},
+                                                                    Path=IsChecked, 
+                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <DataGridTextColumn Header="Описание аншлифов"
+                                                Binding="{Binding Mineral,Mode=OneWay}"
+                                                MinWidth="140"
+                                                Width="*"
+                                                CellStyle="{StaticResource CenterGridCell}"
+                                                Visibility="{Binding Source={x:Reference MineralCheked},
+                                                                    Path=IsChecked, 
+                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <DataGridTextColumn Header="Примечания"
+                                                Binding="{Binding NotesCommentsText,Mode=OneWay}"
+                                                MinWidth="160"
+                                                Width="*"
+                                                CellStyle="{StaticResource CenterGridCell}"
+                                                Visibility="{Binding Source={x:Reference NotesCommentsTextCheked},
+                                                                    Path=IsChecked, 
+                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+
+
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <TextBox Text="{Binding SelectedRocks.Description}"
+                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             Margin="20,20,20,20"
+                             TextWrapping="Wrap"
+                             IsReadOnly="True"
+                             materialDesign:HintAssist.Hint="Описание керна "
+                             materialDesign:HintAssist.FloatingScale="1" />
+
+
+                </StackPanel>-->
+            </TabItem>
+        </TabControl>
+       
 
     </Grid>
 </UserControl>

@@ -21,4 +21,6 @@ public partial class RockCode
     public string? Rock { get; set; }
 
     public virtual ICollection<Rock> Rocks { get; set; } = new List<Rock>();
+
+    public virtual ICollection<RocksRoute> RocksRoutes { get; set; } = new List<RocksRoute>();
 }

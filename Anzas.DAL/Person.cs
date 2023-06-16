@@ -32,4 +32,6 @@ public partial class Person
     public virtual ICollection<InfoTrench> InfoTrenches { get; set; } = new List<InfoTrench>();
 
     public virtual ICollection<Rock> Rocks { get; set; } = new List<Rock>();
+
+    public virtual ICollection<RocksRoute> RocksRoutes { get; set; } = new List<RocksRoute>();
 }

@@ -23,6 +23,8 @@ public partial class AnzasContext : DbContext
 
     public virtual DbSet<Mine> Mines { get; set; }
 
+    public virtual DbSet<Otbor> Otbors { get; set; }
+
     public virtual DbSet<Person> People { get; set; }
 
     public virtual DbSet<Place> Places { get; set; }
@@ -32,6 +34,10 @@ public partial class AnzasContext : DbContext
     public virtual DbSet<Rock> Rocks { get; set; }
 
     public virtual DbSet<RockCode> RockCodes { get; set; }
+
+    public virtual DbSet<RocksRoute> RocksRoutes { get; set; }
+
+    public virtual DbSet<Type> Types { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
@@ -214,6 +220,16 @@ public partial class AnzasContext : DbContext
                 .HasColumnName("TYPE (LCODE)");
         });
 
+        modelBuilder.Entity<Otbor>(entity =>
+        {
+            entity.HasKey(e => e.Uid).HasName("Otbor_pkey");
+
+            entity.ToTable("Otbor", tb => tb.HasComment("Справочник характеристика места отбора обр., проб"));
+
+            entity.Property(e => e.Uid).ValueGeneratedNever();
+            entity.Property(e => e.Name).HasColumnType("character varying");
+        });
+
         modelBuilder.Entity<Person>(entity =>
         {
             entity.HasKey(e => e.Uid).HasName("Person_pkey");
@@ -337,6 +353,82 @@ public partial class AnzasContext : DbContext
                 .HasMaxLength(20)
                 .HasComment("Код породы")
                 .HasColumnName("ROCK_CODE");
+        });
+
+        modelBuilder.Entity<RocksRoute>(entity =>
+        {
+            entity.HasKey(e => e.Uid).HasName("Rocks_Route_pkey");
+
+            entity.ToTable("Rocks_Route", tb => tb.HasComment("Литология маршрутов"));
+
+            entity.Property(e => e.Uid)
+                .ValueGeneratedNever()
+                .HasColumnName("UID");
+            entity.Property(e => e.Description)
+                .HasComment("Описание керна")
+                .HasColumnType("character varying");
+            entity.Property(e => e.Easting).HasComment("Долгота");
+            entity.Property(e => e.Elevation).HasComment("Абс. отм.");
+            entity.Property(e => e.Geolog).HasComment("Геолог");
+            entity.Property(e => e.HoleId)
+                .HasComment("№ маршрута")
+                .HasColumnName("HoleID");
+            entity.Property(e => e.Mineral)
+                .HasComment("Описание аншлифов")
+                .HasColumnType("character varying")
+                .HasColumnName("MINERAL");
+            entity.Property(e => e.Northing).HasComment("Широта");
+            entity.Property(e => e.NotesCommentsText)
+                .HasComment("Примечания")
+                .HasColumnType("character varying")
+                .HasColumnName("NOTES (COMMENTS, TEXT)");
+            entity.Property(e => e.Petro)
+                .HasComment("Описание шлифов")
+                .HasColumnType("character varying")
+                .HasColumnName("PETRO");
+            entity.Property(e => e.RockCode).HasComment("Код породы");
+            entity.Property(e => e.Rsample)
+                .HasColumnType("character varying")
+                .HasColumnName("RSample");
+            entity.Property(e => e.Rtn)
+                .HasComment("Номер точки наблюдения (т.н.)")
+                .HasColumnName("RTN");
+            entity.Property(e => e.TnOtbor)
+                .HasComment("Характеристика места отбора обр., проб")
+                .HasColumnName("TN_Otbor");
+            entity.Property(e => e.TnType)
+                .HasComment("Тип опробуемых отложений")
+                .HasColumnName("TN_Type");
+
+            entity.HasOne(d => d.GeologNavigation).WithMany(p => p.RocksRoutes)
+                .HasForeignKey(d => d.Geolog)
+                .HasConstraintName("Rocks_Route_Geolog_fkey");
+
+            entity.HasOne(d => d.RockCodeNavigation).WithMany(p => p.RocksRoutes)
+                .HasForeignKey(d => d.RockCode)
+                .HasConstraintName("Rocks_Route_RockCode_fkey");
+
+            entity.HasOne(d => d.TnOtborNavigation).WithMany(p => p.RocksRoutes)
+                .HasForeignKey(d => d.TnOtbor)
+                .HasConstraintName("Rocks_Route_TN_Otbor_fkey");
+
+            entity.HasOne(d => d.TnTypeNavigation).WithMany(p => p.RocksRoutes)
+                .HasForeignKey(d => d.TnType)
+                .HasConstraintName("Rocks_Route_TN_Type_fkey");
+        });
+
+        modelBuilder.Entity<Type>(entity =>
+        {
+            entity.HasKey(e => e.Uid).HasName("Type_pkey");
+
+            entity.ToTable("Type", tb => tb.HasComment("Справочник тип опробуемых отложений"));
+
+            entity.Property(e => e.Uid)
+                .ValueGeneratedNever()
+                .HasColumnName("uid");
+            entity.Property(e => e.Name)
+                .HasComment("Наименование")
+                .HasColumnType("character varying");
         });
 
         OnModelCreatingPartial(modelBuilder);
