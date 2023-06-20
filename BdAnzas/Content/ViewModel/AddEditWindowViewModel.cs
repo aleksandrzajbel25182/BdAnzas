@@ -166,6 +166,7 @@ namespace BdAnzas.Content.ViewModel
                 _navigationmaneger.Register<AddInfoDrill_View>(NavigationKeys.InfoDrillKey, () => new AddInfoDrill_ViewModel());
                 _navigationmaneger.Register<AddEditInfoTrench_View>(NavigationKeys.InfoTrenchKey, () => new AddEditInfoTrench_ViewModel());
                 _navigationmaneger.Register<AddEdit_InfoRoute_View>(NavigationKeys.InfoRoutehKey, () => new AddEdit_InfoRoute_ViewModel());
+                _navigationmaneger.Register<AddEditRockRoute_View>(NavigationKeys.RocksRouteKey, () => new AddEditRockRoute_ViewModel());
                 _navigationmaneger.Register<AddRocksView>(NavigationKeys.RocksKey, () => new AddRocksViewModel());
             }
             else
@@ -173,6 +174,7 @@ namespace BdAnzas.Content.ViewModel
                 _navigationmaneger.Register<AddInfoDrill_View>(NavigationKeys.InfoDrillKey, () => new AddInfoDrill_ViewModel((int)id));
                 _navigationmaneger.Register<AddEditInfoTrench_View>(NavigationKeys.InfoTrenchKey, () => new AddEditInfoTrench_ViewModel((int)id));
                 _navigationmaneger.Register<AddEdit_InfoRoute_View>(NavigationKeys.InfoRoutehKey, () => new AddEdit_InfoRoute_ViewModel((int)id));
+                _navigationmaneger.Register<AddEditRockRoute_View>(NavigationKeys.RocksRouteKey, () => new AddEditRockRoute_ViewModel((int)id));
                 _navigationmaneger.Register<AddRocksView>(NavigationKeys.RocksKey, () => new AddRocksViewModel((int)id));
 
             }

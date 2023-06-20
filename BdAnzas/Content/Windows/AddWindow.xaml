@@ -8,8 +8,8 @@
         xmlns:mde="clr-namespace:MaterialDesignExtensions.Controls;assembly=MaterialDesignExtensions"
         mc:Ignorable="d"
         Title="{Binding Title}"
-        Height="610"
-        Width="800">
+        Height="620"
+        Width="850">
     <Grid>
         <TabControl Style="{StaticResource MaterialDesignTabControl}"
                     mde:TabControlAssist.TabHeaderInactiveBrush="Black"
