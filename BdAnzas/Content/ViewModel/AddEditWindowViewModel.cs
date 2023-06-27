@@ -126,9 +126,6 @@ namespace BdAnzas.Content.ViewModel
                 }
             }
 
-
-
-
             Tables = new ObservableCollection<Tables>()
             {
                 new Tables(){Title = "Информация по скважинам (Info_Drill)"},
@@ -145,9 +142,7 @@ namespace BdAnzas.Content.ViewModel
             IsVisibility = false;
 
             ContentControl = new AddInfoDrill_View();
-
             _navigationmaneger = new NavigationManager(ContentControl);
-
             RegisterNavigate(uid);
             _navigationmaneger.Navigate(title);
 

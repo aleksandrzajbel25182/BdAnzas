@@ -376,7 +376,7 @@
                                                                     Path=IsChecked, 
                                                                     Converter={StaticResource BooleanToVisibilityConverter}}" />
                             <DataGridTextColumn Header="Характеристика места отбора обр., проб"
-                                                Binding="{Binding TnOtborNavigation.Name.,Mode=OneWay}"
+                                                Binding="{Binding TnOtborNavigation.Name,Mode=OneWay}"
                                                 MinWidth="150"
                                                 Width="*"
                                                 CellStyle="{StaticResource CenterGridCell}"

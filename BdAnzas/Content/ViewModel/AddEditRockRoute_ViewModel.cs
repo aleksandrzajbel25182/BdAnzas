@@ -279,7 +279,7 @@ namespace BdAnzas.Content.ViewModel
             {
                 _dialogManager.ShowMessage($"Ошибка добавления данных в базу: {ex.Message}", "Запись в базу данных", InfoMessege.OK, InfoMessege.Error);
             }
-
+         
         }
 
     }

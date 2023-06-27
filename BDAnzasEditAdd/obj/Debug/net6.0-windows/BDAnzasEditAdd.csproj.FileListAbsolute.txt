@@ -1,0 +1,9 @@
+C:\Users\ZAI\source\repos\BdAnzas\BDAnzasEditAdd\obj\Debug\net6.0-windows\BDAnzasEditAdd.csproj.AssemblyReference.cache
+C:\Users\ZAI\source\repos\BdAnzas\BDAnzasEditAdd\obj\Debug\net6.0-windows\AddWindow.g.cs
+C:\Users\ZAI\source\repos\BdAnzas\BDAnzasEditAdd\obj\Debug\net6.0-windows\View\AddEditInfoTrench_View.g.cs
+C:\Users\ZAI\source\repos\BdAnzas\BDAnzasEditAdd\obj\Debug\net6.0-windows\View\AddEditRockRoute_View.g.cs
+C:\Users\ZAI\source\repos\BdAnzas\BDAnzasEditAdd\obj\Debug\net6.0-windows\View\AddEdit_InfoRoute_View.g.cs
+C:\Users\ZAI\source\repos\BdAnzas\BDAnzasEditAdd\obj\Debug\net6.0-windows\View\AddInfoDrill_View.g.cs
+C:\Users\ZAI\source\repos\BdAnzas\BDAnzasEditAdd\obj\Debug\net6.0-windows\View\AddRocksView.g.cs
+C:\Users\ZAI\source\repos\BdAnzas\BDAnzasEditAdd\obj\Debug\net6.0-windows\BDAnzasEditAdd_MarkupCompile.cache
+C:\Users\ZAI\source\repos\BdAnzas\BDAnzasEditAdd\obj\Debug\net6.0-windows\BDAnzasEditAdd_MarkupCompile.lref

@@ -1,0 +1,533 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "BdAnzas/1.0.0": {
+        "dependencies": {
+          "Anzas.DAL": "1.0.0",
+          "MaterialDesignExtensions": "3.3.0",
+          "MaterialDesignThemes": "4.8.0",
+          "MathCore.WPF": "0.0.44.4",
+          "MvvmNavigation.Wpf": "3.2.0",
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "7.0.4"
+        },
+        "runtime": {
+          "BdAnzas.dll": {}
+        }
+      },
+      "JetBrains.Annotations/2019.1.3": {
+        "runtime": {
+          "lib/netstandard2.0/JetBrains.Annotations.dll": {
+            "assemblyVersion": "2019.1.3.0",
+            "fileVersion": "2019.1.3.0"
+          }
+        }
+      },
+      "MaterialDesignColors/2.1.2": {
+        "runtime": {
+          "lib/net6.0/MaterialDesignColors.dll": {
+            "assemblyVersion": "2.1.2.0",
+            "fileVersion": "2.1.2.0"
+          }
+        }
+      },
+      "MaterialDesignExtensions/3.3.0": {
+        "dependencies": {
+          "MaterialDesignColors": "2.1.2",
+          "MaterialDesignThemes": "4.8.0"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/MaterialDesignExtensions.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.3.0.0"
+          }
+        },
+        "resources": {
+          "lib/netcoreapp3.1/Ru/MaterialDesignExtensions.resources.dll": {
+            "locale": "Ru"
+          },
+          "lib/netcoreapp3.1/ar-DZ/MaterialDesignExtensions.resources.dll": {
+            "locale": "ar-DZ"
+          },
+          "lib/netcoreapp3.1/cs-CZ/MaterialDesignExtensions.resources.dll": {
+            "locale": "cs-CZ"
+          },
+          "lib/netcoreapp3.1/cs/MaterialDesignExtensions.resources.dll": {
+            "locale": "cs"
+          },
+          "lib/netcoreapp3.1/de/MaterialDesignExtensions.resources.dll": {
+            "locale": "de"
+          },
+          "lib/netcoreapp3.1/fr-FR/MaterialDesignExtensions.resources.dll": {
+            "locale": "fr-FR"
+          },
+          "lib/netcoreapp3.1/fr/MaterialDesignExtensions.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/netcoreapp3.1/pt-BR/MaterialDesignExtensions.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "lib/netcoreapp3.1/pt/MaterialDesignExtensions.resources.dll": {
+            "locale": "pt"
+          },
+          "lib/netcoreapp3.1/ru-ru/MaterialDesignExtensions.resources.dll": {
+            "locale": "ru-ru"
+          },
+          "lib/netcoreapp3.1/uz-Latn-UZ/MaterialDesignExtensions.resources.dll": {
+            "locale": "uz-Latn-UZ"
+          }
+        }
+      },
+      "MaterialDesignThemes/4.8.0": {
+        "dependencies": {
+          "MaterialDesignColors": "2.1.2",
+          "Microsoft.Xaml.Behaviors.Wpf": "1.1.39"
+        },
+        "runtime": {
+          "lib/net6.0/MaterialDesignThemes.Wpf.dll": {
+            "assemblyVersion": "4.8.0.0",
+            "fileVersion": "4.8.0.0"
+          }
+        }
+      },
+      "MathCore/0.0.86": {
+        "runtime": {
+          "lib/netstandard2.0/MathCore.dll": {
+            "assemblyVersion": "0.0.86.0",
+            "fileVersion": "0.0.86.0"
+          }
+        }
+      },
+      "MathCore.WPF/0.0.44.4": {
+        "dependencies": {
+          "MathCore": "0.0.86",
+          "Microsoft.Xaml.Behaviors.Wpf": "1.1.39"
+        },
+        "runtime": {
+          "lib/net6.0-windows7.0/MathCore.WPF.dll": {
+            "assemblyVersion": "0.0.44.4",
+            "fileVersion": "0.0.44.4"
+          }
+        }
+      },
+      "Microsoft.EntityFrameworkCore/7.0.5": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Abstractions": "7.0.5",
+          "Microsoft.EntityFrameworkCore.Analyzers": "7.0.5",
+          "Microsoft.Extensions.Caching.Memory": "7.0.0",
+          "Microsoft.Extensions.DependencyInjection": "7.0.0",
+          "Microsoft.Extensions.Logging": "7.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.EntityFrameworkCore.dll": {
+            "assemblyVersion": "7.0.5.0",
+            "fileVersion": "7.0.523.16503"
+          }
+        }
+      },
+      "Microsoft.EntityFrameworkCore.Abstractions/7.0.5": {
+        "runtime": {
+          "lib/net6.0/Microsoft.EntityFrameworkCore.Abstractions.dll": {
+            "assemblyVersion": "7.0.5.0",
+            "fileVersion": "7.0.523.16503"
+          }
+        }
+      },
+      "Microsoft.EntityFrameworkCore.Analyzers/7.0.5": {},
+      "Microsoft.EntityFrameworkCore.Relational/7.0.5": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "7.0.5",
+          "Microsoft.Extensions.Configuration.Abstractions": "7.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.EntityFrameworkCore.Relational.dll": {
+            "assemblyVersion": "7.0.5.0",
+            "fileVersion": "7.0.523.16503"
+          }
+        }
+      },
+      "Microsoft.Extensions.Caching.Abstractions/7.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Primitives": "7.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.Extensions.Caching.Abstractions.dll": {
+            "assemblyVersion": "7.0.0.0",
+            "fileVersion": "7.0.22.51805"
+          }
+        }
+      },
+      "Microsoft.Extensions.Caching.Memory/7.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Caching.Abstractions": "7.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "7.0.0",
+          "Microsoft.Extensions.Options": "7.0.0",
+          "Microsoft.Extensions.Primitives": "7.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.Extensions.Caching.Memory.dll": {
+            "assemblyVersion": "7.0.0.0",
+            "fileVersion": "7.0.22.51805"
+          }
+        }
+      },
+      "Microsoft.Extensions.Configuration.Abstractions/7.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Primitives": "7.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.Extensions.Configuration.Abstractions.dll": {
+            "assemblyVersion": "7.0.0.0",
+            "fileVersion": "7.0.22.51805"
+          }
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection/7.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.Extensions.DependencyInjection.dll": {
+            "assemblyVersion": "7.0.0.0",
+            "fileVersion": "7.0.22.51805"
+          }
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection.Abstractions/7.0.0": {
+        "runtime": {
+          "lib/net6.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
+            "assemblyVersion": "7.0.0.0",
+            "fileVersion": "7.0.22.51805"
+          }
+        }
+      },
+      "Microsoft.Extensions.Logging/7.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection": "7.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "7.0.0",
+          "Microsoft.Extensions.Options": "7.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.Extensions.Logging.dll": {
+            "assemblyVersion": "7.0.0.0",
+            "fileVersion": "7.0.22.51805"
+          }
+        }
+      },
+      "Microsoft.Extensions.Logging.Abstractions/7.0.0": {
+        "runtime": {
+          "lib/net6.0/Microsoft.Extensions.Logging.Abstractions.dll": {
+            "assemblyVersion": "7.0.0.0",
+            "fileVersion": "7.0.22.51805"
+          }
+        }
+      },
+      "Microsoft.Extensions.Options/7.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0",
+          "Microsoft.Extensions.Primitives": "7.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.Extensions.Options.dll": {
+            "assemblyVersion": "7.0.0.0",
+            "fileVersion": "7.0.22.51805"
+          }
+        }
+      },
+      "Microsoft.Extensions.Primitives/7.0.0": {
+        "dependencies": {
+          "System.Runtime.CompilerServices.Unsafe": "6.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.Extensions.Primitives.dll": {
+            "assemblyVersion": "7.0.0.0",
+            "fileVersion": "7.0.22.51805"
+          }
+        }
+      },
+      "Microsoft.Xaml.Behaviors.Wpf/1.1.39": {
+        "runtime": {
+          "lib/net5.0-windows7.0/Microsoft.Xaml.Behaviors.dll": {
+            "assemblyVersion": "1.1.0.0",
+            "fileVersion": "1.1.39.4716"
+          }
+        }
+      },
+      "MvvmNavigation.Abstractions/3.2.0": {
+        "dependencies": {
+          "JetBrains.Annotations": "2019.1.3"
+        },
+        "runtime": {
+          "lib/netstandard2.0/MvvmNavigation.Abstractions.dll": {
+            "assemblyVersion": "3.2.0.0",
+            "fileVersion": "3.2.0.177"
+          }
+        }
+      },
+      "MvvmNavigation.Core/3.2.0": {
+        "dependencies": {
+          "JetBrains.Annotations": "2019.1.3",
+          "MvvmNavigation.Abstractions": "3.2.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/MvvmNavigation.Core.dll": {
+            "assemblyVersion": "3.2.0.0",
+            "fileVersion": "3.2.0.177"
+          }
+        }
+      },
+      "MvvmNavigation.Wpf/3.2.0": {
+        "dependencies": {
+          "JetBrains.Annotations": "2019.1.3",
+          "MvvmNavigation.Abstractions": "3.2.0",
+          "MvvmNavigation.Core": "3.2.0"
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/MvvmNavigation.Internal.dll": {
+            "assemblyVersion": "3.2.0.0",
+            "fileVersion": "3.2.0.177"
+          },
+          "lib/netcoreapp3.0/MvvmNavigation.Wpf.dll": {
+            "assemblyVersion": "3.2.0.0",
+            "fileVersion": "3.2.0.177"
+          }
+        }
+      },
+      "Npgsql/7.0.4": {
+        "dependencies": {
+          "Microsoft.Extensions.Logging.Abstractions": "7.0.0",
+          "System.Runtime.CompilerServices.Unsafe": "6.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/Npgsql.dll": {
+            "assemblyVersion": "7.0.4.0",
+            "fileVersion": "7.0.4.0"
+          }
+        }
+      },
+      "Npgsql.EntityFrameworkCore.PostgreSQL/7.0.4": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "7.0.5",
+          "Microsoft.EntityFrameworkCore.Abstractions": "7.0.5",
+          "Microsoft.EntityFrameworkCore.Relational": "7.0.5",
+          "Npgsql": "7.0.4"
+        },
+        "runtime": {
+          "lib/net6.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll": {
+            "assemblyVersion": "7.0.4.0",
+            "fileVersion": "7.0.4.0"
+          }
+        }
+      },
+      "System.Runtime.CompilerServices.Unsafe/6.0.0": {},
+      "Anzas.DAL/1.0.0": {
+        "dependencies": {
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "7.0.4"
+        },
+        "runtime": {
+          "Anzas.DAL.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "BdAnzas/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "JetBrains.Annotations/2019.1.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-E0x48BwZJKoNMNCekWGKsV4saQS89lf58ydT2szseV44CMYIbaHXjc7+305WLw6up3ibZN9yH6QdGSZo5tQhLg==",
+      "path": "jetbrains.annotations/2019.1.3",
+      "hashPath": "jetbrains.annotations.2019.1.3.nupkg.sha512"
+    },
+    "MaterialDesignColors/2.1.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-7hf7MLRB6JXHj+IOLh3z2L9yBr58QhgpWQXyvffAoWdSamVO+DMEp3DqdWds0R5Rf6dp9yQ9hYUZ+wSsVZG1nQ==",
+      "path": "materialdesigncolors/2.1.2",
+      "hashPath": "materialdesigncolors.2.1.2.nupkg.sha512"
+    },
+    "MaterialDesignExtensions/3.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-dlxWtdrMH8aHNib3dWJhNQ/nNiA2b/CNvr90w/5KB6erTisuTpyYVx2l2+UGCZvwhSX5mHTHQYHfjgAKbDrgjg==",
+      "path": "materialdesignextensions/3.3.0",
+      "hashPath": "materialdesignextensions.3.3.0.nupkg.sha512"
+    },
+    "MaterialDesignThemes/4.8.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-rJDuWrSIqK+sA/RvZlJTlPF9Yp2YBdEZdiDtSHG/CEumkqJPMSewGga2pWF9gnRHkS5D7UWPaRRmT11Wb7F2Cw==",
+      "path": "materialdesignthemes/4.8.0",
+      "hashPath": "materialdesignthemes.4.8.0.nupkg.sha512"
+    },
+    "MathCore/0.0.86": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-sssuR8xB8NODIWVgEYEO1yx8F9kMl9YluoXCkTaw7qGTIJiZWOM3onkNyZJlv/osuhtvAgajgqWgQ8g8F/AHqg==",
+      "path": "mathcore/0.0.86",
+      "hashPath": "mathcore.0.0.86.nupkg.sha512"
+    },
+    "MathCore.WPF/0.0.44.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-G1VyWXbuUKE0WfYhEkWmy360QAGkgamwTArSnB/2WrAOwnbOiDtVtOHUXQ8k4wS7uXFTy8M39aSG3Pwu1G3JfQ==",
+      "path": "mathcore.wpf/0.0.44.4",
+      "hashPath": "mathcore.wpf.0.0.44.4.nupkg.sha512"
+    },
+    "Microsoft.EntityFrameworkCore/7.0.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-RXbRLHHWP2Z3pq8qcL5nQ6LPeoOyp8hasM5bd0Te8PiQi3RjWQR4tcbdY5XMqQ+oTO9wA8/RLhZRn/hnxlTDnQ==",
+      "path": "microsoft.entityframeworkcore/7.0.5",
+      "hashPath": "microsoft.entityframeworkcore.7.0.5.nupkg.sha512"
+    },
+    "Microsoft.EntityFrameworkCore.Abstractions/7.0.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-iwQso+hFRsEWjhH2WsEQj1D2QE5BlEXiXEt6A3SlYTPRPdZsyTNDeDDEdtxL+H/UJPQgQYY+9SMMRcEiXBmCAA==",
+      "path": "microsoft.entityframeworkcore.abstractions/7.0.5",
+      "hashPath": "microsoft.entityframeworkcore.abstractions.7.0.5.nupkg.sha512"
+    },
+    "Microsoft.EntityFrameworkCore.Analyzers/7.0.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-yMLM/aK1MikVqpjxd7PJ1Pjgztd3VAd26ZHxyjxG3RPeM9cHjvS5tCg9kAAayR6eHmBg0ffZsHdT28WfA5tTlA==",
+      "path": "microsoft.entityframeworkcore.analyzers/7.0.5",
+      "hashPath": "microsoft.entityframeworkcore.analyzers.7.0.5.nupkg.sha512"
+    },
+    "Microsoft.EntityFrameworkCore.Relational/7.0.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-u/33DC4S6g2hpMPgBc5Kdnlz//nqHR5c/ovgjtiP/wQ7sOd0EOdygVzUJAAOxCwbtAHDsJXS9Vc3jLFYq0yu8Q==",
+      "path": "microsoft.entityframeworkcore.relational/7.0.5",
+      "hashPath": "microsoft.entityframeworkcore.relational.7.0.5.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Caching.Abstractions/7.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-IeimUd0TNbhB4ded3AbgBLQv2SnsiVugDyGV1MvspQFVlA07nDC7Zul7kcwH5jWN3JiTcp/ySE83AIJo8yfKjg==",
+      "path": "microsoft.extensions.caching.abstractions/7.0.0",
+      "hashPath": "microsoft.extensions.caching.abstractions.7.0.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Caching.Memory/7.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-xpidBs2KCE2gw1JrD0quHE72kvCaI3xFql5/Peb2GRtUuZX+dYPoK/NTdVMiM67Svym0M0Df9A3xyU0FbMQhHw==",
+      "path": "microsoft.extensions.caching.memory/7.0.0",
+      "hashPath": "microsoft.extensions.caching.memory.7.0.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Configuration.Abstractions/7.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-f34u2eaqIjNO9YLHBz8rozVZ+TcFiFs0F3r7nUJd7FRkVSxk8u4OpoK226mi49MwexHOR2ibP9MFvRUaLilcQQ==",
+      "path": "microsoft.extensions.configuration.abstractions/7.0.0",
+      "hashPath": "microsoft.extensions.configuration.abstractions.7.0.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.DependencyInjection/7.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-elNeOmkeX3eDVG6pYVeV82p29hr+UKDaBhrZyWvWLw/EVZSYEkZlQdkp0V39k/Xehs2Qa0mvoCvkVj3eQxNQ1Q==",
+      "path": "microsoft.extensions.dependencyinjection/7.0.0",
+      "hashPath": "microsoft.extensions.dependencyinjection.7.0.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.DependencyInjection.Abstractions/7.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-h3j/QfmFN4S0w4C2A6X7arXij/M/OVw3uQHSOFxnND4DyAzO1F9eMX7Eti7lU/OkSthEE0WzRsfT/Dmx86jzCw==",
+      "path": "microsoft.extensions.dependencyinjection.abstractions/7.0.0",
+      "hashPath": "microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Logging/7.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Nw2muoNrOG5U5qa2ZekXwudUn2BJcD41e65zwmDHb1fQegTX66UokLWZkJRpqSSHXDOWZ5V0iqhbxOEky91atA==",
+      "path": "microsoft.extensions.logging/7.0.0",
+      "hashPath": "microsoft.extensions.logging.7.0.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Logging.Abstractions/7.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-kmn78+LPVMOWeITUjIlfxUPDsI0R6G0RkeAMBmQxAJ7vBJn4q2dTva7pWi65ceN5vPGjJ9q/Uae2WKgvfktJAw==",
+      "path": "microsoft.extensions.logging.abstractions/7.0.0",
+      "hashPath": "microsoft.extensions.logging.abstractions.7.0.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Options/7.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-lP1yBnTTU42cKpMozuafbvNtQ7QcBjr/CcK3bYOGEMH55Fjt+iecXjT6chR7vbgCMqy3PG3aNQSZgo/EuY/9qQ==",
+      "path": "microsoft.extensions.options/7.0.0",
+      "hashPath": "microsoft.extensions.options.7.0.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Primitives/7.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-um1KU5kxcRp3CNuI8o/GrZtD4AIOXDk+RLsytjZ9QPok3ttLUelLKpilVPuaFT3TFjOhSibUAso0odbOaCDj3Q==",
+      "path": "microsoft.extensions.primitives/7.0.0",
+      "hashPath": "microsoft.extensions.primitives.7.0.0.nupkg.sha512"
+    },
+    "Microsoft.Xaml.Behaviors.Wpf/1.1.39": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-8PZKqw9QOcu42xk8puY4P1+EXHL9YGOR9b7qhaYx5cILHul456H073tj99vyPcCt0W0781T9RwHqkx507ZyUpQ==",
+      "path": "microsoft.xaml.behaviors.wpf/1.1.39",
+      "hashPath": "microsoft.xaml.behaviors.wpf.1.1.39.nupkg.sha512"
+    },
+    "MvvmNavigation.Abstractions/3.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-JbxN2+gZGr7V3/VHRQ9QyRcZU2RFFIQk5/ZXZsTC6iVR4fxmNBiu8s9El0vJn02IddBN3HZPBfecWJdVyp1c3Q==",
+      "path": "mvvmnavigation.abstractions/3.2.0",
+      "hashPath": "mvvmnavigation.abstractions.3.2.0.nupkg.sha512"
+    },
+    "MvvmNavigation.Core/3.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-SHNgTJFzsFXgFCmlz+5TYtAjtvvjUzMoA3D7tdKtRNvvDLJzovLxWL6sMCBn2KGj4Y6Y5LHs2IKF9zBgWYKfyw==",
+      "path": "mvvmnavigation.core/3.2.0",
+      "hashPath": "mvvmnavigation.core.3.2.0.nupkg.sha512"
+    },
+    "MvvmNavigation.Wpf/3.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-WDWY8S2zSP+lo0rtH/DHCqreZXFV+8RPE6ziycm7Y20Y7346ZOcXJiq5ia7DmIU6jmU4sFs0eBQWhSZ9DEHpRQ==",
+      "path": "mvvmnavigation.wpf/3.2.0",
+      "hashPath": "mvvmnavigation.wpf.3.2.0.nupkg.sha512"
+    },
+    "Npgsql/7.0.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-7UVPYy2RP0ci04PED1tc9ZCaTw/DfSdSkLiGEFCAvwMwsgA/bAluj1liNzP1IpN0MFofnOF0cm1zJfmbEuCehg==",
+      "path": "npgsql/7.0.4",
+      "hashPath": "npgsql.7.0.4.nupkg.sha512"
+    },
+    "Npgsql.EntityFrameworkCore.PostgreSQL/7.0.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ZYMtyG6pmLtUsFAx0/XaIlVkJM+1gArWEKD55cLLxiVlGScAphjiGj+G7Gk16yg5lhhdWx+bgXWpIUISXuS33g==",
+      "path": "npgsql.entityframeworkcore.postgresql/7.0.4",
+      "hashPath": "npgsql.entityframeworkcore.postgresql.7.0.4.nupkg.sha512"
+    },
+    "System.Runtime.CompilerServices.Unsafe/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/iUeP3tq1S0XdNNoMz5C9twLSrM/TH+qElHkXWaPvuNOt+99G75NrV0OS2EqHx5wMN7popYjpc8oTjC1y16DLg==",
+      "path": "system.runtime.compilerservices.unsafe/6.0.0",
+      "hashPath": "system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+    },
+    "Anzas.DAL/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
