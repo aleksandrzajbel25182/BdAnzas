@@ -101,8 +101,8 @@
                                   Foreground="White">
                             <CheckBox x:Name="AllCheked"
                                       Content="Все столбцы"
-                                      Foreground="Black" 
-                                      IsChecked="True"/>
+                                      Foreground="Black"
+                                      IsChecked="True" />
 
                             <CheckBox x:Name="HoleIdCheked"
                                       Content="№ скважины"
@@ -166,8 +166,7 @@
                         <Button Style="{StaticResource StyleCircleButton}"
                                 VerticalAlignment="Top"
                                 Margin="20,20,15,0"
-                                Command="{Binding EditItemCommand}" 
-                                >
+                                Command="{Binding EditItemCommand}">
                             <Image Source="/Resources/Icons/edit.png"
                                    Height="20" />
                         </Button>
@@ -180,8 +179,7 @@
                         </Button>
                         <Button Style="{StaticResource StyleCircleButton}"
                                 Margin="0,20,0,0"
-                                VerticalAlignment="Top"
-                               >
+                                VerticalAlignment="Top">
                             <Image Source="/Resources/Icons/delete.png"
                                    Height="20" />
                         </Button>

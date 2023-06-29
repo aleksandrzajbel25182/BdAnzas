@@ -7,6 +7,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Content\View\Info_Dril_View.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Content\View\Info_Route_View.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -22,11 +25,11 @@
     <Compile Update="Content\Windows\MainWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Content\View\Info_Dril_View.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Content\View\Info_Dril_View.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Content\View\Info_Route_View.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -43,9 +46,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Resources\Style\StyleDictionary.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Content\View\Info_Dril_View.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
