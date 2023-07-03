@@ -11,7 +11,7 @@ namespace BdAnzas.Constants
         public const string InfoDrillKey = @"Информация по скважинам";
         public const string InfoTrenchKey = @"Информация по канавам";
         public const string InfoRoutehKey = @"Информация по маршрутам";
-        public const string InfoSurveyhKey = @"Инклинометрия скважин";
+        public const string SurveyhKey = @"Инклинометрия скважин";
         public const string InfoSyrveyTrenchKey = @"Инклинометрия канав";
         public const string RocksKey = @"Литология скважин";
         public const string RocksRouteKey = @"Литология маршрута";

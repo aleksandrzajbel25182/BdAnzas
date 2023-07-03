@@ -109,55 +109,26 @@
                                       Style="{StaticResource CkekedAlL}">
                             </CheckBox>
 
-                            <CheckBox x:Name="TypeLcodeCheked"
-                                      Content="Тип выработки"
-                                      Style="{StaticResource CkekedAlL}" />
-                            <CheckBox x:Name="PlaceSiteCheked"
-                                      Content="Название участка"
-                                      Style="{StaticResource CkekedAlL}" />
-                            <CheckBox x:Name="ProfileCheked"
-                                      Content="Номер ПЛ"
+                            <CheckBox x:Name="DepthCheked"
+                                      Content="Длина"
                                       Style="{StaticResource CkekedAlL}" />
 
-                            <CheckBox x:Name="EastingCheked"
-                                      Content="Долгота"
+                            <CheckBox x:Name="InclinCheked"
+                                      Content="Угол наклона от вертикали"
                                       Style="{StaticResource CkekedAlL}" />
-                            <CheckBox x:Name="NorthingCheked"
-                                      Content="Широта"
+
+                            <CheckBox x:Name="AzMagnCheked"
+                                      Content="Аз_магн_исходный,°"
                                       Style="{StaticResource CkekedAlL}" />
-                            <CheckBox x:Name="ElevationCheked"
-                                      Content="Абс. отм."
+
+                            <CheckBox x:Name="AzimPrCheked"
+                                      Content="Аз. мг. принятый"
                                       Style="{StaticResource CkekedAlL}" />
-                            <CheckBox x:Name="DiamCheked"
-                                      Content="Диаметр бурения"
+
+                            <CheckBox x:Name="AzimIstCheked"
+                                      Content="Аз_ист_принятый, °"
                                       Style="{StaticResource CkekedAlL}" />
-                            <CheckBox x:Name="AzimuthCheked"
-                                      Content="Азимут ист"
-                                      Style="{StaticResource CkekedAlL}" />
-                            <CheckBox x:Name="DipCheked"
-                                      Content="Угол наклона от горизонта"
-                                      Style="{StaticResource CkekedAlL}" />
-                            <CheckBox x:Name="DepthCheked"
-                                      Content="Глубина скважины"
-                                      Style="{StaticResource CkekedAlL}" />
-                            <CheckBox x:Name="UrovenCheked"
-                                      Content="Уровень ПВ"
-                                      Style="{StaticResource CkekedAlL}" />
-                            <CheckBox x:Name="UrAbsCheked"
-                                      Content="Абс. отм. уровня"
-                                      Style="{StaticResource CkekedAlL}" />
-                            <CheckBox x:Name="StartDateCheked"
-                                      Content="Начало бурения"
-                                      Style="{StaticResource CkekedAlL}" />
-                            <CheckBox x:Name="EndDateCheked"
-                                      Content="Окончание бурения"
-                                      Style="{StaticResource CkekedAlL}" />
-                            <CheckBox x:Name="GeologCheked"
-                                      Content="Геолог"
-                                      Style="{StaticResource CkekedAlL}" />
-                            <CheckBox x:Name="NotesCheked"
-                                      Content="Примечания"
-                                      Style="{StaticResource CkekedAlL}" />
+                          
 
                         </ComboBox>
                         <!--<CheckBox x:Name="showImperial"
@@ -189,14 +160,20 @@
 
             </materialDesign:Card>
         </StackPanel>
-        <TabControl  Grid.Row="2">
-            <TabItem Header="Скважина">
+        <Grid  Grid.Row="2">
+            <!--<TabItem Header="Скважина">
+                <ScrollViewer>
+                    
+              
                 <StackPanel Orientation="Vertical"
-                            Grid.Row="2">
+                            Grid.Row="2">-->
                     <DataGrid Margin="20,20,20,20"
-                              ItemsSource="{Binding Rocks , Mode=TwoWay}"
-                              SelectedItem="{Binding SelectedRocks, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                              AutoGenerateColumns="False">
+                              ItemsSource="{Binding SyrveyDrill }"
+                              SelectedItem="{Binding SelectedSyrveyDrill, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              AutoGenerateColumns="False"
+                              VirtualizingPanel.IsVirtualizingWhenGrouping="True"
+                              VirtualizingPanel.IsContainerVirtualizable="True"
+                              VirtualizingPanel.ScrollUnit="Item">
                         <DataGrid.ColumnHeaderStyle>
                             <Style TargetType="DataGridColumnHeader"
                                    BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
@@ -217,64 +194,65 @@
                                                                     Converter={StaticResource BooleanToVisibilityConverter}}" />
 
                             <DataGridTextColumn Header="Глубина"
-                                                Binding="{Binding From ,Mode=OneWay}"
+                                                Binding="{Binding Depth ,Mode=OneWay}"
                                                 MinWidth="100"
                                                 Width="*"
                                                 CellStyle="{StaticResource CenterGridCell}"
-                                                Visibility="{Binding Source={x:Reference FromCheked},
+                                                Visibility="{Binding Source={x:Reference DepthCheked},
                                                                     Path=IsChecked, 
                                                                     Converter={StaticResource BooleanToVisibilityConverter}}" />
                             <DataGridTextColumn Header="Угол наклона от вертикали"
-                                                Binding="{Binding To,Mode=OneWay}"
+                                                Binding="{Binding Inclin,Mode=OneWay}"
                                                 MinWidth="200"
                                                 Width="*"
                                                 CellStyle="{StaticResource CenterGridCell}"
-                                                Visibility="{Binding Source={x:Reference ToCheked},
+                                                Visibility="{Binding Source={x:Reference InclinCheked},
                                                                     Path=IsChecked, 
                                                                     Converter={StaticResource BooleanToVisibilityConverter}}" />
                             <DataGridTextColumn Header="Аз_магн_исходный,°"
-                                                Binding="{Binding Length,Mode=OneWay}"
+                                                Binding="{Binding AzMagn,Mode=OneWay}"
                                                 MinWidth="200"
                                                 Width="*"
                                                 CellStyle="{StaticResource CenterGridCell}"
-                                                Visibility="{Binding Source={x:Reference LengthCheked},
+                                                Visibility="{Binding Source={x:Reference AzMagnCheked},
                                                                     Path=IsChecked, 
                                                                     Converter={StaticResource BooleanToVisibilityConverter}}" />
                             <DataGridTextColumn Header="Аз. мг. принятый"
-                                                Binding="{Binding Kernm,Mode=OneWay}"
+                                                Binding="{Binding AzimPr,Mode=OneWay}"
                                                 MinWidth="200"
                                                 Width="*"
                                                 CellStyle="{StaticResource CenterGridCell}"
-                                                Visibility="{Binding Source={x:Reference KernmCheked},
+                                                Visibility="{Binding Source={x:Reference AzimPrCheked},
                                                                     Path=IsChecked, 
                                                                     Converter={StaticResource BooleanToVisibilityConverter}}" />
                             <DataGridTextColumn Header="Аз_ист_принятый, °"
-                                                Binding="{Binding Kernpc,Mode=OneWay}"
+                                                Binding="{Binding AzimIst,Mode=OneWay}"
                                                 MinWidth="200"
                                                 Width="*"
                                                 CellStyle="{StaticResource CenterGridCell}"
-                                                Visibility="{Binding Source={x:Reference KernpcCheked},
+                                                Visibility="{Binding Source={x:Reference AzimIstCheked},
                                                                     Path=IsChecked, 
                                                                     Converter={StaticResource BooleanToVisibilityConverter}}" />
                         </DataGrid.Columns>
                     </DataGrid>
-                    <TextBox Text="{Binding SelectedRocks.Description}"
+                    <!--<TextBox Text="{Binding SelectedRocks.Description}"
                              Style="{StaticResource MaterialDesignOutlinedTextBox}"
                              Margin="20,20,20,20"
                              TextWrapping="Wrap"
                              IsReadOnly="True"
                              materialDesign:HintAssist.Hint="Описание керна "
-                             materialDesign:HintAssist.FloatingScale="1" />
+                             materialDesign:HintAssist.FloatingScale="1" />-->
 
 
-                </StackPanel>
+                <!--</StackPanel>
+                </ScrollViewer>
             </TabItem>
             <TabItem Header="Трашеи">
                 <StackPanel Orientation="Vertical"
-                            Grid.Row="2">
+                            Grid.Row="2">-->
 
 
-                    <DataGrid Margin="20,20,20,20"
+                    <!--<DataGrid Margin="20,20,20,20"
                               ItemsSource="{Binding Rocksroute , Mode=TwoWay}"
                               SelectedItem="{Binding SelectedRocksRoute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               AutoGenerateColumns="False">
@@ -338,19 +316,19 @@
                                                                     Path=IsChecked, 
                                                                     Converter={StaticResource BooleanToVisibilityConverter}}" />
                         </DataGrid.Columns>
-                    </DataGrid>
-                    <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                    </DataGrid>-->
+                    <!--<TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
                              Margin="20,20,20,20"
                              TextWrapping="Wrap"
                              IsReadOnly="True"
                              materialDesign:HintAssist.Hint="Описание керна "
                              materialDesign:HintAssist.FloatingScale="1"
-                             Text="{Binding SelectedRocksRoute.Description}" />
+                             Text="{Binding SelectedRocksRoute.Description}" />-->
 
 
-                </StackPanel>
-            </TabItem>
-        </TabControl>
+                <!--</StackPanel>
+            </TabItem>-->
+        </Grid>
 
     </Grid>
 </UserControl>

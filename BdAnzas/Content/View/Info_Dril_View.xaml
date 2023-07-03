@@ -193,7 +193,10 @@
             <DataGrid Margin="20"
                       ItemsSource="{Binding InfoDrills , Mode=TwoWay}"
                       SelectedItem="{Binding Selected_InfoDrill, Mode=TwoWay}"
-                      AutoGenerateColumns="False">
+                      AutoGenerateColumns="False"
+                      VirtualizingPanel.IsVirtualizingWhenGrouping="True"
+                      VirtualizingPanel.IsContainerVirtualizable="True"
+                      VirtualizingPanel.ScrollUnit="Item">
 
                 <!--<DataGrid.InputBindings>
                     <MouseBinding Gesture="LeftDoubleClick"

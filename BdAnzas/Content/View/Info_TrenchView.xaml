@@ -199,6 +199,9 @@
                       SelectedItem="{Binding SelectedInfoTrench}"
                       AutoGenerateColumns="False"
                       CanUserReorderColumns="True"
+                      VirtualizingPanel.IsVirtualizingWhenGrouping="True"
+                      VirtualizingPanel.IsContainerVirtualizable="True"
+                      VirtualizingPanel.ScrollUnit="Item"
                       IsReadOnly="True">
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="DataGridColumnHeader"

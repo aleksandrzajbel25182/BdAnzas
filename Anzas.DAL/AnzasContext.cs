@@ -8,7 +8,6 @@ public partial class AnzasContext : DbContext
 {
     public AnzasContext()
     {
-        Database.EnsureCreated();
     }
 
     public AnzasContext(DbContextOptions<AnzasContext> options)
@@ -38,6 +37,8 @@ public partial class AnzasContext : DbContext
 
     public virtual DbSet<RocksRoute> RocksRoutes { get; set; }
 
+    public virtual DbSet<Survey> Surveys { get; set; }
+
     public virtual DbSet<Type> Types { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -51,6 +52,14 @@ public partial class AnzasContext : DbContext
             entity.HasKey(e => e.Uid).HasName("Info_Drill_pkey");
 
             entity.ToTable("Info_Drill", tb => tb.HasComment("Информация по скважинам"));
+
+            entity.HasIndex(e => e.Geolog, "IX_Info_Drill_Geolog");
+
+            entity.HasIndex(e => e.PlaceSite, "IX_Info_Drill_PLACE (SITE)");
+
+            entity.HasIndex(e => e.Project, "IX_Info_Drill_Project");
+
+            entity.HasIndex(e => e.TypeLcode, "IX_Info_Drill_TYPE (LCODE)");
 
             entity.Property(e => e.Uid)
                 .ValueGeneratedNever()
@@ -109,6 +118,12 @@ public partial class AnzasContext : DbContext
 
             entity.ToTable("Info_Route", tb => tb.HasComment("Информация по маршрутам"));
 
+            entity.HasIndex(e => e.Geolog, "IX_Info_Route_Geolog");
+
+            entity.HasIndex(e => e.PlaceSite, "IX_Info_Route_PLACE (SITE)");
+
+            entity.HasIndex(e => e.TypeLcode, "IX_Info_Route_TYPE (LCODE)");
+
             entity.Property(e => e.Uid)
                 .ValueGeneratedNever()
                 .HasColumnName("UID");
@@ -157,6 +172,12 @@ public partial class AnzasContext : DbContext
             entity.HasKey(e => e.Uid).HasName("Info_Trench_pkey");
 
             entity.ToTable("Info_Trench", tb => tb.HasComment("Информация по канавам/траншеям"));
+
+            entity.HasIndex(e => e.Geolog, "IX_Info_Trench_Geolog");
+
+            entity.HasIndex(e => e.PlaceSite, "IX_Info_Trench_PLACE (SITE)");
+
+            entity.HasIndex(e => e.TypeLcode, "IX_Info_Trench_TYPE (LCODE)");
 
             entity.Property(e => e.Uid)
                 .ValueGeneratedNever()
@@ -289,6 +310,12 @@ public partial class AnzasContext : DbContext
 
             entity.ToTable(tb => tb.HasComment("Литология"));
 
+            entity.HasIndex(e => e.Geolog, "IX_Rocks_Geolog");
+
+            entity.HasIndex(e => e.HoleId, "IX_Rocks_HoleID");
+
+            entity.HasIndex(e => e.RockCode, "IX_Rocks_RockCode");
+
             entity.Property(e => e.Uid)
                 .ValueGeneratedNever()
                 .HasColumnName("UID");
@@ -362,6 +389,14 @@ public partial class AnzasContext : DbContext
 
             entity.ToTable("Rocks_Route", tb => tb.HasComment("Литология маршрутов"));
 
+            entity.HasIndex(e => e.Geolog, "IX_Rocks_Route_Geolog");
+
+            entity.HasIndex(e => e.RockCode, "IX_Rocks_Route_RockCode");
+
+            entity.HasIndex(e => e.TnOtbor, "IX_Rocks_Route_TN_Otbor");
+
+            entity.HasIndex(e => e.TnType, "IX_Rocks_Route_TN_Type");
+
             entity.Property(e => e.Uid)
                 .ValueGeneratedNever()
                 .HasColumnName("UID");
@@ -416,6 +451,34 @@ public partial class AnzasContext : DbContext
             entity.HasOne(d => d.TnTypeNavigation).WithMany(p => p.RocksRoutes)
                 .HasForeignKey(d => d.TnType)
                 .HasConstraintName("Rocks_Route_TN_Type_fkey");
+        });
+
+        modelBuilder.Entity<Survey>(entity =>
+        {
+            entity.HasKey(e => e.Uid).HasName("Survey_pkey");
+
+            entity.ToTable("Survey", tb => tb.HasComment("Инклинометрия скважин"));
+
+            entity.Property(e => e.Uid)
+                .ValueGeneratedNever()
+                .HasColumnName("UID");
+            entity.Property(e => e.AzMagn)
+                .HasComment("Аз_магн_исходный")
+                .HasColumnName("Az_magn");
+            entity.Property(e => e.AzimIst)
+                .HasComment("Аз_ист_принятый")
+                .HasColumnName("Azim_ist");
+            entity.Property(e => e.AzimPr)
+                .HasComment("Аз_мг_принятый")
+                .HasColumnName("Azim_pr");
+            entity.Property(e => e.Depth).HasComment("Глубина");
+            entity.Property(e => e.HoleId).HasColumnName("HoleID");
+            entity.Property(e => e.Inclin).HasComment("Угол наклона от вертикали");
+
+            entity.HasOne(d => d.Hole).WithMany(p => p.Surveys)
+                .HasForeignKey(d => d.HoleId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("Survey_HoleID_fkey");
         });
 
         modelBuilder.Entity<Type>(entity =>

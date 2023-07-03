@@ -190,7 +190,10 @@
                     <DataGrid Margin="20,20,20,20"
                               ItemsSource="{Binding Rocks , Mode=TwoWay}"
                               SelectedItem="{Binding SelectedRocks, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                              AutoGenerateColumns="False">
+                              AutoGenerateColumns="False"
+                              VirtualizingPanel.IsVirtualizingWhenGrouping="True"
+                              VirtualizingPanel.IsContainerVirtualizable="True"
+                              VirtualizingPanel.ScrollUnit="Item">
                         <DataGrid.ColumnHeaderStyle>
                             <Style TargetType="DataGridColumnHeader"
                                    BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
@@ -323,7 +326,10 @@
                     <DataGrid Margin="20,20,20,20"
                               ItemsSource="{Binding Rocksroute , Mode=TwoWay}"
                               SelectedItem="{Binding SelectedRocksRoute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                              AutoGenerateColumns="False">
+                              AutoGenerateColumns="False"
+                              VirtualizingPanel.IsVirtualizingWhenGrouping="True"
+                              VirtualizingPanel.IsContainerVirtualizable="True"
+                              VirtualizingPanel.ScrollUnit="Item">
                         <DataGrid.ColumnHeaderStyle>
                             <Style TargetType="DataGridColumnHeader"
                                    BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
