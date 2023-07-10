@@ -68,7 +68,7 @@ namespace BdAnzas {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/BdAnzas;V1.0.0.0;component/content/windows/mainwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/BdAnzas;component/content/windows/mainwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Content\Windows\MainWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

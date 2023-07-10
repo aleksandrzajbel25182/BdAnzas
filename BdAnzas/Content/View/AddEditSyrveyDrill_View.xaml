@@ -14,18 +14,23 @@
                                materialDesign:HintAssist.Hint="Скважина"
                                materialDesign:HintAssist.FloatingScale="1"
                                Margin="20,20,00,0"
+                               ItemsSource="{Binding Hole}"
+                               DisplayMemberPath="HoleId"
                                Width="200" />
                     <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
                              materialDesign:HintAssist.Hint="Глубина"
                              materialDesign:HintAssist.FloatingScale="1"
                              Margin="20,20,0,0"
-                             Width="170" />
+                             Width="170"
+                             Text="{Binding Depth}"
+                             />
 
                     <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
                              materialDesign:HintAssist.Hint="Угол наклона от вертикали"
                              materialDesign:HintAssist.FloatingScale="1"
                              Margin="20,20,0,0"
-                             Width="200" />
+                             Width="200"
+                             Text="{Binding Inclin}"/>
 
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
@@ -33,18 +38,21 @@
                              materialDesign:HintAssist.Hint="Аз_магн_исходный, °"
                              materialDesign:HintAssist.FloatingScale="1"
                              Margin="20,20,0,0"
-                             Width="170" />
+                             Width="170"
+                             Text="{Binding AzMagn}" />
                     <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
                              materialDesign:HintAssist.Hint="Аз_мг_принятый"
                              materialDesign:HintAssist.FloatingScale="1"
                              Margin="20,20,0,0"
-                             Width="170" />
+                             Width="170"
+                             Text="{Binding AzimPr}" />
 
                     <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
                              materialDesign:HintAssist.Hint="Аз_ист_принятый, °"
                              materialDesign:HintAssist.FloatingScale="1"
                              Margin="20,20,0,0"
-                             Width="170" />
+                             Width="170"
+                             Text="{Binding AzimIst}" />
 
                 </StackPanel>
 

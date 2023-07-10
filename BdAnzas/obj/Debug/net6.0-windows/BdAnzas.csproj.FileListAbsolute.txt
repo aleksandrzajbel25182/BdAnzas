@@ -170,3 +170,5 @@ C:\Users\zai\Desktop\Проекты\BdAnzas\BdAnzas\obj\Debug\net6.0-windows\BdA
 C:\Users\zai\Desktop\Проекты\BdAnzas\BdAnzas\obj\Debug\net6.0-windows\BdAnzas.csproj.CopyComplete
 C:\Users\zai\Desktop\Проекты\BdAnzas\BdAnzas\obj\Debug\net6.0-windows\BdAnzas.genruntimeconfig.cache
 C:\Users\zai\Desktop\Проекты\BdAnzas\BdAnzas\obj\Debug\net6.0-windows\ref\BdAnzas.dll
+C:\Users\zai\Desktop\Проекты\BdAnzas\BdAnzas\obj\Debug\net6.0-windows\Content\View\AddEditSyrveyDrill_View.g.cs
+C:\Users\zai\Desktop\Проекты\BdAnzas\BdAnzas\obj\Debug\net6.0-windows\Content\View\AddEditSyrveyDrill_View.baml

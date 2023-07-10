@@ -135,7 +135,11 @@ namespace BdAnzas.Content.ViewModel
             };
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="title">Получаем заголовок</param>
+        /// <param name="uid">Получаем идентификатор</param>
         public AddEditWindowViewModel(string title, int uid)
         {
             Title = title;
@@ -163,6 +167,7 @@ namespace BdAnzas.Content.ViewModel
                 _navigationmaneger.Register<AddEdit_InfoRoute_View>(NavigationKeys.InfoRoutehKey, () => new AddEdit_InfoRoute_ViewModel());
                 _navigationmaneger.Register<AddEditRockRoute_View>(NavigationKeys.RocksRouteKey, () => new AddEditRockRoute_ViewModel());
                 _navigationmaneger.Register<AddRocksView>(NavigationKeys.RocksKey, () => new AddRocksViewModel());
+                _navigationmaneger.Register<AddEditSyrveyDrill_View>(NavigationKeys.SurveyhKey, () => new AddEditSyrveyDrill_ViewModel());
             }
             else
             {
@@ -171,6 +176,7 @@ namespace BdAnzas.Content.ViewModel
                 _navigationmaneger.Register<AddEdit_InfoRoute_View>(NavigationKeys.InfoRoutehKey, () => new AddEdit_InfoRoute_ViewModel((int)id));
                 _navigationmaneger.Register<AddEditRockRoute_View>(NavigationKeys.RocksRouteKey, () => new AddEditRockRoute_ViewModel((int)id));
                 _navigationmaneger.Register<AddRocksView>(NavigationKeys.RocksKey, () => new AddRocksViewModel((int)id));
+                _navigationmaneger.Register<AddEditSyrveyDrill_View>(NavigationKeys.SurveyhKey, () => new AddEditSyrveyDrill_ViewModel((int)id));
 
             }
         }
