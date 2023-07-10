@@ -487,7 +487,7 @@ public partial class AnzasContext : DbContext
         {
             entity.HasKey(e => e.Uid).HasName("Survey_Trench_pkey");
 
-            entity.ToTable("Survey_Trench", tb => tb.HasComment("Инклинометрия траншеи"));
+            entity.ToTable("Survey_Trench", tb => tb.HasComment("Инклинометрия траншей"));
 
             entity.Property(e => e.Uid)
                 .ValueGeneratedNever()
@@ -498,6 +498,7 @@ public partial class AnzasContext : DbContext
             entity.Property(e => e.Depth).HasComment("Глубина канавы,м");
             entity.Property(e => e.Easting).HasComment("Долгота");
             entity.Property(e => e.Elevation).HasComment("Абс. отм.");
+            entity.Property(e => e.HoleId).HasColumnName("HoleID");
             entity.Property(e => e.Length)
                 .HasComment("Длина канавы,м")
                 .HasColumnName("LENGTH");
@@ -505,7 +506,10 @@ public partial class AnzasContext : DbContext
             entity.Property(e => e.NumTp)
                 .HasComment("Номер точки поворота")
                 .HasColumnName("NUM_TP");
-            entity.Property(e => e.SurveyTrench1).HasColumnName("Survey_Trench");
+
+            entity.HasOne(d => d.Hole).WithMany(p => p.SurveyTrenches)
+                .HasForeignKey(d => d.HoleId)
+                .HasConstraintName("Survey_Trench_HoleID_fkey");
         });
 
         modelBuilder.Entity<Type>(entity =>

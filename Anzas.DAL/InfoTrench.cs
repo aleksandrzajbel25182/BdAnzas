@@ -101,5 +101,7 @@ public partial class InfoTrench
 
     public virtual Place? PlaceSiteNavigation { get; set; }
 
+    public virtual ICollection<SurveyTrench> SurveyTrenches { get; set; } = new List<SurveyTrench>();
+
     public virtual Mine? TypeLcodeNavigation { get; set; }
 }

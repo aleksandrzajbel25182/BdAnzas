@@ -4,13 +4,13 @@ using System.Collections.Generic;
 namespace Anzas.DAL;
 
 /// <summary>
-/// Инклинометрия траншеи
+/// Инклинометрия траншей
 /// </summary>
 public partial class SurveyTrench
 {
     public int Uid { get; set; }
 
-    public int? SurveyTrench1 { get; set; }
+    public int? HoleId { get; set; }
 
     /// <summary>
     /// Номер точки поворота
@@ -46,4 +46,6 @@ public partial class SurveyTrench
     /// Абс. отм.
     /// </summary>
     public double? Elevation { get; set; }
+
+    public virtual InfoTrench? Hole { get; set; }
 }
