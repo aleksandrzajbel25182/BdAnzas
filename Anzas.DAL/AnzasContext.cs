@@ -39,6 +39,8 @@ public partial class AnzasContext : DbContext
 
     public virtual DbSet<Survey> Surveys { get; set; }
 
+    public virtual DbSet<SurveyTrench> SurveyTrenches { get; set; }
+
     public virtual DbSet<Type> Types { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -479,6 +481,31 @@ public partial class AnzasContext : DbContext
                 .HasForeignKey(d => d.HoleId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("Survey_HoleID_fkey");
+        });
+
+        modelBuilder.Entity<SurveyTrench>(entity =>
+        {
+            entity.HasKey(e => e.Uid).HasName("Survey_Trench_pkey");
+
+            entity.ToTable("Survey_Trench", tb => tb.HasComment("Инклинометрия траншеи"));
+
+            entity.Property(e => e.Uid)
+                .ValueGeneratedNever()
+                .HasColumnName("UID");
+            entity.Property(e => e.AzMagn)
+                .HasComment("Азимут магн. полевой, °")
+                .HasColumnName("Az_magn");
+            entity.Property(e => e.Depth).HasComment("Глубина канавы,м");
+            entity.Property(e => e.Easting).HasComment("Долгота");
+            entity.Property(e => e.Elevation).HasComment("Абс. отм.");
+            entity.Property(e => e.Length)
+                .HasComment("Длина канавы,м")
+                .HasColumnName("LENGTH");
+            entity.Property(e => e.Northing).HasComment("Широта");
+            entity.Property(e => e.NumTp)
+                .HasComment("Номер точки поворота")
+                .HasColumnName("NUM_TP");
+            entity.Property(e => e.SurveyTrench1).HasColumnName("Survey_Trench");
         });
 
         modelBuilder.Entity<Type>(entity =>

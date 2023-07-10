@@ -172,7 +172,7 @@ namespace BdAnzas.Content {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/BdAnzas;V1.0.0.0;component/content/view/rocksview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/BdAnzas;component/content/view/rocksview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Content\View\RocksView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

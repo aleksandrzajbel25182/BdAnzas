@@ -128,7 +128,7 @@
                             <CheckBox x:Name="AzimIstCheked"
                                       Content="Аз_ист_принятый, °"
                                       Style="{StaticResource CkekedAlL}" />
-                          
+
 
                         </ComboBox>
                         <!--<CheckBox x:Name="showImperial"
@@ -162,16 +162,23 @@
             </materialDesign:Card>
         </StackPanel>
         <Grid  Grid.Row="2">
-            <!--<TabItem Header="Скважина">
-                <ScrollViewer>
-                    
-              
-                <StackPanel Orientation="Vertical"
-                            Grid.Row="2">-->
+            <TabControl>
+
+
+                <TabItem Header="Скважин">
+
+                    <!--VerticalScrollBarVisibility="Visible"
+                                  VirtualizingStackPanel.IsVirtualizing="true"
+                                  VirtualizingPanel.IsVirtualizingWhenGrouping="True"
+                                  VirtualizingPanel.IsContainerVirtualizable="True"
+                                  VirtualizingPanel.ScrollUnit="Item-->
+
                     <DataGrid Margin="20,20,20,20"
                               ItemsSource="{Binding SyrveyDrill }"
                               SelectedItem="{Binding SelectedSyrveyDrill, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               AutoGenerateColumns="False"
+                             
+                              VirtualizingStackPanel.IsVirtualizing="true"
                               VirtualizingPanel.IsVirtualizingWhenGrouping="True"
                               VirtualizingPanel.IsContainerVirtualizable="True"
                               VirtualizingPanel.ScrollUnit="Item">
@@ -236,24 +243,15 @@
                                                                     Converter={StaticResource BooleanToVisibilityConverter}}" />
                         </DataGrid.Columns>
                     </DataGrid>
-                    <!--<TextBox Text="{Binding SelectedRocks.Description}"
-                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                             Margin="20,20,20,20"
-                             TextWrapping="Wrap"
-                             IsReadOnly="True"
-                             materialDesign:HintAssist.Hint="Описание керна "
-                             materialDesign:HintAssist.FloatingScale="1" />-->
 
 
-                <!--</StackPanel>
-                </ScrollViewer>
-            </TabItem>
-            <TabItem Header="Трашеи">
-                <StackPanel Orientation="Vertical"
-                            Grid.Row="2">-->
+
+                </TabItem>
+                <TabItem Header="Траншеи">
+                    
 
 
-                    <!--<DataGrid Margin="20,20,20,20"
+                        <!--<DataGrid Margin="20,20,20,20"
                               ItemsSource="{Binding Rocksroute , Mode=TwoWay}"
                               SelectedItem="{Binding SelectedRocksRoute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               AutoGenerateColumns="False">
@@ -318,7 +316,7 @@
                                                                     Converter={StaticResource BooleanToVisibilityConverter}}" />
                         </DataGrid.Columns>
                     </DataGrid>-->
-                    <!--<TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                        <!--<TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
                              Margin="20,20,20,20"
                              TextWrapping="Wrap"
                              IsReadOnly="True"
@@ -327,8 +325,9 @@
                              Text="{Binding SelectedRocksRoute.Description}" />-->
 
 
-                <!--</StackPanel>
-            </TabItem>-->
+                  
+                </TabItem>
+            </TabControl>
         </Grid>
 
     </Grid>
