@@ -20,7 +20,7 @@ namespace BdAnzas.Content.ViewModel
 
         #region Свойства
 
-       
+        #region SyrveyDrill
         private ObservableCollection<Survey> _syrveyDrill;
         /// <summary>
         /// Инклинометрия скважин
@@ -37,20 +37,45 @@ namespace BdAnzas.Content.ViewModel
         /// </summary>
         public Survey SelectedSyrveyDrill
         {
-            get { return  _selectedSyrveyDrill; }
+            get { return _selectedSyrveyDrill; }
             set { _selectedSyrveyDrill = value; }
         }
 
+        #endregion
 
+        #region SyrveyTrench
+        private ObservableCollection<SurveyTrench> _syrveyTrench;
+        /// <summary>
+        /// Инклинометрия скважин
+        /// </summary>
+        public ObservableCollection<SurveyTrench> SyrveyTrench
+        {
+            get { return _syrveyTrench; }
+            set { _syrveyTrench = value; }
+        }
+
+        private SurveyTrench _selectedSyrveyTrenchl;
+        /// <summary>
+        /// Выбранная инклинометрия скважин
+        /// </summary>
+        public SurveyTrench SelectedSyrveyTrench
+        {
+            get { return _selectedSyrveyTrenchl; }
+            set { _selectedSyrveyTrenchl = value; }
+        }
+
+        #endregion
 
         #endregion
 
         public Syrvey_ViewModel()
         {
             _syrveyDrill = new ObservableCollection<Survey>();
+            _syrveyTrench = new ObservableCollection<SurveyTrench>();
             using (AnzasContext db = new AnzasContext())
             {
                 SyrveyDrill = db.Surveys.Include(h => h.Hole).AsNoTracking().ToObservableCollection();
+                SyrveyTrench = db.SurveyTrenches.Include(h => h.Hole).AsNoTracking().ToObservableCollection();
             }
 
         }
@@ -77,7 +102,6 @@ namespace BdAnzas.Content.ViewModel
             {
                 if (_addItemCommand == null)
                 {
-
                     _addItemCommand = new RelayCommand(param => OpenWindowAdd());
                 }
                 return _addItemCommand;

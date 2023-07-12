@@ -110,7 +110,7 @@
                             </CheckBox>
 
                             <CheckBox x:Name="DepthCheked"
-                                      Content="Длина"
+                                      Content="Глубина"
                                       Style="{StaticResource CkekedAlL}" />
 
                             <CheckBox x:Name="InclinCheked"
@@ -131,8 +131,7 @@
 
 
                         </ComboBox>
-                        <!--<CheckBox x:Name="showImperial"
-                                  Content="Show Details" />-->
+                      
 
                         <Button Style="{StaticResource StyleCircleButton}"
                                 VerticalAlignment="Top"
@@ -166,13 +165,7 @@
 
 
                 <TabItem Header="Скважин">
-
-                    <!--VerticalScrollBarVisibility="Visible"
-                                  VirtualizingStackPanel.IsVirtualizing="true"
-                                  VirtualizingPanel.IsVirtualizingWhenGrouping="True"
-                                  VirtualizingPanel.IsContainerVirtualizable="True"
-                                  VirtualizingPanel.ScrollUnit="Item-->
-
+                  
                     <DataGrid Margin="20,20,20,20"
                               ItemsSource="{Binding SyrveyDrill }"
                               SelectedItem="{Binding SelectedSyrveyDrill, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -247,13 +240,11 @@
 
 
                 </TabItem>
-                <TabItem Header="Траншеи">
-                    
+                <TabItem Header="Траншеи">                
 
-
-                        <!--<DataGrid Margin="20,20,20,20"
-                              ItemsSource="{Binding Rocksroute , Mode=TwoWay}"
-                              SelectedItem="{Binding SelectedRocksRoute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        <DataGrid Margin="20,20,20,20"
+                              ItemsSource="{Binding SyrveyTrench , Mode=TwoWay}"
+                              SelectedItem="{Binding SelectedSyrveyTrench, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               AutoGenerateColumns="False">
                         <DataGrid.ColumnHeaderStyle>
                             <Style TargetType="DataGridColumnHeader"
@@ -265,57 +256,51 @@
                             </Style>
                         </DataGrid.ColumnHeaderStyle>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="№ скважины"
+                            <DataGridTextColumn Header="№ выработки"
                                                 Binding="{Binding Hole.HoleId,Mode=OneWay}"
                                                 MinWidth="120"
                                                 Width="20"
                                                 CellStyle="{StaticResource CenterGridCell}"
-                                                Visibility="{Binding Source={x:Reference HoleIdCheked},
-                                                                    Path=IsChecked, 
-                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                             />
 
-                            <DataGridTextColumn Header="Глубина"
-                                                Binding="{Binding From ,Mode=OneWay}"
+                            <DataGridTextColumn Header="Номер точки поворота"
+                                                Binding="{Binding NumTp ,Mode=OneWay}"
                                                 MinWidth="100"
                                                 Width="*"
                                                 CellStyle="{StaticResource CenterGridCell}"
-                                                Visibility="{Binding Source={x:Reference FromCheked},
-                                                                    Path=IsChecked, 
-                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
-                            <DataGridTextColumn Header="Угол наклона от вертикали"
-                                                Binding="{Binding To,Mode=OneWay}"
-                                                MinWidth="200"
-                                                Width="*"
-                                                CellStyle="{StaticResource CenterGridCell}"
-                                                Visibility="{Binding Source={x:Reference ToCheked},
-                                                                    Path=IsChecked, 
-                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
-                            <DataGridTextColumn Header="Аз_магн_исходный,°"
+                                               />
+                            <DataGridTextColumn Header="Длина канавы,м"
                                                 Binding="{Binding Length,Mode=OneWay}"
                                                 MinWidth="200"
                                                 Width="*"
                                                 CellStyle="{StaticResource CenterGridCell}"
-                                                Visibility="{Binding Source={x:Reference LengthCheked},
-                                                                    Path=IsChecked, 
-                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
-                            <DataGridTextColumn Header="Аз. мг. принятый"
-                                                Binding="{Binding Kernm,Mode=OneWay}"
+                                                />
+                            <DataGridTextColumn Header="Азимут магн. полевой, °"
+                                                Binding="{Binding AzMagn,Mode=OneWay}"
                                                 MinWidth="200"
                                                 Width="*"
                                                 CellStyle="{StaticResource CenterGridCell}"
-                                                Visibility="{Binding Source={x:Reference KernmCheked},
-                                                                    Path=IsChecked, 
-                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
-                            <DataGridTextColumn Header="Аз_ист_принятый, °"
-                                                Binding="{Binding Kernpc,Mode=OneWay}"
+                                               />
+                            <DataGridTextColumn Header="Глубина канавы,м"
+                                                Binding="{Binding Depth,Mode=OneWay}"
                                                 MinWidth="200"
                                                 Width="*"
                                                 CellStyle="{StaticResource CenterGridCell}"
-                                                Visibility="{Binding Source={x:Reference KernpcCheked},
-                                                                    Path=IsChecked, 
-                                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                                 />
+                            <DataGridTextColumn Header="Долгота"
+                                                Binding="{Binding Easting,Mode=OneWay}"
+                                                MinWidth="200"
+                                                Width="*"
+                                                CellStyle="{StaticResource CenterGridCell}"
+                                              />
+
+                            <DataGridTextColumn Header="Абс. отм."
+                                                Binding="{Binding Elevation,Mode=OneWay}"
+                                                MinWidth="200"
+                                                Width="*"
+                                                CellStyle="{StaticResource CenterGridCell}" />
                         </DataGrid.Columns>
-                    </DataGrid>-->
+                    </DataGrid>
                         <!--<TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
                              Margin="20,20,20,20"
                              TextWrapping="Wrap"
