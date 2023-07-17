@@ -15,6 +15,7 @@
                                materialDesign:HintAssist.FloatingScale="1"
                                Margin="20,20,00,0"
                                ItemsSource="{Binding Hole}"
+                               SelectedItem="{Binding SelectedHole}"
                                DisplayMemberPath="HoleId"
                                Width="200" />
                     <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
