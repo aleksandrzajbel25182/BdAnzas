@@ -1,0 +1,96 @@
+﻿<UserControl x:Class="BdAnzas.Content.View.AddEditSyrveyTrench_View"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BdAnzas.Content.View"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d">
+    <Grid>
+        <ScrollViewer>
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox  Style="{StaticResource StyleOutlinedComboBoxBlack}"
+                               materialDesign:HintAssist.Hint="№ выработки"
+                               materialDesign:HintAssist.FloatingScale="1"
+                               Margin="20,20,00,0"
+                               ItemsSource="{Binding Hole}"
+                               SelectedItem="{Binding SelectedHole }"
+                               DisplayMemberPath="HoleId"
+                               Width="170" />
+                    <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             materialDesign:HintAssist.Hint="Номер точки поворота"
+                             materialDesign:HintAssist.FloatingScale="1"
+                             Margin="20,20,0,0"
+                             Width="170"
+                             Text="{Binding NumTp}"
+                             />
+
+                    <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             materialDesign:HintAssist.Hint="Длина канавы,м"
+                             materialDesign:HintAssist.FloatingScale="1"
+                             Margin="20,20,0,0"
+                             Width="170"
+                             Text="{Binding Length}" />
+
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             materialDesign:HintAssist.Hint="Аз_магн полевой, °"
+                             materialDesign:HintAssist.FloatingScale="1"
+                             Margin="20,20,0,0"
+                             Width="170"
+                             Text="{Binding AzMagn}" />
+                    <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             materialDesign:HintAssist.Hint="Глубина канавы,м"
+                             materialDesign:HintAssist.FloatingScale="1"
+                             Margin="20,20,0,0"
+                             Width="170"
+                             Text="{Binding Depth}" />
+
+                    <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             materialDesign:HintAssist.Hint="Долгота°"
+                             materialDesign:HintAssist.FloatingScale="1"
+                             Margin="20,20,0,0"
+                             Width="170"
+                             Text="{Binding Easting}" />
+
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             materialDesign:HintAssist.Hint="Широта °"
+                             materialDesign:HintAssist.FloatingScale="1"
+                             Margin="20,20,0,0"
+                             Width="170"
+                             Text="{Binding Northing}"
+                              />
+                    <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             materialDesign:HintAssist.Hint="Абс отм."
+                             materialDesign:HintAssist.FloatingScale="1"
+                             Margin="20,20,0,0"
+                             Width="170"
+                             Text="{Binding Elevation}"
+                              />
+
+                  
+
+                </StackPanel>
+
+                <Button Style="{StaticResource StyleButton}"
+                        VerticalAlignment="Top"
+                        Margin="20,10,30,0"
+                        Width="120"
+                        Height="40"
+                        FontSize="16"
+                        Content="Сохранить"
+                        HorizontalAlignment="Right"
+                        Command="{Binding SaveSurveyTrenchCommand}">
+                </Button>
+
+
+            </StackPanel>
+        </ScrollViewer>
+
+
+    </Grid>
+</UserControl>

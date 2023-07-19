@@ -67,6 +67,20 @@ namespace BdAnzas.Content.ViewModel
         #endregion
 
         #endregion
+        /// <summary>
+        /// Индекс выбранной вкладки
+        /// </summary>
+        private int _selected;
+        public int Selected
+        {
+            get { return _selected; }
+            set
+            {
+                _selected = value;
+                OnPropertyChanged("Selected");
+            }
+        }
+
 
         public Syrvey_ViewModel()
         {
@@ -116,15 +130,32 @@ namespace BdAnzas.Content.ViewModel
         private void OpenWindowEdit()
         {
             AddWindow window = new AddWindow();
-            if (SelectedSyrveyDrill != null)
+            if(Selected == 0)
             {
-                window.DataContext = new AddEditWindowViewModel(NavigationKeys.SurveyhKey, SelectedSyrveyDrill.Uid);
-                if (window.ShowDialog() == false)
+                if (SelectedSyrveyDrill != null)
                 {
-                    //SyrveyDrill.Clear();
-                    //SyrveyDrill = new ObservableCollection<Survey>(_infoRouteRepository.GetAll());
+                    window.DataContext = new AddEditWindowViewModel(NavigationKeys.SurveyhKey, SelectedSyrveyDrill.Uid);
+                    if (window.ShowDialog() == false)
+                    {
+                        //SyrveyDrill.Clear();
+                        //SyrveyDrill = new ObservableCollection<Survey>(_infoRouteRepository.GetAll());
+                    }
                 }
+            }            
+            else
+            {
+                if (SelectedSyrveyTrench != null)
+                {
+                    window.DataContext = new AddEditWindowViewModel(NavigationKeys.InfoSyrveyTrenchKey, SelectedSyrveyTrench.Uid);
+                    if (window.ShowDialog() == false)
+                    {
+                        //SyrveyDrill.Clear();
+                        //SyrveyDrill = new ObservableCollection<Survey>(_infoRouteRepository.GetAll());
+                    }
+                }
+
             }
+
 
         }
         /// <summary>
@@ -133,13 +164,27 @@ namespace BdAnzas.Content.ViewModel
         private void OpenWindowAdd()
         {
             AddWindow window = new AddWindow();
-
-            window.DataContext = new AddEditWindowViewModel(NavigationKeys.SurveyhKey);
-            if (window.ShowDialog() == false)
+            if (Selected == 0)
             {
-                //SyrveyDrill.Clear();
-                //SyrveyDrill = new ObservableCollection<Survey>(_infoRouteRepository.GetAll());
+                window.DataContext = new AddEditWindowViewModel(NavigationKeys.SurveyhKey);
+
+                if (window.ShowDialog() == false)
+                {
+                    //SyrveyDrill.Clear();
+                    //SyrveyDrill = new ObservableCollection<Survey>(_infoRouteRepository.GetAll());
+                }
             }
+            else
+            {
+                window.DataContext = new AddEditWindowViewModel(NavigationKeys.InfoSyrveyTrenchKey);
+
+                if (window.ShowDialog() == false)
+                {
+                    //SyrveyDrill.Clear();
+                    //SyrveyDrill = new ObservableCollection<Survey>(_infoRouteRepository.GetAll());
+                }
+            }
+          
 
         }
     }

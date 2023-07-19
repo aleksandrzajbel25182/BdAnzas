@@ -161,11 +161,11 @@
             </materialDesign:Card>
         </StackPanel>
         <Grid  Grid.Row="2">
-            <TabControl>
+            <TabControl SelectedIndex="{ Binding Selected}">
 
 
                 <TabItem Header="Скважин">
-                  
+
                     <DataGrid Margin="20,20,20,20"
                               ItemsSource="{Binding SyrveyDrill }"
                               SelectedItem="{Binding SelectedSyrveyDrill, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"

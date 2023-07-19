@@ -10,6 +10,9 @@
     <Compile Update="Content\View\AddEditSyrveyDrill_View.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Content\View\AddEditSyrveyTrench_View.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Content\View\Info_Dril_View.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -31,6 +34,9 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="Content\View\AddEditSyrveyDrill_View.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Content\View\AddEditSyrveyTrench_View.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Content\View\Info_Dril_View.xaml">
