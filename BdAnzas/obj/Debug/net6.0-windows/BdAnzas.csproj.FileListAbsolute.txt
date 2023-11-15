@@ -174,3 +174,5 @@ C:\Users\zai\Desktop\Проекты\BdAnzas\BdAnzas\obj\Debug\net6.0-windows\Con
 C:\Users\zai\Desktop\Проекты\BdAnzas\BdAnzas\obj\Debug\net6.0-windows\Content\View\AddEditSyrveyDrill_View.baml
 C:\Users\zai\Desktop\Проекты\BdAnzas\BdAnzas\obj\Debug\net6.0-windows\Content\View\AddEditSyrveyTrench_View.g.cs
 C:\Users\zai\Desktop\Проекты\BdAnzas\BdAnzas\obj\Debug\net6.0-windows\Content\View\AddEditSyrveyTrench_View.baml
+C:\Users\zai\Desktop\Проекты\BdAnzas\BdAnzas\obj\Debug\net6.0-windows\Content\View\Samples_View.g.cs
+C:\Users\zai\Desktop\Проекты\BdAnzas\BdAnzas\obj\Debug\net6.0-windows\Content\View\Samples_View.baml

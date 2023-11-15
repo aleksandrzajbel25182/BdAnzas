@@ -1,10 +1,11 @@
 ﻿<UserControl x:Class="BdAnzas.Content.Info_TrenchView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:BdAnzas.Content"
              mc:Ignorable="d"
+             Background="WhiteSmoke"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
     <UserControl.Resources>
         <Style x:Key="CkekedAlL"
@@ -29,65 +30,177 @@
             <RowDefinition Height="675*" />
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0">
-            <TextBlock  Text="ИНФОРМАЦИЯ ПО КАНАВАМ" FontSize="20" Margin="20"/>
+            <TextBlock  Text="ИНФОРМАЦИЯ ПО КАНАВАМ"
+                        FontSize="20"
+                        Margin="20" />
         </StackPanel>
 
         <StackPanel Grid.Row="1"
                     Orientation="Horizontal">
-            <materialDesign:Card Width="625"
-                                 Margin="20,0,0,0"
-                                 Height="130"
-                                 Background="#4B56C0">
-                <StackPanel>
-                    <StackPanel>
+
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Width="500">
                         <Label  Content="Поиск"
                                 FontSize="20"
-                                Foreground="White"
                                 Margin="20,10,0,0" />
+                        <StackPanel Orientation="Horizontal"
+                                    VerticalAlignment="Top"
+                                    Height="90">
+
+                            <TextBox Margin="20,10,0,0"
+                                     Width="240"
+                                     Text="{Binding SearchText}"
+                                     BorderBrush="Black"
+                                     VerticalAlignment="Top"
+                                     Style="{StaticResource StyleOutlinedTextBox}"
+                                     materialDesign:HintAssist.Hint="Что ищем? "
+                                     materialDesign:HintAssist.FloatingScale="1"
+                                     Height="50" />
+                            <ComboBox Style="{StaticResource StyleOutlinedComboBox}"
+                                      materialDesign:HintAssist.Hint="Фильтр поиска"
+                                      materialDesign:HintAssist.FloatingScale="1"
+                                      VerticalAlignment="Top"
+                                      Width="180"
+                                      Margin="20,10,0,15"
+                                      ItemsSource="{Binding ColumnNames}"
+                                      SelectedItem="{Binding SelectedColumn}"
+                                      DisplayMemberPath="NameColumn" />
+                        </StackPanel>
 
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal"
+                    <StackPanel Orientation="Vertical"
+                                Margin="0,0,0,0">
+
+                        <Button Style="{StaticResource StyleButton}"
+                                VerticalAlignment="Top"
+                                Width="100"
+                                Height="40"
+                                FontSize="16"
+                                Margin="0,10,0,15"
+                                Content="Искать"
+                                Command="{Binding SearchCommand}"/>
+
+                        <Button Style="{StaticResource StyleButton}"
+                                VerticalAlignment="Top"
+                                Width="100"
+                                Height="40"
+                                FontSize="16"
+                                Margin="0,10,0,15"
+                                Content="Сбросить"
+                                Command="{Binding RefrashCommand}"/>
+                    </StackPanel>
+                    <StackPanel Width="500">
+                        <Label  Content="Главная"
+                                FontSize="20"
+                                Foreground="Black"
+                                Margin="20,10,0,0" />
+                        <StackPanel Orientation="Horizontal"
                                 VerticalAlignment="Top"
                                 Height="90">
 
-                        <TextBox Margin="20,10,0,0"
-                                 Width="240"
-                                 BorderBrush="White"
-                                 HorizontalAlignment="Left"
-                                 VerticalAlignment="Top"
-                                 Style="{StaticResource StyleOutlinedTextBox}"
-                                 materialDesign:HintAssist.Hint="Что ищем? "
-                                 materialDesign:HintAssist.FloatingScale="1" />
                         <ComboBox Style="{StaticResource StyleOutlinedComboBox}"
-                                  materialDesign:HintAssist.Hint="Фильтр поиска"
+                                  materialDesign:HintAssist.Hint="Отображение столбцов   "
                                   materialDesign:HintAssist.FloatingScale="1"
                                   VerticalAlignment="Top"
-                                  Width="180"
-                                  Margin="20,10,0,15" />
-                        <Button Style="{StaticResource StyleButton}"
+                                  Width="200"
+                                  Margin="20,20,0,0">
+                            <CheckBox x:Name="AllCheked"
+                                      Content="Все столбцы"
+                                      Foreground="Black"
+                                      IsChecked="True" />
+
+                            <CheckBox x:Name="HoleIdCheked"
+                                      Content="№ выработки"
+                                      Style="{StaticResource CkekedAlL}">
+                            </CheckBox>
+
+                            <CheckBox x:Name="TypeLcodeCheked"
+                                      Content="Тип выработки"
+                                      Style="{StaticResource CkekedAlL}" />
+                            <CheckBox x:Name="PlaceSiteCheked"
+                                      Content="Название участка"
+                                      Style="{StaticResource CkekedAlL}" />
+                            <CheckBox x:Name="ProfileCheked"
+                                      Content="Номер ПЛ"
+                                      Style="{StaticResource CkekedAlL}" />
+
+                            <CheckBox x:Name="Easting1Cheked"
+                                      Content="Долгота (начало)"
+                                      Style="{StaticResource CkekedAlL}" />
+                            <CheckBox x:Name="Northing1Cheked"
+                                      Content="Широта (начало)"
+                                      Style="{StaticResource CkekedAlL}" />
+                            <CheckBox x:Name="Elevation1Cheked"
+                                      Content="Абс. отм. (начало)"
+                                      Style="{StaticResource CkekedAlL}" />
+                            <CheckBox x:Name="Easting2Cheked"
+                                      Content="Долгота (конец)"
+                                      Style="{StaticResource CkekedAlL}" />
+                            <CheckBox x:Name="Northing2Cheked"
+                                      Content="Широта (конец)"
+                                      Style="{StaticResource CkekedAlL}" />
+                            <CheckBox x:Name="Elevation2Cheked"
+                                      Content="Абс. отм. (конец)"
+                                      Style="{StaticResource CkekedAlL}" />
+                            <CheckBox x:Name="AzimuthCheked"
+                                      Content="Азимут ист.°"
+                                      Style="{StaticResource CkekedAlL}" />
+                            <CheckBox x:Name="LengthCheked"
+                                      Content="Длина канавы,м"
+                                      Style="{StaticResource CkekedAlL}" />
+                            <CheckBox x:Name="DepthCheked"
+                                      Content="Глубина канавы,м"
+                                      Style="{StaticResource CkekedAlL}" />
+                            <CheckBox x:Name="WidthCheked"
+                                      Content="Ширина канавы,м"
+                                      Style="{StaticResource CkekedAlL}" />
+                            <CheckBox x:Name="StartDateCheked"
+                                      Content="Начало проходки"
+                                      Style="{StaticResource CkekedAlL}" />
+                            <CheckBox x:Name="EndDateCheked"
+                                      Content="Окончание проходки"
+                                      Style="{StaticResource CkekedAlL}" />
+                            <CheckBox x:Name="GeologCheked"
+                                      Content="Геолог"
+                                      Style="{StaticResource CkekedAlL}" />
+                            <CheckBox x:Name="NotesCommentsTextCheked"
+                                      Content="Примечания"
+                                      Style="{StaticResource CkekedAlL}" />
+
+                        </ComboBox>
+
+                        <Button Style="{StaticResource StyleCircleButton}"
                                 VerticalAlignment="Top"
-                                Margin="20,10,0,15"
-                                Width="120"
-                                Height="50"
-                                FontSize="16"
-                                Content="Искать" />
+                                Margin="20,20,15,0"
+                                Command="{Binding EditItemCommand}"
+                                ToolTip="Редактировать"
+                                >
+                            <Image Source="/Resources/Icons/edit.png"
+                                   Height="20" />
+                        </Button>
+                        <Button Style="{StaticResource StyleCircleButton}"
+                                Margin="0,20,15,0"
+                                ToolTip="Добавить"
+                                Command="{Binding AddItemCommand}"
+                                VerticalAlignment="Top">
+                            <Image Source="/Resources/Icons/add.png"
+                                   Height="20" />
+                        </Button>
+                        <Button Style="{StaticResource StyleCircleButton}"
+                                Margin="0,20,0,0"
+                                ToolTip="Удалить"
+                                VerticalAlignment="Top">
+                            <Image Source="/Resources/Icons/delete.png"
+                                   Height="20" />
+                        </Button>
+
+                    </StackPanel>
                     </StackPanel>
                 </StackPanel>
 
-            </materialDesign:Card>
-            <materialDesign:Card Width="400"
-                                 Margin="50,0,0,0"
-                                 Height="130"
-                                 Background="#4B56C0">
-                <StackPanel>
-                    <StackPanel>
-                        <Label  Content="Главная"
-                                FontSize="20"
-                                Foreground="White"
-                                Margin="20,10,0,0" />
-
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal"
+            </StackPanel>
+            <!--<StackPanel Orientation="Horizontal"
                                 VerticalAlignment="Top"
                                 Height="90">
 
@@ -188,11 +301,11 @@
                                    Height="20" />
                         </Button>
 
-                    </StackPanel>
-                </StackPanel>
-
-            </materialDesign:Card>
+                    </StackPanel>-->
         </StackPanel>
+
+
+
         <Grid Grid.Row="2">
             <DataGrid Margin="20"
                       ItemsSource="{Binding InfoTrench}"

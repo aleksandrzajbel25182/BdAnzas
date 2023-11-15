@@ -58,6 +58,7 @@ namespace BdAnzas.Content.ViewModel
             _navigationmaneger.Register<Info_Route_View>(NavigationKeys.InfoRoutehKey, () => new Info_Route_ViewModel());
             _navigationmaneger.Register<RocksView>(NavigationKeys.RocksKey, () => new RocksViewModel());
             _navigationmaneger.Register<Survey_View>(NavigationKeys.SurveyhKey, () => new Syrvey_ViewModel());
+            _navigationmaneger.Register<Samples_View>(NavigationKeys.SamplesKey, () => new Samples_ViewModel());
             _navigationmaneger.Navigate(NavigationKeys.InfoDrillKey);
         }
 

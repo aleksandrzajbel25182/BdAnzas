@@ -4,6 +4,8 @@ using BdAnzas.Base;
 using BdAnzas.Commands;
 using BdAnzas.Constants;
 using BdAnzas.Content.Windows;
+using BdAnzas.Infrastructure;
+using MathCore.WPF.Converters;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -17,6 +19,7 @@ namespace BdAnzas.Content.ViewModel
 {
     internal class Syrvey_ViewModel : ViewModelBase
     {
+        private SearchManager searchManager;
 
         #region Свойства
 
@@ -28,7 +31,7 @@ namespace BdAnzas.Content.ViewModel
         public ObservableCollection<Survey> SyrveyDrill
         {
             get { return _syrveyDrill; }
-            set { _syrveyDrill = value; }
+            set => Set(ref _syrveyDrill, value);
         }
 
         private Survey _selectedSyrveyDrill;
@@ -38,7 +41,7 @@ namespace BdAnzas.Content.ViewModel
         public Survey SelectedSyrveyDrill
         {
             get { return _selectedSyrveyDrill; }
-            set { _selectedSyrveyDrill = value; }
+            set => Set(ref _selectedSyrveyDrill, value);
         }
 
         #endregion
@@ -66,6 +69,30 @@ namespace BdAnzas.Content.ViewModel
 
         #endregion
 
+
+        #region фильтр свойства
+        private string _searchText;
+        public string SearchText
+        {
+            get { return _searchText; }
+            set { Set(ref _searchText, value); }
+        }
+
+        public ObservableCollection<GroupColumn> _columnNames;
+        public ObservableCollection<GroupColumn> ColumnNames
+        {
+            get => _columnNames;
+            set => Set(ref _columnNames, value);
+        }
+
+        public GroupColumn _selectedColumn;
+        public GroupColumn SelectedColumn
+        {
+            get => _selectedColumn;
+            set => Set(ref _selectedColumn, value);
+        }
+
+        #endregion
         #endregion
         /// <summary>
         /// Индекс выбранной вкладки
@@ -84,6 +111,17 @@ namespace BdAnzas.Content.ViewModel
 
         public Syrvey_ViewModel()
         {
+            searchManager = new SearchManager();
+
+            ColumnNames = new ObservableCollection<GroupColumn>()
+            {
+                     
+                     new GroupColumn{ Id= "HoleId", NameColumn = "№ скважины"},
+                     new GroupColumn{ Id= "Depth", NameColumn = "Глубина"},
+
+            };
+
+
             _syrveyDrill = new ObservableCollection<Survey>();
             _syrveyTrench = new ObservableCollection<SurveyTrench>();
             using (AnzasContext db = new AnzasContext())
@@ -92,6 +130,7 @@ namespace BdAnzas.Content.ViewModel
                 SyrveyTrench = db.SurveyTrenches.Include(h => h.Hole).AsNoTracking().ToObservableCollection();
             }
 
+           
         }
 
 
@@ -122,7 +161,62 @@ namespace BdAnzas.Content.ViewModel
             }
         }
 
+        private void Refrash()
+        {
+            using (AnzasContext db = new AnzasContext())
+            {
 
+
+                if (Selected == 0)
+                {
+                    SyrveyDrill.Clear();
+                    SyrveyDrill = db.Surveys.Include(h => h.Hole).AsNoTracking().ToObservableCollection();
+                }
+                else
+                {
+                    SyrveyTrench.Clear();
+                    SyrveyTrench = db.SurveyTrenches.Include(h => h.Hole).AsNoTracking().ToObservableCollection();
+                }
+            }
+
+
+        }
+
+        private ICommand _searchCommand;
+        public ICommand SearchCommand
+        {
+            get
+            {
+                if (_searchCommand == null)
+                {
+                    if (Selected == 0)
+                    {
+                        
+                        _searchCommand = new RelayCommand(param => SyrveyDrill = searchManager.SearchFilter(SyrveyDrill, SearchText, SelectedColumn.Id));
+                        return _searchCommand;
+                    }
+                    else
+                    {
+                        _searchCommand = new RelayCommand(param => SyrveyTrench = searchManager.SearchFilter(SyrveyTrench, SearchText, SelectedColumn.Id));
+                        return _searchCommand;
+                    }
+                }
+                return _searchCommand;
+            }
+        }
+
+        private ICommand _refrashCommand;
+        public ICommand RefrashCommand
+        {
+            get
+            {
+                if (_refrashCommand == null)
+                {
+                    _refrashCommand = new RelayCommand(param => Refrash());
+                }
+                return _refrashCommand;
+            }
+        }
 
         /// <summary>
         /// Метод для редактирования
@@ -130,7 +224,7 @@ namespace BdAnzas.Content.ViewModel
         private void OpenWindowEdit()
         {
             AddWindow window = new AddWindow();
-            if(Selected == 0)
+            if (Selected == 0)
             {
                 if (SelectedSyrveyDrill != null)
                 {
@@ -141,7 +235,7 @@ namespace BdAnzas.Content.ViewModel
                         //SyrveyDrill = new ObservableCollection<Survey>(_infoRouteRepository.GetAll());
                     }
                 }
-            }            
+            }
             else
             {
                 if (SelectedSyrveyTrench != null)
@@ -184,7 +278,7 @@ namespace BdAnzas.Content.ViewModel
                     //SyrveyDrill = new ObservableCollection<Survey>(_infoRouteRepository.GetAll());
                 }
             }
-          
+
 
         }
     }

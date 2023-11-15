@@ -280,8 +280,12 @@ namespace BdAnzas.Content.ViewModel
                                                         , "Обновление записи в базу данных"
                                                         , InfoMessege.YesNoCancel, InfoMessege.Information);
                 if (result == MessageBoxResult.Yes)
+                {
+
+              
                     await _infoRouteRepository.UpdateAsync(route).ConfigureAwait(false);
-                _dialogManager.ShowMessage($"Данные успешно обновлены", "Обновление записи в базу данных", InfoMessege.OK, InfoMessege.Information);
+                    _dialogManager.ShowMessage($"Данные успешно обновлены", "Обновление записи в базу данных", InfoMessege.OK, InfoMessege.Information);
+                }
             }
             catch (Exception ex)
             {

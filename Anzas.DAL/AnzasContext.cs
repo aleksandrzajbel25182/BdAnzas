@@ -37,11 +37,17 @@ public partial class AnzasContext : DbContext
 
     public virtual DbSet<RocksRoute> RocksRoutes { get; set; }
 
+    public virtual DbSet<Sample> Samples { get; set; }
+
+    public virtual DbSet<SampleType> SampleTypes { get; set; }
+
     public virtual DbSet<Survey> Surveys { get; set; }
 
     public virtual DbSet<SurveyTrench> SurveyTrenches { get; set; }
 
     public virtual DbSet<Type> Types { get; set; }
+
+    public virtual DbSet<TypeHole> TypeHoles { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
@@ -455,6 +461,52 @@ public partial class AnzasContext : DbContext
                 .HasConstraintName("Rocks_Route_TN_Type_fkey");
         });
 
+        modelBuilder.Entity<Sample>(entity =>
+        {
+            entity.HasKey(e => e.Uid).HasName("Samples_pkey");
+
+            entity.Property(e => e.Uid)
+                .ValueGeneratedNever()
+                .HasColumnName("UID");
+            entity.Property(e => e.From).HasComment("От");
+            entity.Property(e => e.GeoSample)
+                .HasComment("Геологический номер")
+                .HasColumnType("character varying");
+            entity.Property(e => e.Geolog).HasComment("Геолог");
+            entity.Property(e => e.HoleId)
+                .HasComment("№ выработки")
+                .HasColumnName("HoleID");
+            entity.Property(e => e.Length).HasComment("Длина интервала");
+            entity.Property(e => e.NotesCommentsText)
+                .HasComment("Комментарии")
+                .HasColumnType("character varying")
+                .HasColumnName("NOTES (COMMENTS, TEXT)");
+            entity.Property(e => e.RockCode).HasComment("Код породы");
+            entity.Property(e => e.SampleType).HasComment("Тип пробы");
+            entity.Property(e => e.To).HasComment("До");
+            entity.Property(e => e.TypeHole).HasComment("Тип выработки (скважина/траншея/маршрут)");
+            entity.Property(e => e.Weight).HasComment("Вес пробы");
+
+            entity.HasOne(d => d.TypeHoleNavigation).WithMany(p => p.Samples)
+                .HasForeignKey(d => d.TypeHole)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("Samples_TypeHole_fkey");
+        });
+
+        modelBuilder.Entity<SampleType>(entity =>
+        {
+            entity.HasKey(e => e.Uid).HasName("SampleTypes_pkey");
+
+            entity.ToTable(tb => tb.HasComment("Справочник типов опробования"));
+
+            entity.Property(e => e.Uid)
+                .ValueGeneratedNever()
+                .HasColumnName("UID");
+            entity.Property(e => e.TypeLcode)
+                .HasColumnType("character varying")
+                .HasColumnName("TYPE (LCODE)");
+        });
+
         modelBuilder.Entity<Survey>(entity =>
         {
             entity.HasKey(e => e.Uid).HasName("Survey_pkey");
@@ -524,6 +576,16 @@ public partial class AnzasContext : DbContext
             entity.Property(e => e.Name)
                 .HasComment("Наименование")
                 .HasColumnType("character varying");
+        });
+
+        modelBuilder.Entity<TypeHole>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("TypeHole_pkey");
+
+            entity.ToTable("TypeHole", tb => tb.HasComment("Тип выработк"));
+
+            entity.Property(e => e.Id).ValueGeneratedNever();
+            entity.Property(e => e.TypeName).HasColumnType("character varying");
         });
 
         OnModelCreatingPartial(modelBuilder);

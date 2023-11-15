@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 C:\Users\zai\Desktop\Проекты\BdAnzas\BdAnzas\App.xaml
-151927965468
+161378722810
 
-411454611105
+46914933908
 2211967470607
-Content\View\AddEditInfoTrench_View.xaml;Content\View\AddEditRockRoute_View.xaml;Content\View\AddEditSyrveyDrill_View.xaml;Content\View\AddEditSyrveyTrench_View.xaml;Content\View\AddEdit_InfoRoute_View.xaml;Content\View\AddInfoDrill_View.xaml;Content\View\AddRocksView.xaml;Content\View\Info_Dril_View.xaml;Content\View\Info_Route_View.xaml;Content\View\Info_TrenchView.xaml;Content\View\RocksView.xaml;Content\View\Survey_View.xaml;Content\Windows\AddWindow.xaml;Content\Windows\MainWindow.xaml;Resources\Style\StyleDictionary.xaml;
+Content\View\AddEditInfoTrench_View.xaml;Content\View\AddEditRockRoute_View.xaml;Content\View\AddEditSyrveyDrill_View.xaml;Content\View\AddEditSyrveyTrench_View.xaml;Content\View\AddEdit_InfoRoute_View.xaml;Content\View\AddInfoDrill_View.xaml;Content\View\AddRocksView.xaml;Content\View\Info_Dril_View.xaml;Content\View\Info_Route_View.xaml;Content\View\Info_TrenchView.xaml;Content\View\RocksView.xaml;Content\View\Samples_View.xaml;Content\View\Survey_View.xaml;Content\Windows\AddWindow.xaml;Content\Windows\MainWindow.xaml;Resources\Style\StyleDictionary.xaml;
 
 True
 

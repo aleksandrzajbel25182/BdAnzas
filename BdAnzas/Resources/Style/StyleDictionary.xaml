@@ -191,13 +191,13 @@
         <Setter Property="Height"
                 Value="35" />
         <Setter Property="Background"
-                Value="Transparent" />
+                Value="#21B4F7" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border x:Name="border"
                             CornerRadius="5"
-                            BorderBrush="White"
+                            BorderBrush="Transparent"
                             BorderThickness="1"
                             Background="{TemplateBinding Background}">
                         <ContentPresenter x:Name="ButtonContentPresenter"
@@ -371,22 +371,26 @@
 
     <Style x:Key="StyleOutlinedTextBox"
            TargetType="TextBox"
-           BasedOn="{StaticResource MaterialDesignOutlinedTextBox}">
-        <Setter Property="Background"
-                Value="Transparent" />
-        <Setter  Property="Foreground" Value="White"/>
+           BasedOn="{StaticResource MaterialDesignTextBoxBase}">
+        <!--<Setter Property="Background"
+                Value="Transparent" />-->
+        <Setter  Property="Foreground"
+                 Value="Black" />
 
-        <Setter Property="BorderBrush"
-                Value="White" />
+        <!--<Setter Property="BorderBrush"
+                Value="White" />-->
+
+        <Setter  Property="FontSize" Value="18"/>
 
         <Setter Property="materialDesign:TextFieldAssist.HasOutlinedTextField"
                 Value="True" />
-        <Setter Property="materialDesign:TextFieldAssist.UnderlineBrush"
-                Value="White" />
+        <!--<Setter Property="materialDesign:TextFieldAssist.UnderlineBrush"
+                Value="Red" />-->
         <Setter Property="materialDesign:TextFieldAssist.TextFieldCornerRadius"
-                Value="4" />
+                Value="5" />
         <Setter Property="materialDesign:HintAssist.Foreground"
                 Value="Black" />
+        
     </Style>
 
     <Style x:Key="StyleOutlinedComboBox"
@@ -395,14 +399,17 @@
         <Setter Property="materialDesign:TextFieldAssist.HasOutlinedTextField"
                 Value="True" />
         <Setter Property="BorderBrush"
-                Value="White" />
-
+                Value="Black" />
+        <Setter  Property="Foreground"
+                 Value="Black" />
         <Setter Property="materialDesign:TextFieldAssist.UnderlineBrush"
-                Value="White" />
+                Value="Black" />
         <Setter Property="materialDesign:TextFieldAssist.TextFieldCornerRadius"
                 Value="4" />
         <Setter Property="materialDesign:HintAssist.Foreground"
                 Value="Black" />
+        <Setter  Property="FontSize"
+                 Value="12" />
     </Style>
 
 
@@ -431,6 +438,6 @@
     </Style>
 
 
-   
+
 
 </ResourceDictionary>

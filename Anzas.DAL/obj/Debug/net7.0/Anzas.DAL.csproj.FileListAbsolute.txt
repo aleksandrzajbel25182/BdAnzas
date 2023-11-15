@@ -1,0 +1,8 @@
+C:\Users\zai\Desktop\Проекты\BdAnzas\Anzas.DAL\obj\Debug\net7.0\Anzas.DAL.csproj.AssemblyReference.cache
+C:\Users\zai\Desktop\Проекты\BdAnzas\Anzas.DAL\obj\Debug\net7.0\Anzas.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\zai\Desktop\Проекты\BdAnzas\Anzas.DAL\obj\Debug\net7.0\Anzas.DAL.AssemblyInfoInputs.cache
+C:\Users\zai\Desktop\Проекты\BdAnzas\Anzas.DAL\obj\Debug\net7.0\Anzas.DAL.AssemblyInfo.cs
+C:\Users\zai\Desktop\Проекты\BdAnzas\Anzas.DAL\obj\Debug\net7.0\Anzas.DAL.csproj.CoreCompileInputs.cache
+C:\Users\zai\Desktop\Проекты\BdAnzas\Anzas.DAL\obj\Debug\net7.0\Anzas.DAL.dll
+C:\Users\zai\Desktop\Проекты\BdAnzas\Anzas.DAL\obj\Debug\net7.0\refint\Anzas.DAL.dll
+C:\Users\zai\Desktop\Проекты\BdAnzas\Anzas.DAL\obj\Debug\net7.0\Anzas.DAL.pdb

@@ -44,6 +44,11 @@
                         Content="Литология скважин"
                         Command="{Binding NavigateCommand}"
                         CommandParameter="Литология скважин" />
+                <Button Style="{StaticResource StyleMenuButton}"
+                        Margin="0,1,0,0"
+                        Content="Samples"
+                        Command="{Binding NavigateCommand}"
+                        CommandParameter="Samples" />
 
             </StackPanel>
 

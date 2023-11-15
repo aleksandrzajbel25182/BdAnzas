@@ -4,7 +4,9 @@ using BdAnzas.Base;
 using BdAnzas.Commands;
 using BdAnzas.Constants;
 using BdAnzas.Content.Windows;
+using BdAnzas.Infrastructure;
 using Egor92.MvvmNavigation;
+using MathCore.WPF.Converters;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -20,6 +22,14 @@ namespace BdAnzas.Content.ViewModel
     {
         private readonly InfodrillRepository _infodrillRepository;
         private AnzasContext db;
+        private SearchManager searchManager;
+        private string _searchText;
+        public string SearchText
+        {
+            get { return _searchText; }
+            set { Set(ref _searchText, value); }
+        }
+
 
 
         private ObservableCollection<InfoDrill> _infodrill = new ObservableCollection<InfoDrill>();
@@ -27,6 +37,7 @@ namespace BdAnzas.Content.ViewModel
         {
             get => _infodrill;
             set => SetProperty(ref _infodrill, value);
+
         }
 
         /// <summary>
@@ -39,6 +50,19 @@ namespace BdAnzas.Content.ViewModel
             set => Set(ref _selectedInfodril, value);
         }
 
+        public ObservableCollection<GroupColumn> _columnNames;
+        public ObservableCollection<GroupColumn> ColumnNames
+        {
+            get => _columnNames;
+            set => Set(ref _columnNames, value);
+        }
+        public GroupColumn _selectedColumn;
+        public GroupColumn SelectedColumn
+        {
+            get => _selectedColumn;
+            set => Set(ref _selectedColumn, value);
+        }
+
         public Info_DrilModel()
         {
         }
@@ -46,10 +70,57 @@ namespace BdAnzas.Content.ViewModel
 
         public Info_DrilModel(AnzasContext _db)
         {
+            searchManager = new SearchManager();
+
+            ColumnNames = new ObservableCollection<GroupColumn>()
+            {
+                     new GroupColumn{ Id = "Uid", NameColumn = "ID" },
+                     new GroupColumn{ Id= "HoleId", NameColumn = "№ скважины"},
+                     new GroupColumn{ Id = "TypeLcode", NameColumn = "Тип выработки" },
+                     new GroupColumn{ Id= "PlaceSite", NameColumn = "Название участка"},
+                     new GroupColumn{ Id = "Profile", NameColumn = "Номер ПЛ" },
+                     new GroupColumn{ Id= "Easting", NameColumn = "Долгота"},
+                     new GroupColumn{ Id = "Northing", NameColumn = "Широта" },
+                     new GroupColumn{ Id= "Elevation", NameColumn = "Абс. отм."},
+                     new GroupColumn{ Id = "Diam", NameColumn = "Диаметр бурения, мм" },
+                     new GroupColumn{ Id= "Azimuth", NameColumn = "Азимут ист., °"},
+                     new GroupColumn{ Id= "Dip", NameColumn = "Угол наклона от горизонта, °"},
+                     new GroupColumn{ Id= "Depth", NameColumn = "Глубина скважины,м"},
+                     new GroupColumn{ Id= "Uroven", NameColumn = "Уровень ПВ, м"},
+                     new GroupColumn{ Id= "UrAbs", NameColumn = "Абс. отм. уровня, м"},
+                     new GroupColumn{ Id= "StartDate", NameColumn = "Начало бурения"},
+                     new GroupColumn{ Id= "EndDate", NameColumn = "Окончание бурения"},
+                     new GroupColumn{ Id= "Geolog", NameColumn = "Геолог"},
+                     new GroupColumn{ Id= "NotesCommentsText", NameColumn = "Примечания"},
+            };
+
             db = _db;
             _infodrillRepository = new InfodrillRepository(db);
             InfoDrills = new ObservableCollection<InfoDrill>(_infodrillRepository.GetAll());
+          
 
+        }
+
+       
+
+
+        private void Refrash()
+        {
+            InfoDrills.Clear();
+            InfoDrills = new ObservableCollection<InfoDrill>(_infodrillRepository.GetAll());
+        }
+
+        private ICommand _refrashCommand;
+        public ICommand RefrashCommand
+        {
+            get
+            {
+                if (_refrashCommand == null)
+                {
+                    _refrashCommand = new RelayCommand(param => Refrash());
+                }
+                return _refrashCommand;
+            }
         }
 
         private ICommand _editItemCommand;
@@ -77,6 +148,20 @@ namespace BdAnzas.Content.ViewModel
                     _addItemCommand = new RelayCommand(param => OpenWindowAdd());
                 }
                 return _addItemCommand;
+            }
+        }
+
+
+        private ICommand _searchCommand;
+        public ICommand SearchCommand
+        {
+            get
+            {
+                if (_searchCommand == null)
+                {
+                    _searchCommand = new RelayCommand(param => InfoDrills = searchManager.SearchFilter(InfoDrills, SearchText, SelectedColumn.Id));
+                }
+                return _searchCommand;
             }
         }
 
